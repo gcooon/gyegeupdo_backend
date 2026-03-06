@@ -1,0 +1,192 @@
+[
+  {
+    "model": "brands.category",
+    "pk": 1,
+    "fields": {
+      "name": "러닝화",
+      "slug": "running",
+      "description": "달리기 전용 신발",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "name": "Nike",
+      "slug": "nike",
+      "logo_url": "",
+      "tier": "S",
+      "tier_score": 88.0,
+      "lineup_score": 90.0,
+      "tech_score": 92.0,
+      "durability_score": 85.0,
+      "community_score": 88.0,
+      "description": "나이키 러닝화",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 2,
+    "fields": {
+      "category": 1,
+      "name": "Adidas",
+      "slug": "adidas",
+      "logo_url": "",
+      "tier": "A",
+      "tier_score": 84.0,
+      "lineup_score": 85.0,
+      "tech_score": 88.0,
+      "durability_score": 82.0,
+      "community_score": 80.0,
+      "description": "아디다스 러닝화",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 3,
+    "fields": {
+      "category": 1,
+      "name": "New Balance",
+      "slug": "new-balance",
+      "logo_url": "",
+      "tier": "A",
+      "tier_score": 82.0,
+      "lineup_score": 82.0,
+      "tech_score": 85.0,
+      "durability_score": 84.0,
+      "community_score": 78.0,
+      "description": "뉴발란스 러닝화",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 4,
+    "fields": {
+      "category": 1,
+      "name": "ASICS",
+      "slug": "asics",
+      "logo_url": "",
+      "tier": "A",
+      "tier_score": 83.0,
+      "lineup_score": 84.0,
+      "tech_score": 86.0,
+      "durability_score": 88.0,
+      "community_score": 75.0,
+      "description": "아식스 러닝화",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 5,
+    "fields": {
+      "category": 1,
+      "name": "Hoka",
+      "slug": "hoka",
+      "logo_url": "",
+      "tier": "A",
+      "tier_score": 80.0,
+      "lineup_score": 78.0,
+      "tech_score": 85.0,
+      "durability_score": 80.0,
+      "community_score": 82.0,
+      "description": "호카 러닝화",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 6,
+    "fields": {
+      "category": 1,
+      "name": "Saucony",
+      "slug": "saucony",
+      "logo_url": "",
+      "tier": "A",
+      "tier_score": 78.0,
+      "lineup_score": 76.0,
+      "tech_score": 82.0,
+      "durability_score": 80.0,
+      "community_score": 74.0,
+      "description": "써코니 러닝화",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 7,
+    "fields": {
+      "category": 1,
+      "name": "Brooks",
+      "slug": "brooks",
+      "logo_url": "",
+      "tier": "B",
+      "tier_score": 72.0,
+      "lineup_score": 70.0,
+      "tech_score": 75.0,
+      "durability_score": 78.0,
+      "community_score": 68.0,
+      "description": "브룩스 러닝화",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 8,
+    "fields": {
+      "category": 1,
+      "name": "Mizuno",
+      "slug": "mizuno",
+      "logo_url": "",
+      "tier": "B",
+      "tier_score": 70.0,
+      "lineup_score": 68.0,
+      "tech_score": 72.0,
+      "durability_score": 76.0,
+      "community_score": 65.0,
+      "description": "미즈노 러닝화",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 9,
+    "fields": {
+      "category": 1,
+      "name": "On",
+      "slug": "on",
+      "logo_url": "",
+      "tier": "A",
+      "tier_score": 76.0,
+      "lineup_score": 72.0,
+      "tech_score": 80.0,
+      "durability_score": 75.0,
+      "community_score": 78.0,
+      "description": "온 러닝화",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 10,
+    "fields": {
+      "category": 1,
+      "name": "Salomon",
+      "slug": "salomon",
+      "logo_url": "",
+      "tier": "B",
+      "tier_score": 68.0,
+      "lineup_score": 65.0,
+      "tech_score": 72.0,
+      "durability_score": 74.0,
+      "community_score": 62.0,
+      "description": "살로몬 러닝화",
+      "is_active": true
+    }
+  }
+]
