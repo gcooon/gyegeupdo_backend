@@ -303,3 +303,16 @@ if not DEBUG:
                 'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
             }
         }
+
+    # Database
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600
+        )
+    }
+
+    # Static files
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
