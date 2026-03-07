@@ -20,7 +20,7 @@ from .serializers import (
 
 class TierDisputeViewSet(viewsets.ModelViewSet):
     """이의제기 API ViewSet"""
-    queryset = TierDispute.objects.select_related('model', 'user')
+    queryset = TierDispute.objects.select_related('product', 'user')
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_serializer_class(self):
@@ -91,7 +91,7 @@ class TierDisputeViewSet(viewsets.ModelViewSet):
 
 class TrendViewSet(viewsets.ReadOnlyModelViewSet):
     """트렌드 API ViewSet"""
-    queryset = TrendLog.objects.select_related('model', 'model__brand')
+    queryset = TrendLog.objects.select_related('product', 'product__brand')
     serializer_class = TrendLogSerializer
 
     def get_queryset(self):

@@ -7,7 +7,7 @@ from .serializers import ReviewSerializer, ReviewCreateSerializer
 
 class ReviewViewSet(viewsets.ModelViewSet):
     """리뷰 API ViewSet"""
-    queryset = Review.objects.filter(is_visible=True).select_related('user', 'model')
+    queryset = Review.objects.filter(is_visible=True).select_related('user', 'product')
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_serializer_class(self):
