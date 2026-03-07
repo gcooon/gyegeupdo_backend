@@ -28,9 +28,14 @@ class CategoryListSerializer(serializers.ModelSerializer):
         ]
 
     def get_product_count(self, obj):
+        # annotate된 값이 있으면 사용 (N+1 방지)
+        if hasattr(obj, '_product_count'):
+            return obj._product_count
         return obj.products.filter(is_active=True).count()
 
     def get_brand_count(self, obj):
+        if hasattr(obj, '_brand_count'):
+            return obj._brand_count
         return obj.brands.filter(is_active=True).count()
 
 
@@ -81,6 +86,8 @@ class BrandDetailSerializer(serializers.ModelSerializer):
         ]
 
     def get_product_count(self, obj):
+        if hasattr(obj, '_product_count'):
+            return obj._product_count
         return obj.products.filter(is_active=True).count()
 
     def get_scores(self, obj):

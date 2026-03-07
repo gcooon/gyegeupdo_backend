@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import F
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 import uuid
@@ -112,12 +113,16 @@ class DisputeVote(models.Model):
         is_new = self.pk is None
         super().save(*args, **kwargs)
         if is_new:
-            # 투표 수 업데이트
+            # 투표 수 업데이트 (F expression으로 race condition 방지)
             if self.vote == 'support':
-                self.dispute.support_count += 1
+                TierDispute.objects.filter(pk=self.dispute_id).update(
+                    support_count=F('support_count') + 1
+                )
             else:
-                self.dispute.oppose_count += 1
-            self.dispute.save()
+                TierDispute.objects.filter(pk=self.dispute_id).update(
+                    oppose_count=F('oppose_count') + 1
+                )
+            self.dispute.refresh_from_db()
             self.dispute.update_status()
 
 
@@ -255,9 +260,11 @@ class UserTierChart(models.Model):
         return f"/my-tier/{self.slug}"
 
     def increment_view(self):
-        """조회수 증가"""
-        self.view_count += 1
-        self.save(update_fields=['view_count'])
+        """조회수 증가 (F expression으로 race condition 방지)"""
+        UserTierChart.objects.filter(pk=self.pk).update(
+            view_count=F('view_count') + 1
+        )
+        self.view_count = F('view_count')  # lazy, refresh if needed
 
 
 class TierChartComment(models.Model):
@@ -299,16 +306,18 @@ class TierChartComment(models.Model):
         is_new = self.pk is None
         super().save(*args, **kwargs)
         if is_new:
-            # 댓글 수 업데이트
-            self.tier_chart.comment_count = self.tier_chart.comments.count()
-            self.tier_chart.save(update_fields=['comment_count'])
+            # 댓글 수 업데이트 (F expression으로 race condition 방지)
+            UserTierChart.objects.filter(pk=self.tier_chart_id).update(
+                comment_count=F('comment_count') + 1
+            )
 
     def delete(self, *args, **kwargs):
-        tier_chart = self.tier_chart
+        tier_chart_id = self.tier_chart_id
         super().delete(*args, **kwargs)
-        # 댓글 수 업데이트
-        tier_chart.comment_count = tier_chart.comments.count()
-        tier_chart.save(update_fields=['comment_count'])
+        # 댓글 수 업데이트 (F expression으로 race condition 방지)
+        UserTierChart.objects.filter(pk=tier_chart_id).update(
+            comment_count=F('comment_count') - 1
+        )
 
 
 class TierChartLike(models.Model):
@@ -339,13 +348,15 @@ class TierChartLike(models.Model):
         is_new = self.pk is None
         super().save(*args, **kwargs)
         if is_new:
-            # 좋아요 수 업데이트
-            self.tier_chart.like_count += 1
-            self.tier_chart.save(update_fields=['like_count'])
+            # 좋아요 수 업데이트 (F expression으로 race condition 방지)
+            UserTierChart.objects.filter(pk=self.tier_chart_id).update(
+                like_count=F('like_count') + 1
+            )
 
     def delete(self, *args, **kwargs):
-        tier_chart = self.tier_chart
+        tier_chart_id = self.tier_chart_id
         super().delete(*args, **kwargs)
-        # 좋아요 수 업데이트
-        tier_chart.like_count = tier_chart.likes.count()
-        tier_chart.save(update_fields=['like_count'])
+        # 좋아요 수 업데이트 (F expression으로 race condition 방지)
+        UserTierChart.objects.filter(pk=tier_chart_id).update(
+            like_count=F('like_count') - 1
+        )

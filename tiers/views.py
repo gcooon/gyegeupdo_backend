@@ -281,6 +281,7 @@ class UserTierChartViewSet(viewsets.ModelViewSet):
         if not created:
             # 이미 좋아요 -> 취소
             like.delete()
+            instance.refresh_from_db(fields=['like_count'])
             return Response({
                 'success': True,
                 'data': {
@@ -290,6 +291,7 @@ class UserTierChartViewSet(viewsets.ModelViewSet):
                 'message': '좋아요가 취소되었습니다.'
             })
 
+        instance.refresh_from_db(fields=['like_count'])
         return Response({
             'success': True,
             'data': {

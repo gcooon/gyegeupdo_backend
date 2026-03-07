@@ -1,18 +1,25 @@
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.db.models import Count, Q
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from .models import Category, Brand
 from .serializers import CategorySerializer, BrandListSerializer, BrandDetailSerializer
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     """카테고리 API ViewSet"""
-    queryset = Category.objects.filter(is_active=True)
+    queryset = Category.objects.filter(is_active=True).order_by('display_order')
     serializer_class = CategorySerializer
     lookup_field = 'slug'
 
+    @method_decorator(cache_page(60 * 5))  # 5분 캐시
     def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
+        queryset = self.get_queryset().annotate(
+            _brand_count=Count('brands', filter=Q(brands__is_active=True)),
+            _product_count=Count('products', filter=Q(products__is_active=True)),
+        )
         serializer = self.get_serializer(queryset, many=True)
         return Response({
             'success': True,
@@ -44,8 +51,11 @@ class BrandViewSet(viewsets.ReadOnlyModelViewSet):
 
         return queryset
 
+    @method_decorator(cache_page(60 * 3))  # 3분 캐시
     def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
+        queryset = self.get_queryset().annotate(
+            _product_count=Count('products', filter=Q(products__is_active=True)),
+        )
         serializer = self.get_serializer(queryset, many=True)
         return Response({
             'success': True,
