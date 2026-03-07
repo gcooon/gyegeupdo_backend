@@ -312,7 +312,5 @@ if not DEBUG:
         )
     }
 
-    # Static files
-    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    # WhiteNoise는 이미 MIDDLEWARE에 포함되어 있으므로 중복 추가하지 않음
 
