@@ -23,7 +23,7 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 
 class BrandViewSet(viewsets.ReadOnlyModelViewSet):
     """브랜드 API ViewSet"""
-    queryset = Brand.objects.filter(is_active=True).select_related('category')
+    queryset = Brand.objects.filter(is_active=True).select_related('category').prefetch_related('scores')
     lookup_field = 'slug'
 
     def get_serializer_class(self):
