@@ -176,13 +176,13 @@ self.tier_chart.save()  # 동시 요청 시 카운트 유실
 
 ## 액션 플랜 (추천 순서)
 
-| 순서 | 작업 | 예상 난이도 | 영향도 |
-|------|------|-----------|--------|
-| 1 | `select_related` 버그 수정 (3파일) | 낮음 | 크리티컬 |
-| 2 | DEBUG 기본값 False로 변경 | 낮음 | 크리티컬 |
-| 3 | Procfile에서 seed_categories 제거 | 낮음 | 중간 |
-| 4 | Rate Limiting 추가 | 낮음 | 높음 |
-| 5 | 프론트엔드 Header/Sidebar API 연동 | 중간 | 높음 |
-| 6 | 카테고리 목록 캐싱 | 낮음 | 높음 |
-| 7 | N+1 쿼리 수정 (annotate) | 중간 | 중간 |
-| 8 | Race condition 수정 (F expression) | 중간 | 중간 |
+| 순서 | 작업 | 예상 난이도 | 영향도 | 상태 |
+|------|------|-----------|--------|------|
+| 1 | `select_related` 버그 수정 (3파일) | 낮음 | 크리티컬 | **완료** (6dba6ff) |
+| 2 | DEBUG 기본값 False로 변경 | 낮음 | 크리티컬 | **완료** (6dba6ff) |
+| 3 | Procfile에서 seed_categories 제거 | 낮음 | 중간 | **완료** (6dba6ff) |
+| 4 | Rate Limiting 추가 | 낮음 | 높음 | **완료** (6dba6ff) |
+| 5 | 프론트엔드 Header/Sidebar API 연동 | 중간 | 높음 | **완료** (e0d6646) |
+| 6 | 카테고리 목록 캐싱 | 낮음 | 높음 | **완료** (67ea19b) |
+| 7 | N+1 쿼리 수정 (annotate) | 중간 | 중간 | **완료** (67ea19b) |
+| 8 | Race condition 수정 (F expression) | 중간 | 중간 | **완료** (67ea19b) |
