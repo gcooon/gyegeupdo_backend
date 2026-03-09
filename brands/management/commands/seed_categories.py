@@ -101,6 +101,29 @@ CATEGORIES_DATA = [
             {'key': 'crispy', 'label': '바삭함', 'weight': 20},
             {'key': 'popularity', 'label': '인기도', 'weight': 20},
         ],
+        'spec_definitions': [
+            {'key': 'price', 'label': '가격', 'unit': '원', 'type': 'number'},
+            {'key': 'calories', 'label': '칼로리', 'unit': 'kcal', 'type': 'number'},
+            {'key': 'serving', 'label': '제공량', 'unit': 'g', 'type': 'number'},
+            {'key': 'spicy_level', 'label': '맵기', 'type': 'text'},
+            {'key': 'cooking_method', 'label': '조리방식', 'type': 'text'},
+        ],
+        'filter_definitions': {
+            'product_type': [
+                {'value': 'fried', 'label': '후라이드'},
+                {'value': 'seasoned', 'label': '양념'},
+                {'value': 'soy', 'label': '간장'},
+                {'value': 'cheese', 'label': '치즈'},
+                {'value': 'garlic', 'label': '마늘'},
+                {'value': 'roasted', 'label': '구이'},
+            ],
+            'usage': [
+                {'value': 'solo', 'label': '혼닭'},
+                {'value': 'party', 'label': '파티'},
+                {'value': 'beer', 'label': '치맥'},
+                {'value': 'family', 'label': '가족'},
+            ],
+        },
         'brands': [
             {'name': '황금올리브치킨', 'slug': 'bbq-golden-olive', 'domain': 'bbq.co.kr', 'brand_name': 'BBQ', 'description': 'BBQ의 시그니처 메뉴, 올리브유로 튀긴 바삭한 치킨', 'scores': {'taste': 96, 'price': 88, 'crispy': 95, 'popularity': 98}},
             {'name': '교촌 오리지날', 'slug': 'kyochon-original', 'domain': 'kyochon.com', 'brand_name': '교촌', 'description': '교촌치킨의 간장 소스 오리지널 치킨', 'scores': {'taste': 95, 'price': 85, 'crispy': 90, 'popularity': 96}},
@@ -140,6 +163,15 @@ CATEGORIES_DATA = [
             {'key': 'craftsmanship', 'label': '기술력', 'weight': 30},
             {'key': 'resale', 'label': '환금성', 'weight': 20},
             {'key': 'prestige', 'label': '브랜드 가치', 'weight': 25},
+        ],
+        'spec_definitions': [
+            {'key': 'case_diameter', 'label': '케이스 직경', 'unit': 'mm', 'type': 'number'},
+            {'key': 'case_thickness', 'label': '케이스 두께', 'unit': 'mm', 'type': 'number'},
+            {'key': 'water_resistance', 'label': '방수', 'unit': 'm', 'type': 'number'},
+            {'key': 'movement', 'label': '무브먼트', 'type': 'text'},
+            {'key': 'power_reserve', 'label': '파워리저브', 'unit': '시간', 'type': 'number'},
+            {'key': 'case_material', 'label': '케이스 소재', 'type': 'text'},
+            {'key': 'crystal', 'label': '글라스', 'type': 'text'},
         ],
         'filter_definitions': {
             'product_type': [
