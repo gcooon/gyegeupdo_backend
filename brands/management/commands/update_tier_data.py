@@ -120,26 +120,34 @@ class Command(BaseCommand):
         ]
 
         for brand_data in brands_data:
+            # 1. 브랜드 기본 정보만 먼저 생성/업데이트
             brand, created = Brand.objects.update_or_create(
                 slug=brand_data['slug'],
                 defaults={
                     'category': category,
                     'name': brand_data['name'],
-                    'tier': brand_data['tier'],
-                    'tier_score': brand_data['tier_score'],
                     'description': brand_data.get('description', ''),
+                    'is_active': True,
                 }
             )
-            # BrandScore 추가
+
+            # 2. BrandScore 추가
             if 'scores' in brand_data:
                 for key, value in brand_data['scores'].items():
                     BrandScore.objects.update_or_create(
                         brand=brand,
                         key=key,
-                        defaults={'value': value}
+                        defaults={'value': value, 'label': key}
                     )
+
+            # 3. tier와 tier_score를 직접 DB 업데이트 (save() 우회 - 마지막에 강제 설정)
+            Brand.objects.filter(pk=brand.pk).update(
+                tier=brand_data['tier'],
+                tier_score=brand_data['tier_score']
+            )
+
             action = '추가' if created else '업데이트'
-            self.stdout.write(f'  브랜드 {action}: {brand.name} ({brand.tier}티어)')
+            self.stdout.write(f'  브랜드 {action}: {brand.name} ({brand_data["tier"]}티어)')
 
         # 3. 제품 데이터 - 메뉴 종류별로 풍성하게
         products_data = [
@@ -353,26 +361,34 @@ class Command(BaseCommand):
         ]
 
         for brand_data in brands_data:
+            # 1. 브랜드 기본 정보만 먼저 생성/업데이트
             brand, created = Brand.objects.update_or_create(
                 slug=brand_data['slug'],
                 defaults={
                     'category': category,
                     'name': brand_data['name'],
-                    'tier': brand_data['tier'],
-                    'tier_score': brand_data['tier_score'],
                     'description': brand_data.get('description', ''),
+                    'is_active': True,
                 }
             )
-            # BrandScore 추가
+
+            # 2. BrandScore 추가
             if 'scores' in brand_data:
                 for key, value in brand_data['scores'].items():
                     BrandScore.objects.update_or_create(
                         brand=brand,
                         key=key,
-                        defaults={'value': value}
+                        defaults={'value': value, 'label': key}
                     )
+
+            # 3. tier와 tier_score를 직접 DB 업데이트 (save() 우회 - 마지막에 강제 설정)
+            Brand.objects.filter(pk=brand.pk).update(
+                tier=brand_data['tier'],
+                tier_score=brand_data['tier_score']
+            )
+
             action = '추가' if created else '업데이트'
-            self.stdout.write(f'  브랜드 {action}: {brand.name} ({brand.tier}티어)')
+            self.stdout.write(f'  브랜드 {action}: {brand.name} ({brand_data["tier"]}티어)')
 
         # 3. 제품 데이터 풍성하게
         products_data = [
@@ -579,26 +595,34 @@ class Command(BaseCommand):
         ]
 
         for brand_data in brands_data:
+            # 1. 브랜드 기본 정보만 먼저 생성/업데이트
             brand, created = Brand.objects.update_or_create(
                 slug=brand_data['slug'],
                 defaults={
                     'category': category,
                     'name': brand_data['name'],
-                    'tier': brand_data['tier'],
-                    'tier_score': brand_data['tier_score'],
                     'description': brand_data.get('description', ''),
+                    'is_active': True,
                 }
             )
-            # BrandScore 추가
+
+            # 2. BrandScore 추가
             if 'scores' in brand_data:
                 for key, value in brand_data['scores'].items():
                     BrandScore.objects.update_or_create(
                         brand=brand,
                         key=key,
-                        defaults={'value': value}
+                        defaults={'value': value, 'label': key}
                     )
+
+            # 3. tier와 tier_score를 직접 DB 업데이트 (save() 우회 - 마지막에 강제 설정)
+            Brand.objects.filter(pk=brand.pk).update(
+                tier=brand_data['tier'],
+                tier_score=brand_data['tier_score']
+            )
+
             action = '추가' if created else '업데이트'
-            self.stdout.write(f'  브랜드 {action}: {brand.name} ({brand.tier}티어)')
+            self.stdout.write(f'  브랜드 {action}: {brand.name} ({brand_data["tier"]}티어)')
 
         # 3. 제품 데이터
         products_data = [
