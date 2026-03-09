@@ -598,12 +598,12 @@ RUNNING_SHOES_DATA = [
 ]
 
 # ============================================================================
-# 치킨 제품 데이터
+# 치킨 제품 데이터 (Product = 메뉴, Brand = 프랜차이즈)
 # ============================================================================
 CHICKEN_DATA = [
     # ---- BBQ ----
     {
-        'brand_slug': 'bbq-golden-olive',
+        'brand_slug': 'bbq',
         'name': '황금올리브 콤보',
         'slug': 'bbq-golden-olive-combo',
         'description': 'BBQ 시그니처 메뉴. 올리브유로 바삭하게 튀긴 프리미엄 치킨',
@@ -615,7 +615,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 95, 'price': 82, 'crispy': 96, 'popularity': 98},
     },
     {
-        'brand_slug': 'bbq-golden-olive',
+        'brand_slug': 'bbq',
         'name': '자메이카 통다리 구이',
         'slug': 'bbq-jamaica-drumstick',
         'description': '스모키한 자메이카 스파이스로 구운 통다리 치킨',
@@ -627,7 +627,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 92, 'price': 78, 'crispy': 75, 'popularity': 88},
     },
     {
-        'brand_slug': 'bbq-golden-olive',
+        'brand_slug': 'bbq',
         'name': '황금올리브 블랙페퍼',
         'slug': 'bbq-golden-olive-black-pepper',
         'description': '황금올리브에 블랙페퍼 시즈닝을 더한 스파이시 버전',
@@ -640,7 +640,7 @@ CHICKEN_DATA = [
     },
     # ---- 교촌 ----
     {
-        'brand_slug': 'kyochon-original',
+        'brand_slug': 'kyochon',
         'name': '허니콤보',
         'slug': 'kyochon-honey-combo',
         'description': '꿀과 간장의 조화. 달콤짭짤한 교촌의 베스트셀러',
@@ -652,7 +652,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 94, 'price': 82, 'crispy': 88, 'popularity': 96},
     },
     {
-        'brand_slug': 'kyochon-original',
+        'brand_slug': 'kyochon',
         'name': '레드콤보',
         'slug': 'kyochon-red-combo',
         'description': '매콤한 교촌만의 레드 시즈닝. 매운맛 마니아 필수',
@@ -664,7 +664,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 92, 'price': 82, 'crispy': 86, 'popularity': 92},
     },
     {
-        'brand_slug': 'kyochon-original',
+        'brand_slug': 'kyochon',
         'name': '교촌오리지날',
         'slug': 'kyochon-original-soy',
         'description': '교촌의 시작. 간장 베이스의 원조 간장치킨',
@@ -677,7 +677,7 @@ CHICKEN_DATA = [
     },
     # ---- BHC ----
     {
-        'brand_slug': 'bhc-puringkle',
+        'brand_slug': 'bhc',
         'name': '뿌링클',
         'slug': 'bhc-puringkle-original',
         'description': 'MZ세대 인기 1위. 치즈 시즈닝과 뿌링뿌링 소스의 환상조합',
@@ -689,7 +689,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 94, 'price': 85, 'crispy': 92, 'popularity': 98},
     },
     {
-        'brand_slug': 'bhc-puringkle',
+        'brand_slug': 'bhc',
         'name': '뿌링클 핫',
         'slug': 'bhc-puringkle-hot',
         'description': '뿌링클에 매직 핫 시즈닝을 더한 매콤 버전',
@@ -701,7 +701,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 92, 'price': 85, 'crispy': 90, 'popularity': 90},
     },
     {
-        'brand_slug': 'bhc-matchoking',
+        'brand_slug': 'bhc',
         'name': '맛초킹',
         'slug': 'bhc-matchoking-original',
         'description': '고추장 베이스의 매콤달콤. 쫄깃한 튀김옷이 특징',
@@ -714,7 +714,7 @@ CHICKEN_DATA = [
     },
     # ---- 굽네 ----
     {
-        'brand_slug': 'goobne-gochu',
+        'brand_slug': 'goobne',
         'name': '고추바사삭',
         'slug': 'goobne-gochu-basasak',
         'description': '오븐에 구워 담백하고 바삭한 굽네 시그니처',
@@ -726,7 +726,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 90, 'price': 85, 'crispy': 88, 'popularity': 88},
     },
     {
-        'brand_slug': 'goobne-gochu',
+        'brand_slug': 'goobne',
         'name': '볼케이노',
         'slug': 'goobne-volcano',
         'description': '화끈하게 매운 굽네의 불닭 메뉴',
@@ -738,7 +738,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 85, 'price': 82, 'crispy': 80, 'popularity': 78},
     },
     {
-        'brand_slug': 'goobne-gochu',
+        'brand_slug': 'goobne',
         'name': '오리지널',
         'slug': 'goobne-original',
         'description': '굽네의 기본. 담백하고 깔끔한 오븐 구이 치킨',
@@ -751,7 +751,7 @@ CHICKEN_DATA = [
     },
     # ---- 네네 ----
     {
-        'brand_slug': 'nene-snowing',
+        'brand_slug': 'nene',
         'name': '치즈스노윙',
         'slug': 'nene-cheese-snowing',
         'description': '눈꽃치즈가 흩날리는 네네의 시그니처',
@@ -763,7 +763,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 90, 'price': 80, 'crispy': 85, 'popularity': 88},
     },
     {
-        'brand_slug': 'nene-snowing',
+        'brand_slug': 'nene',
         'name': '스노윙MAXX',
         'slug': 'nene-snowing-maxx',
         'description': '더 많은 치즈, 더 풍성한 맛. 스노윙의 업그레이드 버전',
@@ -775,7 +775,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 92, 'price': 78, 'crispy': 85, 'popularity': 85},
     },
     {
-        'brand_slug': 'nene-snowing',
+        'brand_slug': 'nene',
         'name': '오리엔탈파닭',
         'slug': 'nene-oriental-padak',
         'description': '파채와 오리엔탈 소스의 조화. 맥주 안주로 최고',
@@ -788,7 +788,7 @@ CHICKEN_DATA = [
     },
     # ---- 푸라닭 ----
     {
-        'brand_slug': 'puradak-black-allio',
+        'brand_slug': 'puradak',
         'name': '블랙알리오',
         'slug': 'puradak-black-allio-original',
         'description': '간장과 마늘의 깊은 풍미. 푸라닭 시그니처 메뉴',
@@ -800,7 +800,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 93, 'price': 78, 'crispy': 88, 'popularity': 85},
     },
     {
-        'brand_slug': 'puradak-black-allio',
+        'brand_slug': 'puradak',
         'name': '고추마요',
         'slug': 'puradak-gochu-mayo',
         'description': '청양고추와 마요네즈의 조화. 매콤크리미한 맛',
@@ -813,7 +813,7 @@ CHICKEN_DATA = [
     },
     # ---- 호식이 ----
     {
-        'brand_slug': 'hosigi-fried',
+        'brand_slug': 'hosigi',
         'name': '호식이 후라이드+후라이드',
         'slug': 'hosigi-double-fried',
         'description': '두마리 치킨의 원조. 옛날통닭 스타일 후라이드',
@@ -825,7 +825,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 80, 'price': 95, 'crispy': 82, 'popularity': 78},
     },
     {
-        'brand_slug': 'hosigi-fried',
+        'brand_slug': 'hosigi',
         'name': '레몬크림탕슈',
         'slug': 'hosigi-lemon-cream',
         'description': '상큼한 레몬과 크리미한 소스. 호식이의 인기 신메뉴',
@@ -838,7 +838,7 @@ CHICKEN_DATA = [
     },
     # ---- 처갓집 ----
     {
-        'brand_slug': 'cheogajip-supreme',
+        'brand_slug': 'cheogajip',
         'name': '슈프림골드양념',
         'slug': 'cheogajip-supreme-gold',
         'description': '진하고 달콤한 처갓집 시그니처 양념. 호불호 없는 맛',
@@ -850,7 +850,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 85, 'price': 78, 'crispy': 78, 'popularity': 75},
     },
     {
-        'brand_slug': 'cheogajip-supreme',
+        'brand_slug': 'cheogajip',
         'name': '트러플슈프림양념',
         'slug': 'cheogajip-truffle-supreme',
         'description': '트러플 오일이 더해진 프리미엄 버전',
@@ -863,7 +863,7 @@ CHICKEN_DATA = [
     },
     # ---- 60계 ----
     {
-        'brand_slug': '60gye-fried',
+        'brand_slug': '60gye',
         'name': '후라이드',
         'slug': '60gye-fried-original',
         'description': '옛날 방식 후라이드의 정석. 가성비 최고',
@@ -875,7 +875,7 @@ CHICKEN_DATA = [
         'scores': {'taste': 75, 'price': 95, 'crispy': 80, 'popularity': 75},
     },
     {
-        'brand_slug': '60gye-fried',
+        'brand_slug': '60gye',
         'name': '크크크치킨',
         'slug': '60gye-ccc-chicken',
         'description': '크런치 크럼블 크리스피. 콘크럼블 시즈닝이 특징',
