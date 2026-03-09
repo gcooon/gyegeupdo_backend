@@ -5,7 +5,10 @@ from django.db.models import Count, Q
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from .models import Category, Brand
-from .serializers import CategorySerializer, BrandListSerializer, BrandDetailSerializer
+from .serializers import (
+    CategorySerializer, CategoryListSerializer,
+    BrandListSerializer, BrandDetailSerializer
+)
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -14,6 +17,11 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CategorySerializer
     lookup_field = 'slug'
 
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return CategoryListSerializer
+        return CategorySerializer
+
     @method_decorator(cache_page(60 * 5))  # 5분 캐시
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset().annotate(
@@ -21,6 +29,19 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
             _product_count=Count('products', filter=Q(products__is_active=True)),
         )
         serializer = self.get_serializer(queryset, many=True)
+        return Response({
+            'success': True,
+            'data': {
+                'results': serializer.data,
+                'count': len(serializer.data)
+            },
+            'message': 'OK'
+        })
+
+    def retrieve(self, request, *args, **kwargs):
+        """단일 카테고리 상세 조회 (slug 기준)"""
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
         return Response({
             'success': True,
             'data': serializer.data,
