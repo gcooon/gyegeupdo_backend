@@ -411,14 +411,21 @@ class TierChartComment(models.Model):
             UserTierChart.objects.filter(pk=self.tier_chart_id).update(
                 comment_count=F('comment_count') + 1
             )
+            # 승격 상태 자동 업데이트
+            self.tier_chart.refresh_from_db()
+            self.tier_chart.update_promotion_status()
 
     def delete(self, *args, **kwargs):
         tier_chart_id = self.tier_chart_id
+        tier_chart = self.tier_chart
         super().delete(*args, **kwargs)
         # 댓글 수 업데이트 (F expression으로 race condition 방지)
         UserTierChart.objects.filter(pk=tier_chart_id).update(
             comment_count=F('comment_count') - 1
         )
+        # 승격 상태 자동 업데이트
+        tier_chart.refresh_from_db()
+        tier_chart.update_promotion_status()
 
 
 class TierChartLike(models.Model):
@@ -453,11 +460,18 @@ class TierChartLike(models.Model):
             UserTierChart.objects.filter(pk=self.tier_chart_id).update(
                 like_count=F('like_count') + 1
             )
+            # 승격 상태 자동 업데이트
+            self.tier_chart.refresh_from_db()
+            self.tier_chart.update_promotion_status()
 
     def delete(self, *args, **kwargs):
         tier_chart_id = self.tier_chart_id
+        tier_chart = self.tier_chart
         super().delete(*args, **kwargs)
         # 좋아요 수 업데이트 (F expression으로 race condition 방지)
         UserTierChart.objects.filter(pk=tier_chart_id).update(
             like_count=F('like_count') - 1
         )
+        # 승격 상태 자동 업데이트
+        tier_chart.refresh_from_db()
+        tier_chart.update_promotion_status()

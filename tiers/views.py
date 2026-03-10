@@ -1,8 +1,9 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
 from django.db.models import Q
+from django.utils import timezone
 from .models import TierDispute, DisputeVote, TrendLog, UserTierChart, TierChartComment, TierChartLike
 from .serializers import (
     TierDisputeListSerializer,
@@ -396,4 +397,90 @@ class UserTierChartViewSet(viewsets.ModelViewSet):
             'success': True,
             'data': serializer.data,
             'message': 'OK'
+        })
+
+    # ===== 승격 시스템 API =====
+
+    @action(detail=False, methods=['get'])
+    def promotion_candidates(self, request):
+        """승급 후보 목록 조회 (100점 이상)"""
+        queryset = self.get_queryset().filter(
+            visibility='public',
+            promotion_status__in=['rising', 'candidate']
+        ).order_by('-like_count', '-view_count', '-created_at')
+
+        # 페이지네이션
+        page = int(request.query_params.get('page', 1))
+        limit = int(request.query_params.get('limit', 20))
+        offset = (page - 1) * limit
+
+        total_count = queryset.count()
+        queryset = queryset[offset:offset + limit]
+
+        serializer = UserTierChartListSerializer(
+            queryset, many=True, context={'request': request}
+        )
+        return Response({
+            'success': True,
+            'data': {
+                'items': serializer.data,
+                'total_count': total_count,
+                'page': page,
+                'limit': limit,
+                'has_next': offset + limit < total_count
+            },
+            'message': 'OK'
+        })
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
+    def promote(self, request, slug=None):
+        """계급도 승급 처리 (관리자 전용)"""
+        instance = self.get_object()
+
+        if instance.promotion_status == 'promoted':
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '이미 승급된 계급도입니다.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        instance.promotion_status = 'promoted'
+        instance.promoted_at = timezone.now()
+        instance.promoted_by = request.user
+        instance.save(update_fields=['promotion_status', 'promoted_at', 'promoted_by'])
+
+        serializer = UserTierChartDetailSerializer(instance, context={'request': request})
+        return Response({
+            'success': True,
+            'data': serializer.data,
+            'message': f'"{instance.title}" 계급도가 승급 처리되었습니다.'
+        })
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
+    def demote(self, request, slug=None):
+        """계급도 승급 취소 (관리자 전용)"""
+        instance = self.get_object()
+
+        if instance.promotion_status == 'normal':
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '일반 상태의 계급도입니다.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # 점수 기반으로 상태 재계산
+        instance.promotion_status = 'normal'
+        instance.promoted_at = None
+        instance.promoted_by = None
+        instance.save(update_fields=['promotion_status', 'promoted_at', 'promoted_by'])
+
+        # 점수 기반 상태 재설정
+        instance.update_promotion_status()
+        instance.refresh_from_db()
+
+        serializer = UserTierChartDetailSerializer(instance, context={'request': request})
+        return Response({
+            'success': True,
+            'data': serializer.data,
+            'message': f'"{instance.title}" 계급도의 승급이 취소되었습니다.'
         })
