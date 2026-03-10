@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils import timezone
 from .models import TierDispute, DisputeVote, TrendLog, UserTierChart, TierChartComment, TierChartLike
 
 
@@ -31,12 +32,70 @@ class TrendLogAdmin(admin.ModelAdmin):
 
 @admin.register(UserTierChart)
 class UserTierChartAdmin(admin.ModelAdmin):
-    list_display = ['title', 'user', 'visibility', 'like_count', 'view_count', 'comment_count', 'is_featured', 'created_at']
-    list_filter = ['visibility', 'is_featured', 'created_at']
+    list_display = [
+        'title', 'user', 'visibility', 'like_count', 'view_count', 'comment_count',
+        'display_promotion_score', 'promotion_status', 'is_featured', 'created_at'
+    ]
+    list_filter = ['visibility', 'is_featured', 'promotion_status', 'created_at']
     search_fields = ['title', 'description', 'user__email']
-    readonly_fields = ['uuid', 'slug', 'view_count', 'like_count', 'comment_count', 'created_at', 'updated_at']
+    readonly_fields = [
+        'uuid', 'slug', 'view_count', 'like_count', 'comment_count',
+        'created_at', 'updated_at', 'display_promotion_score', 'display_promotion_progress',
+        'promoted_at', 'promoted_by'
+    ]
     raw_id_fields = ['user']
-    list_editable = ['is_featured']
+    list_editable = ['is_featured', 'promotion_status']
+    actions = ['promote_selected', 'reset_promotion_status']
+
+    fieldsets = (
+        ('기본 정보', {
+            'fields': ('title', 'slug', 'description', 'user', 'uuid')
+        }),
+        ('통계', {
+            'fields': ('view_count', 'like_count', 'comment_count')
+        }),
+        ('상태', {
+            'fields': ('visibility', 'is_featured')
+        }),
+        ('승격 시스템', {
+            'fields': (
+                'display_promotion_score', 'display_promotion_progress',
+                'promotion_status', 'promoted_at', 'promoted_by'
+            ),
+            'classes': ('collapse',)
+        }),
+        ('타임스탬프', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+
+    @admin.display(description='승격 점수')
+    def display_promotion_score(self, obj):
+        return f"{obj.promotion_score:.1f}"
+
+    @admin.display(description='승격 진행률')
+    def display_promotion_progress(self, obj):
+        progress = obj.promotion_progress
+        return f"{progress['status_display']} ({progress['progress_percent']:.1f}%)"
+
+    @admin.action(description='선택한 계급도 승격 처리')
+    def promote_selected(self, request, queryset):
+        updated = queryset.exclude(promotion_status='promoted').update(
+            promotion_status='promoted',
+            promoted_at=timezone.now(),
+            promoted_by=request.user
+        )
+        self.message_user(request, f'{updated}개 계급도가 승격 처리되었습니다.')
+
+    @admin.action(description='선택한 계급도 승격 취소 (일반으로)')
+    def reset_promotion_status(self, request, queryset):
+        updated = queryset.update(
+            promotion_status='normal',
+            promoted_at=None,
+            promoted_by=None
+        )
+        self.message_user(request, f'{updated}개 계급도의 승격 상태가 초기화되었습니다.')
 
 
 @admin.register(TierChartComment)

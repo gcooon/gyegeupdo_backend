@@ -108,6 +108,12 @@ class UserTierChartListSerializer(serializers.ModelSerializer):
     user_badge = serializers.SerializerMethodField()
     item_count = serializers.SerializerMethodField()
     is_liked = serializers.SerializerMethodField()
+    promotion_score = serializers.FloatField(read_only=True)
+    promotion_status = serializers.CharField(read_only=True)
+    promotion_status_display = serializers.CharField(
+        source='get_promotion_status_display', read_only=True
+    )
+    promotion_progress = serializers.SerializerMethodField()
 
     class Meta:
         model = UserTierChart
@@ -115,7 +121,9 @@ class UserTierChartListSerializer(serializers.ModelSerializer):
             'id', 'uuid', 'slug', 'title', 'description',
             'user_nickname', 'user_badge', 'item_count',
             'view_count', 'like_count', 'comment_count',
-            'is_liked', 'is_featured', 'created_at'
+            'is_liked', 'is_featured', 'created_at',
+            'promotion_score', 'promotion_status', 'promotion_status_display',
+            'promotion_progress'
         ]
 
     def get_user_badge(self, obj):
@@ -140,6 +148,16 @@ class UserTierChartListSerializer(serializers.ModelSerializer):
             ).exists()
         return False
 
+    def get_promotion_progress(self, obj):
+        """간소화된 승격 진행률 (목록용)"""
+        progress = obj.promotion_progress
+        return {
+            'current_score': progress['current_score'],
+            'progress_percent': progress['progress_percent'],
+            'status': progress['status'],
+            'status_display': progress['status_display'],
+        }
+
 
 class UserTierChartDetailSerializer(serializers.ModelSerializer):
     """사용자 계급도 상세 시리얼라이저"""
@@ -149,6 +167,12 @@ class UserTierChartDetailSerializer(serializers.ModelSerializer):
     is_liked = serializers.SerializerMethodField()
     is_owner = serializers.SerializerMethodField()
     share_url = serializers.CharField(read_only=True)
+    promotion_score = serializers.FloatField(read_only=True)
+    promotion_status = serializers.CharField(read_only=True)
+    promotion_status_display = serializers.CharField(
+        source='get_promotion_status_display', read_only=True
+    )
+    promotion_progress = serializers.SerializerMethodField()
 
     class Meta:
         model = UserTierChart
@@ -157,7 +181,9 @@ class UserTierChartDetailSerializer(serializers.ModelSerializer):
             'user_nickname', 'user_badge',
             'view_count', 'like_count', 'comment_count',
             'visibility', 'is_featured', 'is_liked', 'is_owner',
-            'share_url', 'comments', 'created_at', 'updated_at'
+            'share_url', 'comments', 'created_at', 'updated_at',
+            'promotion_score', 'promotion_status', 'promotion_status_display',
+            'promotion_progress'
         ]
 
     def get_user_badge(self, obj):
@@ -186,6 +212,10 @@ class UserTierChartDetailSerializer(serializers.ModelSerializer):
         if request and request.user.is_authenticated:
             return obj.user == request.user
         return False
+
+    def get_promotion_progress(self, obj):
+        """상세 승격 진행률 (점수 breakdown 포함)"""
+        return obj.promotion_progress
 
 
 class UserTierChartCreateSerializer(serializers.ModelSerializer):

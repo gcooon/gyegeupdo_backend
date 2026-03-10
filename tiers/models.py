@@ -194,6 +194,13 @@ class UserTierChart(models.Model):
         ('private', '비공개'),
     ]
 
+    PROMOTION_STATUS_CHOICES = [
+        ('normal', '일반'),
+        ('rising', '급상승'),
+        ('candidate', '승급 후보'),
+        ('promoted', '승급됨'),
+    ]
+
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -223,6 +230,27 @@ class UserTierChart(models.Model):
     )
     is_featured = models.BooleanField(default=False, verbose_name='추천 여부')
 
+    # 승격 시스템
+    promotion_status = models.CharField(
+        max_length=20,
+        choices=PROMOTION_STATUS_CHOICES,
+        default='normal',
+        verbose_name='승격 상태'
+    )
+    promoted_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name='승격일'
+    )
+    promoted_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='promoted_tier_charts',
+        verbose_name='승격 처리자'
+    )
+
     # 타임스탬프
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='수정일')
@@ -235,6 +263,7 @@ class UserTierChart(models.Model):
             models.Index(fields=['user', '-created_at']),
             models.Index(fields=['visibility', '-like_count']),
             models.Index(fields=['-view_count']),
+            models.Index(fields=['promotion_status', '-created_at']),
         ]
 
     def __str__(self):
@@ -265,6 +294,78 @@ class UserTierChart(models.Model):
             view_count=F('view_count') + 1
         )
         self.refresh_from_db(fields=['view_count'])
+
+    @property
+    def promotion_score(self) -> float:
+        """승격 점수 계산: (좋아요 × 3) + (조회수 × 0.1) + (댓글수 × 5)"""
+        return (self.like_count * 3) + (self.view_count * 0.1) + (self.comment_count * 5)
+
+    @property
+    def promotion_progress(self) -> dict:
+        """승격 진행률 및 상태 정보 반환"""
+        score = self.promotion_score
+
+        # 승격된 경우 특별 처리
+        if self.promotion_status == 'promoted':
+            return {
+                'current_score': score,
+                'target_score': None,
+                'progress_percent': 100,
+                'status': 'promoted',
+                'status_display': '추천',
+                'score_breakdown': {
+                    'likes': self.like_count * 3,
+                    'views': self.view_count * 0.1,
+                    'comments': self.comment_count * 5,
+                }
+            }
+
+        # 점수 기반 상태 결정
+        if score >= 100:
+            status = 'candidate'
+            status_display = '승급 후보'
+            target_score = None
+            progress_percent = 100
+        elif score >= 50:
+            status = 'rising'
+            status_display = '급상승'
+            target_score = 100
+            progress_percent = min(((score - 50) / 50) * 100, 100)
+        else:
+            status = 'normal'
+            status_display = '일반'
+            target_score = 50
+            progress_percent = min((score / 50) * 100, 100)
+
+        return {
+            'current_score': score,
+            'target_score': target_score,
+            'progress_percent': round(progress_percent, 1),
+            'status': status,
+            'status_display': status_display,
+            'score_breakdown': {
+                'likes': self.like_count * 3,
+                'views': round(self.view_count * 0.1, 1),
+                'comments': self.comment_count * 5,
+            }
+        }
+
+    def update_promotion_status(self):
+        """점수 기반 승격 상태 자동 업데이트 (promoted 제외)"""
+        if self.promotion_status == 'promoted':
+            return  # 이미 승급된 경우 변경하지 않음
+
+        score = self.promotion_score
+        if score >= 100:
+            new_status = 'candidate'
+        elif score >= 50:
+            new_status = 'rising'
+        else:
+            new_status = 'normal'
+
+        if self.promotion_status != new_status:
+            self.promotion_status = new_status
+            self.save(update_fields=['promotion_status'])
 
 
 class TierChartComment(models.Model):
