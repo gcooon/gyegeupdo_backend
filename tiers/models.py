@@ -264,7 +264,7 @@ class UserTierChart(models.Model):
         UserTierChart.objects.filter(pk=self.pk).update(
             view_count=F('view_count') + 1
         )
-        self.view_count = F('view_count')  # lazy, refresh if needed
+        self.refresh_from_db(fields=['view_count'])
 
 
 class TierChartComment(models.Model):
