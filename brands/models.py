@@ -7,9 +7,24 @@ class Category(models.Model):
     계급도 카테고리 (러닝화, 치킨, 남자시계 등).
     각 카테고리는 자체적인 스펙 정의와 점수 정의를 가짐.
     """
+    GROUP_CHOICES = [
+        ('sports', '스포츠'),
+        ('food', '음식'),
+        ('tech', '테크'),
+        ('lifestyle', '라이프'),
+    ]
+
     name = models.CharField(max_length=100, verbose_name='카테고리명')
     slug = models.SlugField(max_length=100, unique=True, verbose_name='슬러그')
     icon = models.CharField(max_length=10, default='📦', verbose_name='아이콘')
+    group = models.CharField(
+        max_length=30,
+        choices=GROUP_CHOICES,
+        blank=True,
+        default='',
+        verbose_name='그룹',
+        help_text='카테고리 그룹 (6개 이상일 때 탭 필터로 표시)'
+    )
     description = models.TextField(blank=True, verbose_name='설명')
 
     # 프론트엔드 표시 설정 (JSON)

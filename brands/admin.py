@@ -10,14 +10,14 @@ class BrandScoreInline(admin.TabularInline):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['icon', 'name', 'slug', 'display_order', 'is_active', 'brand_count']
-    list_filter = ['is_active']
-    list_editable = ['display_order', 'is_active']
+    list_display = ['icon', 'name', 'slug', 'group', 'display_order', 'is_active', 'brand_count']
+    list_filter = ['is_active', 'group']
+    list_editable = ['group', 'display_order', 'is_active']
     search_fields = ['name']
     prepopulated_fields = {'slug': ('name',)}
     fieldsets = (
         ('기본 정보', {
-            'fields': ('name', 'slug', 'icon', 'description', 'display_order', 'is_active')
+            'fields': ('name', 'slug', 'icon', 'group', 'description', 'display_order', 'is_active')
         }),
         ('프론트엔드 표시 설정', {
             'fields': ('display_config',),

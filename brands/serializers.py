@@ -7,7 +7,7 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = [
-            'id', 'name', 'slug', 'icon', 'description',
+            'id', 'name', 'slug', 'icon', 'group', 'description',
             'display_config',
             'spec_definitions', 'score_definitions', 'brand_score_definitions',
             'quiz_definitions', 'filter_definitions',
@@ -23,8 +23,8 @@ class CategoryListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = [
-            'id', 'name', 'slug', 'icon', 'description',
-            'display_config', 'product_count', 'brand_count'
+            'id', 'name', 'slug', 'icon', 'group', 'description',
+            'display_config', 'display_order', 'product_count', 'brand_count'
         ]
 
     def get_product_count(self, obj):
