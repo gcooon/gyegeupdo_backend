@@ -1,6 +1,10 @@
 from django.db import models
+from django.db.models import F
 from django.utils.text import slugify
+from django.contrib.auth import get_user_model
 from brands.models import Category, Brand
+
+User = get_user_model()
 
 
 class Product(models.Model):
@@ -215,3 +219,171 @@ class ProductTrap(models.Model):
 ShoeModel = Product
 ModelSpec = ProductSpec
 ModelTrap = ProductTrap
+
+
+class ProductComment(models.Model):
+    """공식 계급도 제품 댓글 (오픈 계급도 TierChartComment와 유사)"""
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='comments',
+        verbose_name='제품'
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='product_comments',
+        verbose_name='작성자'
+    )
+    parent = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='replies',
+        verbose_name='상위 댓글'
+    )
+    content = models.TextField(max_length=1000, verbose_name='내용')
+    like_count = models.IntegerField(default=0, verbose_name='좋아요 수')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='작성일')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='수정일')
+
+    class Meta:
+        verbose_name = '제품 댓글'
+        verbose_name_plural = '제품 댓글'
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['product', '-created_at']),
+        ]
+
+    def __str__(self):
+        return f"{self.user.username}: {self.content[:30]}"
+
+
+class Post(models.Model):
+    """카테고리 게시판 게시글"""
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        related_name='posts',
+        verbose_name='카테고리'
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='posts',
+        verbose_name='작성자'
+    )
+    title = models.CharField(max_length=200, verbose_name='제목')
+    content = models.TextField(verbose_name='내용')
+    view_count = models.IntegerField(default=0, verbose_name='조회수')
+    like_count = models.IntegerField(default=0, verbose_name='좋아요 수')
+    comment_count = models.IntegerField(default=0, verbose_name='댓글 수')
+    is_notice = models.BooleanField(default=False, verbose_name='공지사항')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='작성일')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='수정일')
+
+    class Meta:
+        verbose_name = '게시글'
+        verbose_name_plural = '게시글'
+        ordering = ['-is_notice', '-created_at']
+        indexes = [
+            models.Index(fields=['category', '-created_at']),
+            models.Index(fields=['-is_notice', '-created_at']),
+        ]
+
+    def __str__(self):
+        return self.title
+
+    def increase_view_count(self):
+        """조회수 증가 (F expression 사용)"""
+        Post.objects.filter(pk=self.pk).update(view_count=F('view_count') + 1)
+
+
+class PostComment(models.Model):
+    """게시글 댓글"""
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='comments',
+        verbose_name='게시글'
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='post_comments',
+        verbose_name='작성자'
+    )
+    parent = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='replies',
+        verbose_name='상위 댓글'
+    )
+    content = models.TextField(max_length=1000, verbose_name='내용')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='작성일')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='수정일')
+
+    class Meta:
+        verbose_name = '게시글 댓글'
+        verbose_name_plural = '게시글 댓글'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user.username}: {self.content[:30]}"
+
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+        if is_new:
+            # 댓글 생성 시 게시글의 comment_count 증가
+            Post.objects.filter(pk=self.post_id).update(
+                comment_count=F('comment_count') + 1
+            )
+
+    def delete(self, *args, **kwargs):
+        post_id = self.post_id
+        super().delete(*args, **kwargs)
+        # 댓글 삭제 시 게시글의 comment_count 감소
+        Post.objects.filter(pk=post_id).update(
+            comment_count=F('comment_count') - 1
+        )
+
+
+class PostLike(models.Model):
+    """게시글 좋아요"""
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='likes',
+        verbose_name='게시글'
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='post_likes',
+        verbose_name='사용자'
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='작성일')
+
+    class Meta:
+        verbose_name = '게시글 좋아요'
+        verbose_name_plural = '게시글 좋아요'
+        unique_together = ['post', 'user']
+
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+        if is_new:
+            Post.objects.filter(pk=self.post_id).update(
+                like_count=F('like_count') + 1
+            )
+
+    def delete(self, *args, **kwargs):
+        post_id = self.post_id
+        super().delete(*args, **kwargs)
+        Post.objects.filter(pk=post_id).update(
+            like_count=F('like_count') - 1
+        )

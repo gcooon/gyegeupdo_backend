@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from .models import Product, ProductSpec, ProductScore, ProductTrap
+from .models import (
+    Product, ProductSpec, ProductScore, ProductTrap,
+    ProductComment, Post, PostComment, PostLike
+)
 from brands.serializers import BrandListSerializer, CategorySerializer
 
 
@@ -186,3 +189,263 @@ class ProductDetailSerializer(serializers.ModelSerializer):
 # 하위 호환성을 위한 별칭
 ShoeModelListSerializer = ProductListSerializer
 ShoeModelDetailSerializer = ProductDetailSerializer
+
+
+# ====== 제품 댓글 시리얼라이저 ======
+
+class ProductCommentSerializer(serializers.ModelSerializer):
+    """제품 댓글 목록/상세 시리얼라이저"""
+    user = serializers.SerializerMethodField()
+    replies = serializers.SerializerMethodField()
+    is_owner = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ProductComment
+        fields = [
+            'id', 'user', 'content', 'like_count',
+            'created_at', 'updated_at', 'replies', 'is_owner'
+        ]
+
+    def get_user(self, obj):
+        profile = getattr(obj.user, 'profile', None)
+        return {
+            'id': obj.user.id,
+            'username': obj.user.username,
+            'badge': profile.badge if profile else 'none',
+        }
+
+    def get_replies(self, obj):
+        """대댓글 목록 (최대 5개)"""
+        if obj.parent is not None:
+            return []
+        replies = obj.replies.select_related('user', 'user__profile').order_by('created_at')[:5]
+        return ProductCommentSerializer(replies, many=True, context=self.context).data
+
+    def get_is_owner(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return obj.user_id == request.user.id
+        return False
+
+
+class ProductCommentCreateSerializer(serializers.ModelSerializer):
+    """제품 댓글 생성 시리얼라이저"""
+    parent_id = serializers.IntegerField(required=False, allow_null=True)
+
+    class Meta:
+        model = ProductComment
+        fields = ['content', 'parent_id']
+
+    def validate_content(self, value):
+        if not value or len(value.strip()) == 0:
+            raise serializers.ValidationError('댓글 내용을 입력해주세요.')
+        if len(value) > 1000:
+            raise serializers.ValidationError('댓글은 1000자 이하로 작성해주세요.')
+        return value.strip()
+
+    def create(self, validated_data):
+        product = self.context['product']
+        user = self.context['request'].user
+        parent_id = validated_data.pop('parent_id', None)
+
+        parent = None
+        if parent_id:
+            try:
+                parent = ProductComment.objects.get(
+                    id=parent_id,
+                    product=product,
+                    parent=None  # 대댓글에는 답글 불가
+                )
+            except ProductComment.DoesNotExist:
+                raise serializers.ValidationError({'parent_id': '존재하지 않는 댓글입니다.'})
+
+        return ProductComment.objects.create(
+            product=product,
+            user=user,
+            parent=parent,
+            **validated_data
+        )
+
+
+# ====== 게시판 시리얼라이저 ======
+
+class PostCommentSerializer(serializers.ModelSerializer):
+    """게시글 댓글 시리얼라이저"""
+    user = serializers.SerializerMethodField()
+    replies = serializers.SerializerMethodField()
+    is_owner = serializers.SerializerMethodField()
+
+    class Meta:
+        model = PostComment
+        fields = ['id', 'user', 'content', 'created_at', 'replies', 'is_owner']
+
+    def get_user(self, obj):
+        profile = getattr(obj.user, 'profile', None)
+        return {
+            'id': obj.user.id,
+            'username': obj.user.username,
+            'badge': profile.badge if profile else 'none',
+        }
+
+    def get_replies(self, obj):
+        if obj.parent is not None:
+            return []
+        replies = obj.replies.select_related('user', 'user__profile').order_by('created_at')[:5]
+        return PostCommentSerializer(replies, many=True, context=self.context).data
+
+    def get_is_owner(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return obj.user_id == request.user.id
+        return False
+
+
+class PostCommentCreateSerializer(serializers.ModelSerializer):
+    """게시글 댓글 생성 시리얼라이저"""
+    parent_id = serializers.IntegerField(required=False, allow_null=True)
+
+    class Meta:
+        model = PostComment
+        fields = ['content', 'parent_id']
+
+    def validate_content(self, value):
+        if not value or len(value.strip()) == 0:
+            raise serializers.ValidationError('댓글 내용을 입력해주세요.')
+        return value.strip()
+
+    def create(self, validated_data):
+        post = self.context['post']
+        user = self.context['request'].user
+        parent_id = validated_data.pop('parent_id', None)
+
+        parent = None
+        if parent_id:
+            try:
+                parent = PostComment.objects.get(
+                    id=parent_id,
+                    post=post,
+                    parent=None
+                )
+            except PostComment.DoesNotExist:
+                raise serializers.ValidationError({'parent_id': '존재하지 않는 댓글입니다.'})
+
+        return PostComment.objects.create(
+            post=post,
+            user=user,
+            parent=parent,
+            **validated_data
+        )
+
+
+class PostListSerializer(serializers.ModelSerializer):
+    """게시글 목록 시리얼라이저"""
+    user = serializers.SerializerMethodField()
+    category_slug = serializers.CharField(source='category.slug', read_only=True)
+    category_name = serializers.CharField(source='category.name', read_only=True)
+
+    class Meta:
+        model = Post
+        fields = [
+            'id', 'title', 'user', 'category_slug', 'category_name',
+            'view_count', 'like_count', 'comment_count', 'is_notice',
+            'created_at'
+        ]
+
+    def get_user(self, obj):
+        profile = getattr(obj.user, 'profile', None)
+        return {
+            'id': obj.user.id,
+            'username': obj.user.username,
+            'badge': profile.badge if profile else 'none',
+        }
+
+
+class PostDetailSerializer(serializers.ModelSerializer):
+    """게시글 상세 시리얼라이저"""
+    user = serializers.SerializerMethodField()
+    category_slug = serializers.CharField(source='category.slug', read_only=True)
+    category_name = serializers.CharField(source='category.name', read_only=True)
+    is_owner = serializers.SerializerMethodField()
+    is_liked = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Post
+        fields = [
+            'id', 'title', 'content', 'user', 'category_slug', 'category_name',
+            'view_count', 'like_count', 'comment_count', 'is_notice',
+            'is_owner', 'is_liked', 'created_at', 'updated_at'
+        ]
+
+    def get_user(self, obj):
+        profile = getattr(obj.user, 'profile', None)
+        return {
+            'id': obj.user.id,
+            'username': obj.user.username,
+            'badge': profile.badge if profile else 'none',
+        }
+
+    def get_is_owner(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return obj.user_id == request.user.id
+        return False
+
+    def get_is_liked(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return PostLike.objects.filter(post=obj, user=request.user).exists()
+        return False
+
+
+class PostCreateSerializer(serializers.ModelSerializer):
+    """게시글 생성 시리얼라이저"""
+    category_slug = serializers.SlugField(write_only=True)
+
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'category_slug']
+
+    def validate_title(self, value):
+        if not value or len(value.strip()) == 0:
+            raise serializers.ValidationError('제목을 입력해주세요.')
+        if len(value) > 200:
+            raise serializers.ValidationError('제목은 200자 이하로 작성해주세요.')
+        return value.strip()
+
+    def validate_content(self, value):
+        if not value or len(value.strip()) == 0:
+            raise serializers.ValidationError('내용을 입력해주세요.')
+        return value.strip()
+
+    def create(self, validated_data):
+        from brands.models import Category
+        category_slug = validated_data.pop('category_slug')
+
+        try:
+            category = Category.objects.get(slug=category_slug)
+        except Category.DoesNotExist:
+            raise serializers.ValidationError({'category_slug': '존재하지 않는 카테고리입니다.'})
+
+        return Post.objects.create(
+            category=category,
+            user=self.context['request'].user,
+            **validated_data
+        )
+
+
+class PostUpdateSerializer(serializers.ModelSerializer):
+    """게시글 수정 시리얼라이저"""
+
+    class Meta:
+        model = Post
+        fields = ['title', 'content']
+
+    def validate_title(self, value):
+        if not value or len(value.strip()) == 0:
+            raise serializers.ValidationError('제목을 입력해주세요.')
+        return value.strip()
+
+    def validate_content(self, value):
+        if not value or len(value.strip()) == 0:
+            raise serializers.ValidationError('내용을 입력해주세요.')
+        return value.strip()

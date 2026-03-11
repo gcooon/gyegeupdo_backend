@@ -4,18 +4,56 @@ from .models import TierDispute, DisputeVote, TrendLog, UserTierChart, TierChart
 
 class TierDisputeListSerializer(serializers.ModelSerializer):
     """이의제기 목록 시리얼라이저"""
-    product_name = serializers.CharField(source='product.name', read_only=True)
-    user_badge = serializers.CharField(source='user.profile.badge', read_only=True, default='none')
+    product = serializers.SerializerMethodField()
+    user = serializers.SerializerMethodField()
     dispute_type_display = serializers.CharField(source='get_dispute_type_display', read_only=True)
     status_display = serializers.CharField(source='get_status_display', read_only=True)
+    user_vote = serializers.SerializerMethodField()
 
     class Meta:
         model = TierDispute
         fields = [
-            'id', 'product_name', 'user_badge', 'dispute_type', 'dispute_type_display',
-            'reason', 'support_count', 'oppose_count', 'status', 'status_display',
-            'created_at'
+            'id', 'product', 'user', 'dispute_type', 'dispute_type_display',
+            'reason', 'evidence_url', 'support_count', 'oppose_count',
+            'status', 'status_display', 'resolution', 'created_at', 'resolved_at',
+            'user_vote'
         ]
+
+    def get_product(self, obj):
+        product = obj.product
+        return {
+            'id': product.id,
+            'name': product.name,
+            'slug': product.slug,
+            'tier': product.tier,
+            'image_url': product.image_url or '',
+            'brand': {
+                'name': product.brand.name if product.brand else '',
+                'slug': product.brand.slug if product.brand else '',
+            },
+            'category_slug': product.category.slug if product.category else '',
+        }
+
+    def get_user(self, obj):
+        user = obj.user
+        badge = 'none'
+        try:
+            if hasattr(user, 'profile'):
+                badge = user.profile.badge or 'none'
+        except Exception:
+            pass
+        return {
+            'id': user.id,
+            'username': user.username,
+            'badge': badge,
+        }
+
+    def get_user_vote(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            vote = DisputeVote.objects.filter(dispute=obj, user=request.user).first()
+            return vote.vote if vote else None
+        return None
 
 
 class TierDisputeCreateSerializer(serializers.ModelSerializer):

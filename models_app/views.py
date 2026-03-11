@@ -2,8 +2,14 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
-from .models import Product
-from .serializers import ProductListSerializer, ProductDetailSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from .models import Product, ProductComment, Post, PostComment, PostLike
+from .serializers import (
+    ProductListSerializer, ProductDetailSerializer,
+    ProductCommentSerializer, ProductCommentCreateSerializer,
+    PostListSerializer, PostDetailSerializer, PostCreateSerializer, PostUpdateSerializer,
+    PostCommentSerializer, PostCommentCreateSerializer
+)
 
 
 class ProductPagination(PageNumberPagination):
@@ -165,6 +171,331 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
             'message': 'OK'
         })
 
+    @action(detail=True, methods=['get', 'post'])
+    def comments(self, request, slug=None):
+        """제품 댓글 목록 조회 / 작성"""
+        product = self.get_object()
+
+        if request.method == 'GET':
+            # 최상위 댓글만 조회 (대댓글은 replies로 포함)
+            comments = product.comments.filter(parent=None).select_related(
+                'user', 'user__profile'
+            ).prefetch_related('replies', 'replies__user', 'replies__user__profile')
+
+            # 페이지네이션
+            page = int(request.query_params.get('page', 1))
+            limit = int(request.query_params.get('limit', 20))
+            offset = (page - 1) * limit
+
+            total_count = comments.count()
+            comments = comments.order_by('-created_at')[offset:offset + limit]
+
+            serializer = ProductCommentSerializer(
+                comments, many=True, context={'request': request}
+            )
+
+            return Response({
+                'success': True,
+                'data': {
+                    'items': serializer.data,
+                    'total_count': total_count,
+                    'has_next': offset + limit < total_count
+                },
+                'message': 'OK'
+            })
+
+        # POST - 댓글 작성
+        if not request.user.is_authenticated:
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '로그인이 필요합니다.'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+
+        serializer = ProductCommentCreateSerializer(
+            data=request.data,
+            context={'request': request, 'product': product}
+        )
+        serializer.is_valid(raise_exception=True)
+        comment = serializer.save()
+
+        return Response({
+            'success': True,
+            'data': ProductCommentSerializer(comment, context={'request': request}).data,
+            'message': '댓글이 등록되었습니다.'
+        }, status=status.HTTP_201_CREATED)
+
+    @action(detail=True, methods=['delete'], url_path='comments/(?P<comment_id>[^/.]+)')
+    def delete_comment(self, request, slug=None, comment_id=None):
+        """제품 댓글 삭제"""
+        product = self.get_object()
+
+        if not request.user.is_authenticated:
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '로그인이 필요합니다.'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+
+        try:
+            comment = ProductComment.objects.get(id=comment_id, product=product)
+        except ProductComment.DoesNotExist:
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '댓글을 찾을 수 없습니다.'
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        # 작성자만 삭제 가능
+        if comment.user != request.user:
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '삭제 권한이 없습니다.'
+            }, status=status.HTTP_403_FORBIDDEN)
+
+        comment.delete()
+
+        return Response({
+            'success': True,
+            'data': None,
+            'message': '댓글이 삭제되었습니다.'
+        })
+
 
 # 하위 호환성을 위한 별칭
 ShoeModelViewSet = ProductViewSet
+
+
+class PostPagination(PageNumberPagination):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    """게시판 API ViewSet"""
+    queryset = Post.objects.select_related('user', 'user__profile', 'category')
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    pagination_class = PostPagination
+
+    def get_serializer_class(self):
+        if self.action in ['create']:
+            return PostCreateSerializer
+        if self.action in ['update', 'partial_update']:
+            return PostUpdateSerializer
+        if self.action == 'retrieve':
+            return PostDetailSerializer
+        return PostListSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # 카테고리 필터
+        category = self.request.query_params.get('category')
+        if category:
+            queryset = queryset.filter(category__slug=category)
+
+        # 검색
+        search = self.request.query_params.get('search')
+        if search:
+            queryset = queryset.filter(title__icontains=search)
+
+        return queryset
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+
+        if page is not None:
+            serializer = self.get_serializer(page, many=True, context={'request': request})
+            paginated_response = self.get_paginated_response(serializer.data)
+            return Response({
+                'success': True,
+                'data': {
+                    'count': paginated_response.data['count'],
+                    'results': paginated_response.data['results'],
+                    'next': paginated_response.data['next'],
+                    'previous': paginated_response.data['previous']
+                },
+                'message': 'OK'
+            })
+
+        serializer = self.get_serializer(queryset, many=True, context={'request': request})
+        return Response({
+            'success': True,
+            'data': {'count': len(serializer.data), 'results': serializer.data},
+            'message': 'OK'
+        })
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        # 조회수 증가
+        instance.increase_view_count()
+        serializer = self.get_serializer(instance, context={'request': request})
+        return Response({
+            'success': True,
+            'data': serializer.data,
+            'message': 'OK'
+        })
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        post = serializer.save()
+
+        return Response({
+            'success': True,
+            'data': PostDetailSerializer(post, context={'request': request}).data,
+            'message': '게시글이 등록되었습니다.'
+        }, status=status.HTTP_201_CREATED)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        # 작성자만 수정 가능
+        if instance.user != request.user:
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '수정 권한이 없습니다.'
+            }, status=status.HTTP_403_FORBIDDEN)
+
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response({
+            'success': True,
+            'data': PostDetailSerializer(instance, context={'request': request}).data,
+            'message': '게시글이 수정되었습니다.'
+        })
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        # 작성자만 삭제 가능
+        if instance.user != request.user:
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '삭제 권한이 없습니다.'
+            }, status=status.HTTP_403_FORBIDDEN)
+
+        instance.delete()
+
+        return Response({
+            'success': True,
+            'data': None,
+            'message': '게시글이 삭제되었습니다.'
+        })
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    def like(self, request, pk=None):
+        """게시글 좋아요 토글"""
+        post = self.get_object()
+
+        like, created = PostLike.objects.get_or_create(post=post, user=request.user)
+
+        if not created:
+            # 이미 좋아요한 경우 취소
+            like.delete()
+            return Response({
+                'success': True,
+                'data': {'is_liked': False, 'like_count': post.like_count},
+                'message': '좋아요가 취소되었습니다.'
+            })
+
+        # 좋아요 추가
+        post.refresh_from_db()
+        return Response({
+            'success': True,
+            'data': {'is_liked': True, 'like_count': post.like_count},
+            'message': '좋아요!'
+        })
+
+    @action(detail=True, methods=['get', 'post'])
+    def comments(self, request, pk=None):
+        """게시글 댓글 목록 조회 / 작성"""
+        post = self.get_object()
+
+        if request.method == 'GET':
+            comments = post.comments.filter(parent=None).select_related(
+                'user', 'user__profile'
+            ).prefetch_related('replies', 'replies__user', 'replies__user__profile')
+
+            page = int(request.query_params.get('page', 1))
+            limit = int(request.query_params.get('limit', 20))
+            offset = (page - 1) * limit
+
+            total_count = comments.count()
+            comments = comments.order_by('-created_at')[offset:offset + limit]
+
+            serializer = PostCommentSerializer(
+                comments, many=True, context={'request': request}
+            )
+
+            return Response({
+                'success': True,
+                'data': {
+                    'items': serializer.data,
+                    'total_count': total_count,
+                    'has_next': offset + limit < total_count
+                },
+                'message': 'OK'
+            })
+
+        # POST
+        if not request.user.is_authenticated:
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '로그인이 필요합니다.'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+
+        serializer = PostCommentCreateSerializer(
+            data=request.data,
+            context={'request': request, 'post': post}
+        )
+        serializer.is_valid(raise_exception=True)
+        comment = serializer.save()
+
+        # 댓글 수 갱신
+        post.refresh_from_db()
+
+        return Response({
+            'success': True,
+            'data': PostCommentSerializer(comment, context={'request': request}).data,
+            'message': '댓글이 등록되었습니다.'
+        }, status=status.HTTP_201_CREATED)
+
+    @action(detail=True, methods=['delete'], url_path='comments/(?P<comment_id>[^/.]+)',
+            permission_classes=[IsAuthenticated])
+    def delete_comment(self, request, pk=None, comment_id=None):
+        """게시글 댓글 삭제"""
+        post = self.get_object()
+
+        try:
+            comment = PostComment.objects.get(id=comment_id, post=post)
+        except PostComment.DoesNotExist:
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '댓글을 찾을 수 없습니다.'
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        # 작성자 또는 게시글 작성자만 삭제 가능
+        if comment.user != request.user and post.user != request.user:
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '삭제 권한이 없습니다.'
+            }, status=status.HTTP_403_FORBIDDEN)
+
+        comment.delete()
+
+        return Response({
+            'success': True,
+            'data': None,
+            'message': '댓글이 삭제되었습니다.'
+        })

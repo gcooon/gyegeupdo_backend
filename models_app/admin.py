@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Product, ProductSpec, ProductScore, ProductTrap
+from .models import (
+    Product, ProductSpec, ProductScore, ProductTrap,
+    ProductComment, Post, PostComment, PostLike
+)
 
 
 class ProductSpecInline(admin.TabularInline):
@@ -68,3 +71,49 @@ class ProductTrapAdmin(admin.ModelAdmin):
     list_display = ['product', 'trap_type', 'created_at']
     list_filter = ['trap_type']
     search_fields = ['product__name', 'trap_description']
+
+
+@admin.register(ProductComment)
+class ProductCommentAdmin(admin.ModelAdmin):
+    list_display = ['product', 'user', 'content_preview', 'like_count', 'created_at']
+    list_filter = ['created_at']
+    search_fields = ['product__name', 'user__username', 'content']
+    raw_id_fields = ['product', 'user', 'parent']
+
+    def content_preview(self, obj):
+        return obj.content[:50] + '...' if len(obj.content) > 50 else obj.content
+    content_preview.short_description = '내용'
+
+
+class PostCommentInline(admin.TabularInline):
+    model = PostComment
+    extra = 0
+    raw_id_fields = ['user', 'parent']
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'category', 'user', 'view_count', 'like_count', 'comment_count', 'is_notice', 'created_at']
+    list_filter = ['category', 'is_notice', 'created_at']
+    search_fields = ['title', 'content', 'user__username']
+    raw_id_fields = ['user', 'category']
+    inlines = [PostCommentInline]
+
+
+@admin.register(PostComment)
+class PostCommentAdmin(admin.ModelAdmin):
+    list_display = ['post', 'user', 'content_preview', 'created_at']
+    list_filter = ['created_at']
+    search_fields = ['post__title', 'user__username', 'content']
+    raw_id_fields = ['post', 'user', 'parent']
+
+    def content_preview(self, obj):
+        return obj.content[:50] + '...' if len(obj.content) > 50 else obj.content
+    content_preview.short_description = '내용'
+
+
+@admin.register(PostLike)
+class PostLikeAdmin(admin.ModelAdmin):
+    list_display = ['post', 'user', 'created_at']
+    list_filter = ['created_at']
+    raw_id_fields = ['post', 'user']

@@ -30,17 +30,46 @@ class TierDisputeViewSet(viewsets.ModelViewSet):
         return TierDisputeListSerializer
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        status_filter = self.request.query_params.get('status')
+        queryset = super().get_queryset().select_related(
+            'product__brand', 'product__category'
+        )
 
+        # 상태 필터
+        status_filter = self.request.query_params.get('status')
         if status_filter:
-            queryset = queryset.filter(status=status_filter)
+            # 여러 상태를 콤마로 구분하여 필터링
+            statuses = [s.strip() for s in status_filter.split(',')]
+            queryset = queryset.filter(status__in=statuses)
+
+        # 제품 ID 필터
+        product_id = self.request.query_params.get('product')
+        if product_id:
+            queryset = queryset.filter(product_id=product_id)
+
+        # 제품 slug 필터
+        product_slug = self.request.query_params.get('product_slug')
+        if product_slug:
+            queryset = queryset.filter(product__slug=product_slug)
+
+        # 카테고리 필터
+        category = self.request.query_params.get('category')
+        if category:
+            queryset = queryset.filter(product__category__slug=category)
 
         return queryset.order_by('-support_count', '-created_at')
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = self.get_serializer(queryset, many=True)
+        serializer = self.get_serializer(queryset, many=True, context={'request': request})
+        return Response({
+            'success': True,
+            'data': serializer.data,
+            'message': 'OK'
+        })
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, context={'request': request})
         return Response({
             'success': True,
             'data': serializer.data,
