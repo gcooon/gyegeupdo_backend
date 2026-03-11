@@ -46,7 +46,9 @@ def home_summary(request):
         trending = Product.objects.filter(
             category=cat,
             is_active=True
-        ).order_by('-review_count').first()
+        ).annotate(
+            _review_count=Count('reviews')
+        ).order_by('-_review_count').first()
 
         categories_data.append({
             'slug': cat.slug,
