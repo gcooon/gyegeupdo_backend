@@ -105,9 +105,11 @@ class UserTierChartAdmin(admin.ModelAdmin):
     def promote_to_hot_7days(self, request, queryset):
         count = 0
         for chart in queryset:
-            if chart.promotion_status not in ('promoted', 'hall_of_fame'):
-                chart.promote_to_hot(request.user, days=7)
-                count += 1
+            # 명예의 전당은 HOT으로 변경 불가 (격하 방지)
+            if chart.promotion_status == 'hall_of_fame':
+                continue
+            chart.promote_to_hot(request.user, days=7)
+            count += 1
         self.message_user(request, f'🔥 {count}개 계급도가 HOT으로 승급되었습니다. 7일간 홈페이지에 노출됩니다.')
 
     @admin.action(description='👑 명예의 전당으로 승급')

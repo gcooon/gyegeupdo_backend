@@ -416,6 +416,14 @@ class UserTierChartViewSet(viewsets.ModelViewSet):
         """🔥 HOT 계급도 목록 (홈페이지 노출용)"""
         now = timezone.now()
 
+        # 만료된 HOT 계급도를 명예의 전당으로 자동 전환
+        expired_hot = UserTierChart.objects.filter(
+            promotion_status='promoted',
+            hot_until__lte=now
+        )
+        for chart in expired_hot:
+            chart.promote_to_hall_of_fame()
+
         # HOT 상태이면서 아직 만료되지 않은 것들
         queryset = self.get_queryset().filter(
             visibility='public',
