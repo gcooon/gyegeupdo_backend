@@ -42,9 +42,11 @@ class TierDisputeListSerializer(serializers.ModelSerializer):
                 badge = user.profile.badge or 'none'
         except Exception:
             pass
+        # first_name을 별명으로 사용, 없으면 이메일 @ 앞부분
+        nickname = user.first_name or user.email.split('@')[0]
         return {
             'id': user.id,
-            'username': user.username,
+            'username': nickname,
             'badge': badge,
         }
 

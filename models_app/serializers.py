@@ -208,9 +208,11 @@ class ProductCommentSerializer(serializers.ModelSerializer):
 
     def get_user(self, obj):
         profile = getattr(obj.user, 'profile', None)
+        # first_name을 별명으로 사용, 없으면 이메일 @ 앞부분
+        nickname = obj.user.first_name or obj.user.email.split('@')[0]
         return {
             'id': obj.user.id,
-            'username': obj.user.username,
+            'username': nickname,
             'badge': profile.badge if profile else 'none',
         }
 
@@ -281,9 +283,10 @@ class PostCommentSerializer(serializers.ModelSerializer):
 
     def get_user(self, obj):
         profile = getattr(obj.user, 'profile', None)
+        nickname = obj.user.first_name or obj.user.email.split('@')[0]
         return {
             'id': obj.user.id,
-            'username': obj.user.username,
+            'username': nickname,
             'badge': profile.badge if profile else 'none',
         }
 
@@ -353,9 +356,10 @@ class PostListSerializer(serializers.ModelSerializer):
 
     def get_user(self, obj):
         profile = getattr(obj.user, 'profile', None)
+        nickname = obj.user.first_name or obj.user.email.split('@')[0]
         return {
             'id': obj.user.id,
-            'username': obj.user.username,
+            'username': nickname,
             'badge': profile.badge if profile else 'none',
         }
 
@@ -378,9 +382,10 @@ class PostDetailSerializer(serializers.ModelSerializer):
 
     def get_user(self, obj):
         profile = getattr(obj.user, 'profile', None)
+        nickname = obj.user.first_name or obj.user.email.split('@')[0]
         return {
             'id': obj.user.id,
-            'username': obj.user.username,
+            'username': nickname,
             'badge': profile.badge if profile else 'none',
         }
 
