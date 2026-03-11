@@ -432,7 +432,7 @@ class PostCreateSerializer(serializers.ModelSerializer):
         default='free',
         required=False,
     )
-    product_slug = serializers.SlugField(write_only=True, required=False, allow_blank=True)
+    product_slug = serializers.CharField(write_only=True, required=False, allow_blank=True, max_length=200)
     title = serializers.CharField(max_length=200, required=False, allow_blank=True)
 
     class Meta:
