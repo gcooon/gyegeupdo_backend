@@ -35,6 +35,12 @@ class UserProfile(models.Model):
         ('master', '마스터'),
         ('pioneer', '파이오니어'),
     ]
+    LANGUAGE_CHOICES = [
+        ('ko', '한국어'),
+        ('en', 'English'),
+        ('ja', '日本語'),
+        ('zh', '中文'),
+    ]
 
     user = models.OneToOneField(
         User,
@@ -79,6 +85,22 @@ class UserProfile(models.Model):
     review_weight = models.FloatField(default=1.0, verbose_name='리뷰 가중치')
     review_count = models.IntegerField(default=0, verbose_name='리뷰 수')
     dispute_accepted_count = models.IntegerField(default=0, verbose_name='채택된 이의제기 수')
+
+    # 국제화 설정
+    preferred_language = models.CharField(
+        max_length=5,
+        choices=LANGUAGE_CHOICES,
+        default='ko',
+        verbose_name='선호 언어'
+    )
+    country = models.CharField(
+        max_length=2,
+        blank=True,
+        default='',
+        verbose_name='국가',
+        help_text='ISO 3166-1 alpha-2 (KR, US, JP...)'
+    )
+
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='수정일')
 

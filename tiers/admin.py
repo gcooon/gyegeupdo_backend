@@ -34,18 +34,22 @@ class TrendLogAdmin(admin.ModelAdmin):
 class UserTierChartAdmin(admin.ModelAdmin):
     list_display = [
         'title', 'user', 'visibility', 'like_count', 'view_count', 'comment_count',
-        'display_promotion_score', 'promotion_status', 'is_featured', 'created_at'
+        'display_promotion_score', 'promotion_status', 'display_hot_until', 'is_featured', 'created_at'
     ]
-    list_filter = ['visibility', 'is_featured', 'promotion_status', 'created_at']
+    list_filter = ['visibility', 'is_featured', 'promotion_status', 'converted_to_official', 'created_at']
     search_fields = ['title', 'description', 'user__email']
     readonly_fields = [
         'uuid', 'slug', 'view_count', 'like_count', 'comment_count',
         'created_at', 'updated_at', 'display_promotion_score', 'display_promotion_progress',
-        'promoted_at', 'promoted_by'
+        'promoted_at', 'promoted_by', 'hot_until', 'hall_of_fame_at'
     ]
     raw_id_fields = ['user']
-    list_editable = ['is_featured', 'promotion_status']
-    actions = ['promote_selected', 'reset_promotion_status']
+    list_editable = ['is_featured']
+    actions = [
+        'promote_to_hot_7days',
+        'promote_to_hall_of_fame',
+        'reset_promotion_status'
+    ]
 
     fieldsets = (
         ('기본 정보', {
@@ -60,8 +64,12 @@ class UserTierChartAdmin(admin.ModelAdmin):
         ('승격 시스템', {
             'fields': (
                 'display_promotion_score', 'display_promotion_progress',
-                'promotion_status', 'promoted_at', 'promoted_by'
+                'promotion_status', 'promoted_at', 'promoted_by',
+                'hot_until', 'hall_of_fame_at'
             ),
+        }),
+        ('공식 계급도 전환', {
+            'fields': ('converted_to_official', 'converted_category_slug'),
             'classes': ('collapse',)
         }),
         ('타임스탬프', {
@@ -79,21 +87,46 @@ class UserTierChartAdmin(admin.ModelAdmin):
         progress = obj.promotion_progress
         return f"{progress['status_display']} ({progress['progress_percent']:.1f}%)"
 
-    @admin.action(description='선택한 계급도 승격 처리')
-    def promote_selected(self, request, queryset):
-        updated = queryset.exclude(promotion_status='promoted').update(
-            promotion_status='promoted',
-            promoted_at=timezone.now(),
-            promoted_by=request.user
-        )
-        self.message_user(request, f'{updated}개 계급도가 승격 처리되었습니다.')
+    @admin.display(description='HOT 종료')
+    def display_hot_until(self, obj):
+        if obj.promotion_status == 'promoted' and obj.hot_until:
+            remaining = obj.hot_until - timezone.now()
+            if remaining.total_seconds() > 0:
+                days = remaining.days
+                hours = remaining.seconds // 3600
+                return f"{days}일 {hours}시간 남음"
+            else:
+                return "만료됨"
+        elif obj.promotion_status == 'hall_of_fame':
+            return "명예의 전당"
+        return "-"
 
-    @admin.action(description='선택한 계급도 승격 취소 (일반으로)')
+    @admin.action(description='🔥 HOT 계급도로 승급 (7일간 홈 노출)')
+    def promote_to_hot_7days(self, request, queryset):
+        count = 0
+        for chart in queryset:
+            if chart.promotion_status not in ('promoted', 'hall_of_fame'):
+                chart.promote_to_hot(request.user, days=7)
+                count += 1
+        self.message_user(request, f'🔥 {count}개 계급도가 HOT으로 승급되었습니다. 7일간 홈페이지에 노출됩니다.')
+
+    @admin.action(description='👑 명예의 전당으로 승급')
+    def promote_to_hall_of_fame(self, request, queryset):
+        count = 0
+        for chart in queryset:
+            chart.promote_to_hall_of_fame(request.user)
+            count += 1
+        self.message_user(request, f'👑 {count}개 계급도가 명예의 전당에 등록되었습니다.')
+
+    @admin.action(description='❌ 승격 취소 (일반으로)')
     def reset_promotion_status(self, request, queryset):
         updated = queryset.update(
             promotion_status='normal',
             promoted_at=None,
-            promoted_by=None
+            promoted_by=None,
+            hot_until=None,
+            hall_of_fame_at=None,
+            is_featured=False
         )
         self.message_user(request, f'{updated}개 계급도의 승격 상태가 초기화되었습니다.')
 

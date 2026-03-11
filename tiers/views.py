@@ -170,6 +170,16 @@ class UserTierChartViewSet(viewsets.ModelViewSet):
         if user_id:
             queryset = queryset.filter(user_id=user_id)
 
+        # 언어 필터
+        language = self.request.query_params.get('language')
+        if language:
+            queryset = queryset.filter(language=language)
+
+        # 글로벌 노출 필터 (특정 언어권에서만 볼 때)
+        global_only = self.request.query_params.get('global_only')
+        if global_only == 'true':
+            queryset = queryset.filter(is_global=True)
+
         return queryset
 
     def list(self, request, *args, **kwargs):
@@ -402,6 +412,61 @@ class UserTierChartViewSet(viewsets.ModelViewSet):
     # ===== 승격 시스템 API =====
 
     @action(detail=False, methods=['get'])
+    def hot_charts(self, request):
+        """🔥 HOT 계급도 목록 (홈페이지 노출용)"""
+        now = timezone.now()
+
+        # HOT 상태이면서 아직 만료되지 않은 것들
+        queryset = self.get_queryset().filter(
+            visibility='public',
+            promotion_status='promoted',
+            hot_until__gt=now
+        ).order_by('-promoted_at')
+
+        limit = int(request.query_params.get('limit', 6))
+        queryset = queryset[:limit]
+
+        serializer = UserTierChartListSerializer(
+            queryset, many=True, context={'request': request}
+        )
+        return Response({
+            'success': True,
+            'data': serializer.data,
+            'message': 'OK'
+        })
+
+    @action(detail=False, methods=['get'])
+    def hall_of_fame(self, request):
+        """👑 명예의 전당 목록"""
+        queryset = self.get_queryset().filter(
+            visibility='public',
+            promotion_status='hall_of_fame'
+        ).order_by('-hall_of_fame_at')
+
+        # 페이지네이션
+        page = int(request.query_params.get('page', 1))
+        limit = int(request.query_params.get('limit', 12))
+        offset = (page - 1) * limit
+
+        total_count = queryset.count()
+        queryset = queryset[offset:offset + limit]
+
+        serializer = UserTierChartListSerializer(
+            queryset, many=True, context={'request': request}
+        )
+        return Response({
+            'success': True,
+            'data': {
+                'items': serializer.data,
+                'total_count': total_count,
+                'page': page,
+                'limit': limit,
+                'has_next': offset + limit < total_count
+            },
+            'message': 'OK'
+        })
+
+    @action(detail=False, methods=['get'])
     def promotion_candidates(self, request):
         """승급 후보 목록 조회 (100점 이상)"""
         queryset = self.get_queryset().filter(
@@ -433,28 +498,45 @@ class UserTierChartViewSet(viewsets.ModelViewSet):
         })
 
     @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
-    def promote(self, request, slug=None):
-        """계급도 승급 처리 (관리자 전용)"""
+    def promote_to_hot(self, request, slug=None):
+        """🔥 HOT 계급도로 승급 (7일간 홈 노출, 관리자 전용)"""
         instance = self.get_object()
 
-        if instance.promotion_status == 'promoted':
+        if instance.promotion_status in ('promoted', 'hall_of_fame'):
             return Response({
                 'success': False,
                 'data': None,
                 'message': '이미 승급된 계급도입니다.'
             }, status=status.HTTP_400_BAD_REQUEST)
 
-        instance.promotion_status = 'promoted'
-        instance.promoted_at = timezone.now()
-        instance.promoted_by = request.user
-        instance.save(update_fields=['promotion_status', 'promoted_at', 'promoted_by'])
+        days = int(request.data.get('days', 7))
+        instance.promote_to_hot(request.user, days=days)
 
         serializer = UserTierChartDetailSerializer(instance, context={'request': request})
         return Response({
             'success': True,
             'data': serializer.data,
-            'message': f'"{instance.title}" 계급도가 승급 처리되었습니다.'
+            'message': f'🔥 "{instance.title}"이(가) HOT 계급도로 승급되었습니다. {days}일간 홈페이지에 노출됩니다.'
         })
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
+    def promote_to_hall_of_fame(self, request, slug=None):
+        """👑 명예의 전당으로 승급 (관리자 전용)"""
+        instance = self.get_object()
+
+        instance.promote_to_hall_of_fame(request.user)
+
+        serializer = UserTierChartDetailSerializer(instance, context={'request': request})
+        return Response({
+            'success': True,
+            'data': serializer.data,
+            'message': f'👑 "{instance.title}"이(가) 명예의 전당에 등록되었습니다.'
+        })
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
+    def promote(self, request, slug=None):
+        """계급도 승급 처리 (HOT으로, 관리자 전용) - deprecated, use promote_to_hot"""
+        return self.promote_to_hot(request, slug)
 
     @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
     def demote(self, request, slug=None):
@@ -468,11 +550,17 @@ class UserTierChartViewSet(viewsets.ModelViewSet):
                 'message': '일반 상태의 계급도입니다.'
             }, status=status.HTTP_400_BAD_REQUEST)
 
-        # 점수 기반으로 상태 재계산
+        # 모든 승급 관련 필드 초기화
         instance.promotion_status = 'normal'
         instance.promoted_at = None
         instance.promoted_by = None
-        instance.save(update_fields=['promotion_status', 'promoted_at', 'promoted_by'])
+        instance.hot_until = None
+        instance.hall_of_fame_at = None
+        instance.is_featured = False
+        instance.save(update_fields=[
+            'promotion_status', 'promoted_at', 'promoted_by',
+            'hot_until', 'hall_of_fame_at', 'is_featured'
+        ])
 
         # 점수 기반 상태 재설정
         instance.update_promotion_status()

@@ -114,6 +114,13 @@ class UserTierChartListSerializer(serializers.ModelSerializer):
         source='get_promotion_status_display', read_only=True
     )
     promotion_progress = serializers.SerializerMethodField()
+    # HOT/명예의전당 필드
+    hot_until = serializers.DateTimeField(read_only=True)
+    hall_of_fame_at = serializers.DateTimeField(read_only=True)
+    # 국제화 필드
+    language = serializers.CharField(read_only=True)
+    language_display = serializers.CharField(source='get_language_display', read_only=True)
+    author_country = serializers.CharField(read_only=True)
 
     class Meta:
         model = UserTierChart
@@ -123,7 +130,9 @@ class UserTierChartListSerializer(serializers.ModelSerializer):
             'view_count', 'like_count', 'comment_count',
             'is_liked', 'is_featured', 'created_at',
             'promotion_score', 'promotion_status', 'promotion_status_display',
-            'promotion_progress'
+            'promotion_progress', 'hot_until', 'hall_of_fame_at',
+            # 국제화
+            'language', 'language_display', 'author_country'
         ]
 
     def get_user_badge(self, obj):
@@ -173,6 +182,16 @@ class UserTierChartDetailSerializer(serializers.ModelSerializer):
         source='get_promotion_status_display', read_only=True
     )
     promotion_progress = serializers.SerializerMethodField()
+    # HOT/명예의전당 필드
+    hot_until = serializers.DateTimeField(read_only=True)
+    hall_of_fame_at = serializers.DateTimeField(read_only=True)
+    converted_to_official = serializers.BooleanField(read_only=True)
+    converted_category_slug = serializers.CharField(read_only=True)
+    # 국제화 필드
+    language = serializers.CharField(read_only=True)
+    language_display = serializers.CharField(source='get_language_display', read_only=True)
+    author_country = serializers.CharField(read_only=True)
+    is_global = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = UserTierChart
@@ -183,7 +202,10 @@ class UserTierChartDetailSerializer(serializers.ModelSerializer):
             'visibility', 'is_featured', 'is_liked', 'is_owner',
             'share_url', 'comments', 'created_at', 'updated_at',
             'promotion_score', 'promotion_status', 'promotion_status_display',
-            'promotion_progress'
+            'promotion_progress', 'hot_until', 'hall_of_fame_at',
+            'converted_to_official', 'converted_category_slug',
+            # 국제화
+            'language', 'language_display', 'author_country', 'is_global'
         ]
 
     def get_user_badge(self, obj):
@@ -222,7 +244,7 @@ class UserTierChartCreateSerializer(serializers.ModelSerializer):
     """사용자 계급도 생성 시리얼라이저"""
     class Meta:
         model = UserTierChart
-        fields = ['title', 'description', 'tier_data', 'visibility']
+        fields = ['title', 'description', 'tier_data', 'visibility', 'language']
 
     def validate_tier_data(self, value):
         """티어 데이터 검증"""
@@ -249,7 +271,14 @@ class UserTierChartCreateSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
-        validated_data['user'] = self.context['request'].user
+        user = self.context['request'].user
+        validated_data['user'] = user
+        # 사용자 프로필에서 국가 정보 자동 설정
+        try:
+            if hasattr(user, 'profile') and user.profile.country:
+                validated_data['author_country'] = user.profile.country
+        except Exception:
+            pass
         return super().create(validated_data)
 
 
@@ -257,7 +286,7 @@ class UserTierChartUpdateSerializer(serializers.ModelSerializer):
     """사용자 계급도 수정 시리얼라이저"""
     class Meta:
         model = UserTierChart
-        fields = ['title', 'description', 'tier_data', 'visibility']
+        fields = ['title', 'description', 'tier_data', 'visibility', 'language']
 
     def validate_tier_data(self, value):
         if not isinstance(value, dict):

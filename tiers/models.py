@@ -198,7 +198,15 @@ class UserTierChart(models.Model):
         ('normal', '일반'),
         ('rising', '급상승'),
         ('candidate', '승급 후보'),
-        ('promoted', '승급됨'),
+        ('promoted', '승급됨'),  # HOT 노출 (7일)
+        ('hall_of_fame', '명예의 전당'),  # 영구 노출
+    ]
+
+    LANGUAGE_CHOICES = [
+        ('ko', '한국어'),
+        ('en', 'English'),
+        ('ja', '日本語'),
+        ('zh', '中文'),
     ]
 
     user = models.ForeignKey(
@@ -251,6 +259,54 @@ class UserTierChart(models.Model):
         verbose_name='승격 처리자'
     )
 
+    # HOT 노출 기간 (promoted 상태일 때)
+    hot_until = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name='HOT 노출 종료일',
+        help_text='이 날짜까지 홈페이지 HOT 섹션에 노출'
+    )
+
+    # 명예의 전당
+    hall_of_fame_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name='명예의 전당 등록일'
+    )
+
+    # 공식 계급도 전환 추적
+    converted_to_official = models.BooleanField(
+        default=False,
+        verbose_name='공식 계급도 전환 여부'
+    )
+    converted_category_slug = models.CharField(
+        max_length=100,
+        blank=True,
+        default='',
+        verbose_name='전환된 카테고리 슬러그',
+        help_text='공식 계급도로 전환된 경우 해당 카테고리 슬러그'
+    )
+
+    # 국제화 필드
+    language = models.CharField(
+        max_length=5,
+        choices=LANGUAGE_CHOICES,
+        default='ko',
+        verbose_name='언어'
+    )
+    author_country = models.CharField(
+        max_length=2,
+        blank=True,
+        default='',
+        verbose_name='작성자 국가',
+        help_text='ISO 3166-1 alpha-2 (KR, US, JP...)'
+    )
+    is_global = models.BooleanField(
+        default=True,
+        verbose_name='글로벌 노출',
+        help_text='False면 해당 언어권에서만 노출'
+    )
+
     # 타임스탬프
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='수정일')
@@ -264,6 +320,7 @@ class UserTierChart(models.Model):
             models.Index(fields=['visibility', '-like_count']),
             models.Index(fields=['-view_count']),
             models.Index(fields=['promotion_status', '-created_at']),
+            models.Index(fields=['language', '-created_at']),
         ]
 
     def __str__(self):
@@ -305,14 +362,30 @@ class UserTierChart(models.Model):
         """승격 진행률 및 상태 정보 반환"""
         score = self.promotion_score
 
-        # 승격된 경우 특별 처리
+        # 명예의 전당
+        if self.promotion_status == 'hall_of_fame':
+            return {
+                'current_score': score,
+                'target_score': None,
+                'progress_percent': 100,
+                'status': 'hall_of_fame',
+                'status_display': '명예의 전당',
+                'score_breakdown': {
+                    'likes': self.like_count * 3,
+                    'views': self.view_count * 0.1,
+                    'comments': self.comment_count * 5,
+                }
+            }
+
+        # HOT 노출 중
         if self.promotion_status == 'promoted':
             return {
                 'current_score': score,
                 'target_score': None,
                 'progress_percent': 100,
                 'status': 'promoted',
-                'status_display': '추천',
+                'status_display': 'HOT',
+                'hot_until': self.hot_until,
                 'score_breakdown': {
                     'likes': self.like_count * 3,
                     'views': self.view_count * 0.1,
@@ -351,8 +424,8 @@ class UserTierChart(models.Model):
         }
 
     def update_promotion_status(self):
-        """점수 기반 승격 상태 자동 업데이트 (promoted 제외)"""
-        if self.promotion_status == 'promoted':
+        """점수 기반 승격 상태 자동 업데이트 (promoted, hall_of_fame 제외)"""
+        if self.promotion_status in ('promoted', 'hall_of_fame'):
             return  # 이미 승급된 경우 변경하지 않음
 
         score = self.promotion_score
@@ -366,6 +439,42 @@ class UserTierChart(models.Model):
         if self.promotion_status != new_status:
             self.promotion_status = new_status
             self.save(update_fields=['promotion_status'])
+
+    def promote_to_hot(self, promoted_by_user, days=7):
+        """HOT 계급도로 승급 (홈페이지 노출)"""
+        from django.utils import timezone
+        from datetime import timedelta
+
+        self.promotion_status = 'promoted'
+        self.promoted_at = timezone.now()
+        self.promoted_by = promoted_by_user
+        self.hot_until = timezone.now() + timedelta(days=days)
+        self.is_featured = True
+        self.save(update_fields=[
+            'promotion_status', 'promoted_at', 'promoted_by',
+            'hot_until', 'is_featured'
+        ])
+
+    def promote_to_hall_of_fame(self, promoted_by_user=None):
+        """명예의 전당으로 승급"""
+        from django.utils import timezone
+
+        self.promotion_status = 'hall_of_fame'
+        self.hall_of_fame_at = timezone.now()
+        if promoted_by_user:
+            self.promoted_by = promoted_by_user
+        self.is_featured = True
+        self.save(update_fields=[
+            'promotion_status', 'hall_of_fame_at', 'promoted_by', 'is_featured'
+        ])
+
+    def check_hot_expiry(self):
+        """HOT 기간 만료 체크 및 명예의 전당 자동 전환"""
+        from django.utils import timezone
+
+        if self.promotion_status == 'promoted' and self.hot_until:
+            if timezone.now() > self.hot_until:
+                self.promote_to_hall_of_fame()
 
 
 class TierChartComment(models.Model):
