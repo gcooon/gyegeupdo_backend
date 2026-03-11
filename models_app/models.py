@@ -261,7 +261,13 @@ class ProductComment(models.Model):
 
 
 class Post(models.Model):
-    """카테고리 게시판 게시글"""
+    """통합 게시판 게시글 (자유토론, 제품후기, 질문)"""
+    TAG_CHOICES = [
+        ('free', '자유토론'),
+        ('product_review', '제품후기'),
+        ('question', '질문'),
+    ]
+
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
@@ -273,6 +279,20 @@ class Post(models.Model):
         on_delete=models.CASCADE,
         related_name='posts',
         verbose_name='작성자'
+    )
+    tag = models.CharField(
+        max_length=20,
+        choices=TAG_CHOICES,
+        default='free',
+        verbose_name='태그'
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='board_posts',
+        verbose_name='관련 제품'
     )
     title = models.CharField(max_length=200, verbose_name='제목')
     content = models.TextField(verbose_name='내용')
@@ -290,6 +310,8 @@ class Post(models.Model):
         indexes = [
             models.Index(fields=['category', '-created_at']),
             models.Index(fields=['-is_notice', '-created_at']),
+            models.Index(fields=['category', 'tag', '-created_at']),
+            models.Index(fields=['product', '-created_at']),
         ]
 
     def __str__(self):

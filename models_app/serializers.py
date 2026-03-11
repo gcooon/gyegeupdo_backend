@@ -345,13 +345,14 @@ class PostListSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
     category_slug = serializers.CharField(source='category.slug', read_only=True)
     category_name = serializers.CharField(source='category.name', read_only=True)
+    product_info = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         fields = [
-            'id', 'title', 'user', 'category_slug', 'category_name',
-            'view_count', 'like_count', 'comment_count', 'is_notice',
-            'created_at'
+            'id', 'title', 'tag', 'user', 'category_slug', 'category_name',
+            'product_info', 'view_count', 'like_count', 'comment_count',
+            'is_notice', 'created_at'
         ]
 
     def get_user(self, obj):
@@ -363,20 +364,31 @@ class PostListSerializer(serializers.ModelSerializer):
             'badge': profile.badge if profile else 'none',
         }
 
+    def get_product_info(self, obj):
+        if not obj.product:
+            return None
+        return {
+            'id': obj.product.id,
+            'name': obj.product.name,
+            'slug': obj.product.slug,
+            'brand_name': obj.product.brand.name,
+        }
+
 
 class PostDetailSerializer(serializers.ModelSerializer):
     """게시글 상세 시리얼라이저"""
     user = serializers.SerializerMethodField()
     category_slug = serializers.CharField(source='category.slug', read_only=True)
     category_name = serializers.CharField(source='category.name', read_only=True)
+    product_info = serializers.SerializerMethodField()
     is_owner = serializers.SerializerMethodField()
     is_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         fields = [
-            'id', 'title', 'content', 'user', 'category_slug', 'category_name',
-            'view_count', 'like_count', 'comment_count', 'is_notice',
+            'id', 'title', 'tag', 'content', 'user', 'category_slug', 'category_name',
+            'product_info', 'view_count', 'like_count', 'comment_count', 'is_notice',
             'is_owner', 'is_liked', 'created_at', 'updated_at'
         ]
 
@@ -387,6 +399,16 @@ class PostDetailSerializer(serializers.ModelSerializer):
             'id': obj.user.id,
             'username': nickname,
             'badge': profile.badge if profile else 'none',
+        }
+
+    def get_product_info(self, obj):
+        if not obj.product:
+            return None
+        return {
+            'id': obj.product.id,
+            'name': obj.product.name,
+            'slug': obj.product.slug,
+            'brand_name': obj.product.brand.name,
         }
 
     def get_is_owner(self, obj):
@@ -405,34 +427,64 @@ class PostDetailSerializer(serializers.ModelSerializer):
 class PostCreateSerializer(serializers.ModelSerializer):
     """게시글 생성 시리얼라이저"""
     category_slug = serializers.SlugField(write_only=True)
+    tag = serializers.ChoiceField(
+        choices=Post.TAG_CHOICES,
+        default='free',
+        required=False,
+    )
+    product_slug = serializers.SlugField(write_only=True, required=False, allow_blank=True)
+    title = serializers.CharField(max_length=200, required=False, allow_blank=True)
 
     class Meta:
         model = Post
-        fields = ['title', 'content', 'category_slug']
-
-    def validate_title(self, value):
-        if not value or len(value.strip()) == 0:
-            raise serializers.ValidationError('제목을 입력해주세요.')
-        if len(value) > 200:
-            raise serializers.ValidationError('제목은 200자 이하로 작성해주세요.')
-        return value.strip()
+        fields = ['title', 'content', 'category_slug', 'tag', 'product_slug']
 
     def validate_content(self, value):
         if not value or len(value.strip()) == 0:
             raise serializers.ValidationError('내용을 입력해주세요.')
         return value.strip()
 
+    def validate(self, attrs):
+        tag = attrs.get('tag', 'free')
+        title = attrs.get('title', '').strip()
+        product_slug = attrs.get('product_slug', '')
+
+        # 제품후기가 아닌 경우 제목 필수
+        if tag != 'product_review' and not title:
+            raise serializers.ValidationError({'title': '제목을 입력해주세요.'})
+
+        # 제품후기인데 product_slug 없으면 에러
+        if tag == 'product_review' and not product_slug:
+            raise serializers.ValidationError({'product_slug': '제품을 선택해주세요.'})
+
+        return attrs
+
     def create(self, validated_data):
         from brands.models import Category
         category_slug = validated_data.pop('category_slug')
+        product_slug = validated_data.pop('product_slug', None)
 
         try:
             category = Category.objects.get(slug=category_slug)
         except Category.DoesNotExist:
             raise serializers.ValidationError({'category_slug': '존재하지 않는 카테고리입니다.'})
 
+        product = None
+        if product_slug:
+            try:
+                product = Product.objects.select_related('brand').get(slug=product_slug)
+            except Product.DoesNotExist:
+                raise serializers.ValidationError({'product_slug': '존재하지 않는 제품입니다.'})
+
+        # 제품후기에서 제목이 없으면 자동 생성
+        title = validated_data.get('title', '').strip()
+        if not title and product:
+            title = f"{product.brand.name} {product.name} 후기"
+            validated_data['title'] = title
+
         return Post.objects.create(
             category=category,
+            product=product,
             user=self.context['request'].user,
             **validated_data
         )

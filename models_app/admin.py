@@ -93,10 +93,10 @@ class PostCommentInline(admin.TabularInline):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'user', 'view_count', 'like_count', 'comment_count', 'is_notice', 'created_at']
-    list_filter = ['category', 'is_notice', 'created_at']
+    list_display = ['title', 'tag', 'category', 'product', 'user', 'view_count', 'like_count', 'comment_count', 'is_notice', 'created_at']
+    list_filter = ['tag', 'category', 'is_notice', 'created_at']
     search_fields = ['title', 'content', 'user__username']
-    raw_id_fields = ['user', 'category']
+    raw_id_fields = ['user', 'category', 'product']
     inlines = [PostCommentInline]
 
 

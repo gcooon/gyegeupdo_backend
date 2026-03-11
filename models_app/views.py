@@ -289,15 +289,27 @@ class PostViewSet(viewsets.ModelViewSet):
         return PostListSerializer
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().select_related('product', 'product__brand')
+
+        params = self.request.query_params
 
         # 카테고리 필터
-        category = self.request.query_params.get('category')
+        category = params.get('category')
         if category:
             queryset = queryset.filter(category__slug=category)
 
+        # 태그 필터
+        tag = params.get('tag')
+        if tag:
+            queryset = queryset.filter(tag=tag)
+
+        # 제품 필터
+        product = params.get('product')
+        if product:
+            queryset = queryset.filter(product__slug=product)
+
         # 검색
-        search = self.request.query_params.get('search')
+        search = params.get('search')
         if search:
             queryset = queryset.filter(title__icontains=search)
 
