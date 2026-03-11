@@ -130,13 +130,15 @@ def home_summary(request):
 
     user_charts_data = []
     for uc in user_charts:
+        # tier_data는 {"S": [...], "A": [...], ...} 형식
+        item_count = sum(len(items) for items in uc.tier_data.values()) if uc.tier_data else 0
         user_charts_data.append({
             'slug': uc.slug,
             'title': uc.title,
             'author': uc.user.username if uc.user else '익명',
             'likes': uc.like_count,
             'views': uc.view_count,
-            'items': len(uc.items) if uc.items else 0,
+            'items': item_count,
         })
 
     return Response({
