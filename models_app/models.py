@@ -74,6 +74,10 @@ class Product(models.Model):
         verbose_name='이전 버전'
     )
 
+    # 조회수/좋아요
+    view_count = models.IntegerField(default=0, verbose_name='조회수')
+    like_count = models.IntegerField(default=0, verbose_name='좋아요 수')
+
     # 메타
     is_active = models.BooleanField(default=True, verbose_name='활성화')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일')
@@ -124,6 +128,11 @@ class Product(models.Model):
     def get_scores_dict(self):
         """점수를 딕셔너리로 반환"""
         return {score.key: score.value for score in self.scores.all()}
+
+    def increment_view(self):
+        """조회수 증가 (F expression으로 race condition 방지)"""
+        Product.objects.filter(pk=self.pk).update(view_count=F('view_count') + 1)
+        self.refresh_from_db(fields=['view_count'])
 
     def calculate_tier_score(self):
         """카테고리 정의에 따라 티어 점수 계산"""
@@ -215,6 +224,43 @@ class ProductTrap(models.Model):
         return f"{self.product.name} - {self.trap_type}"
 
 
+class ProductLike(models.Model):
+    """제품 좋아요"""
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='likes',
+        verbose_name='제품'
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='product_likes',
+        verbose_name='사용자'
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='작성일')
+
+    class Meta:
+        verbose_name = '제품 좋아요'
+        verbose_name_plural = '제품 좋아요'
+        unique_together = ['product', 'user']
+
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+        if is_new:
+            Product.objects.filter(pk=self.product_id).update(
+                like_count=F('like_count') + 1
+            )
+
+    def delete(self, *args, **kwargs):
+        product_id = self.product_id
+        super().delete(*args, **kwargs)
+        Product.objects.filter(pk=product_id).update(
+            like_count=F('like_count') - 1
+        )
+
+
 # 하위 호환성을 위한 별칭 (기존 코드에서 ShoeModel 사용 시)
 ShoeModel = Product
 ModelSpec = ProductSpec
@@ -296,6 +342,12 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=200, verbose_name='제목')
     content = models.TextField(verbose_name='내용')
+    rating = models.IntegerField(
+        choices=[(i, str(i)) for i in range(1, 6)],
+        null=True,
+        blank=True,
+        verbose_name='평점'
+    )
     view_count = models.IntegerField(default=0, verbose_name='조회수')
     like_count = models.IntegerField(default=0, verbose_name='좋아요 수')
     comment_count = models.IntegerField(default=0, verbose_name='댓글 수')

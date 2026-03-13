@@ -3,7 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-from .models import Product, ProductComment, Post, PostComment, PostLike
+from .models import Product, ProductComment, ProductLike, Post, PostComment, PostLike
 from .serializers import (
     ProductListSerializer, ProductDetailSerializer,
     ProductCommentSerializer, ProductCommentCreateSerializer,
@@ -84,11 +84,38 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = self.get_serializer(instance)
+        # 조회수 증가
+        instance.increment_view()
+        serializer = self.get_serializer(instance, context={'request': request})
         return Response({
             'success': True,
             'data': serializer.data,
             'message': 'OK'
+        })
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    def like(self, request, slug=None):
+        """제품 좋아요 토글"""
+        product = self.get_object()
+
+        like, created = ProductLike.objects.get_or_create(product=product, user=request.user)
+
+        if not created:
+            # 이미 좋아요한 경우 취소
+            like.delete()
+            product.refresh_from_db()
+            return Response({
+                'success': True,
+                'data': {'is_liked': False, 'like_count': product.like_count},
+                'message': '좋아요가 취소되었습니다.'
+            })
+
+        # 좋아요 추가
+        product.refresh_from_db()
+        return Response({
+            'success': True,
+            'data': {'is_liked': True, 'like_count': product.like_count},
+            'message': '좋아요!'
         })
 
     @action(detail=False, methods=['get'])

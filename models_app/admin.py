@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     Product, ProductSpec, ProductScore, ProductTrap,
-    ProductComment, Post, PostComment, PostLike
+    ProductComment, ProductLike, Post, PostComment, PostLike
 )
 
 
@@ -22,11 +22,11 @@ class ProductTrapInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'brand', 'category', 'tier', 'tier_score', 'product_type', 'usage', 'is_active']
+    list_display = ['name', 'brand', 'category', 'tier', 'tier_score', 'view_count', 'like_count', 'product_type', 'usage', 'is_active']
     list_filter = ['tier', 'category', 'brand', 'product_type', 'usage', 'is_active']
     search_fields = ['name', 'brand__name']
     prepopulated_fields = {'slug': ('name',)}
-    readonly_fields = ['created_at', 'updated_at']
+    readonly_fields = ['created_at', 'updated_at', 'view_count', 'like_count']
     inlines = [ProductSpecInline, ProductScoreInline, ProductTrapInline]
     fieldsets = (
         ('기본 정보', {
@@ -37,6 +37,10 @@ class ProductAdmin(admin.ModelAdmin):
         }),
         ('티어', {
             'fields': ('tier', 'tier_score', 'community_tier')
+        }),
+        ('통계', {
+            'fields': ('view_count', 'like_count'),
+            'classes': ('collapse',)
         }),
         ('가격 및 링크', {
             'fields': ('price_min', 'price_max', 'coupang_link', 'naver_link')
@@ -117,3 +121,10 @@ class PostLikeAdmin(admin.ModelAdmin):
     list_display = ['post', 'user', 'created_at']
     list_filter = ['created_at']
     raw_id_fields = ['post', 'user']
+
+
+@admin.register(ProductLike)
+class ProductLikeAdmin(admin.ModelAdmin):
+    list_display = ['product', 'user', 'created_at']
+    list_filter = ['created_at']
+    raw_id_fields = ['product', 'user']

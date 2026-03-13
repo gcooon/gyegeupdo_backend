@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import (
     Product, ProductSpec, ProductScore, ProductTrap,
-    ProductComment, Post, PostComment, PostLike
+    ProductComment, ProductLike, Post, PostComment, PostLike
 )
 from brands.serializers import BrandListSerializer, CategorySerializer
 
@@ -80,7 +80,8 @@ class ProductListSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'slug', 'brand', 'category_slug', 'image_url',
             'tier', 'tier_score', 'community_tier', 'product_type', 'usage',
-            'price_min', 'price_max', 'review_count', 'trend', 'specs', 'scores'
+            'price_min', 'price_max', 'review_count', 'trend', 'specs', 'scores',
+            'view_count', 'like_count'
         ]
 
     def get_trend(self, obj):
@@ -110,6 +111,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     alternatives = serializers.SerializerMethodField()
     filter_labels = serializers.SerializerMethodField()
     seo_meta = serializers.SerializerMethodField()
+    is_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
@@ -119,7 +121,9 @@ class ProductDetailSerializer(serializers.ModelSerializer):
             'price_min', 'price_max', 'coupang_link', 'naver_link',
             'release_year', 'version_number',
             'specs', 'scores', 'traps', 'review_count', 'prev_version',
-            'alternatives', 'filter_labels', 'seo_meta', 'created_at', 'updated_at'
+            'alternatives', 'filter_labels', 'seo_meta',
+            'view_count', 'like_count', 'is_liked',
+            'created_at', 'updated_at'
         ]
 
     def get_prev_version(self, obj):
@@ -184,6 +188,12 @@ class ProductDetailSerializer(serializers.ModelSerializer):
             'title': f"{obj.brand.name} {obj.name} 계급도 — 2026 {filter_labels.get('usage', '')} {obj.tier}티어",
             'description': f"{obj.name} 스펙, 후기 {getattr(obj, 'review_count', 0)}개 종합. {obj.category.name} 계급도."
         }
+
+    def get_is_liked(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return ProductLike.objects.filter(product=obj, user=request.user).exists()
+        return False
 
 
 # 하위 호환성을 위한 별칭
@@ -346,13 +356,14 @@ class PostListSerializer(serializers.ModelSerializer):
     category_slug = serializers.CharField(source='category.slug', read_only=True)
     category_name = serializers.CharField(source='category.name', read_only=True)
     product_info = serializers.SerializerMethodField()
+    content_preview = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         fields = [
             'id', 'title', 'tag', 'user', 'category_slug', 'category_name',
             'product_info', 'view_count', 'like_count', 'comment_count',
-            'is_notice', 'created_at'
+            'is_notice', 'created_at', 'rating', 'content_preview'
         ]
 
     def get_user(self, obj):
@@ -372,7 +383,14 @@ class PostListSerializer(serializers.ModelSerializer):
             'name': obj.product.name,
             'slug': obj.product.slug,
             'brand_name': obj.product.brand.name,
+            'tier': obj.product.tier,
         }
+
+    def get_content_preview(self, obj):
+        """내용 미리보기 (100자)"""
+        if obj.content:
+            return obj.content[:100] + '...' if len(obj.content) > 100 else obj.content
+        return None
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
@@ -434,10 +452,11 @@ class PostCreateSerializer(serializers.ModelSerializer):
     )
     product_slug = serializers.CharField(write_only=True, required=False, allow_blank=True, max_length=200)
     title = serializers.CharField(max_length=200, required=False, allow_blank=True)
+    rating = serializers.IntegerField(min_value=1, max_value=5, required=False, allow_null=True)
 
     class Meta:
         model = Post
-        fields = ['title', 'content', 'category_slug', 'tag', 'product_slug']
+        fields = ['title', 'content', 'category_slug', 'tag', 'product_slug', 'rating']
 
     def validate_content(self, value):
         if not value or len(value.strip()) == 0:
@@ -463,6 +482,7 @@ class PostCreateSerializer(serializers.ModelSerializer):
         from brands.models import Category
         category_slug = validated_data.pop('category_slug')
         product_slug = validated_data.pop('product_slug', None)
+        rating = validated_data.pop('rating', None)
 
         try:
             category = Category.objects.get(slug=category_slug)
@@ -481,6 +501,11 @@ class PostCreateSerializer(serializers.ModelSerializer):
         if not title and product:
             title = f"{product.brand.name} {product.name} 후기"
             validated_data['title'] = title
+
+        # 제품후기일 때만 rating 저장
+        tag = validated_data.get('tag', 'free')
+        if tag == 'product_review' and rating is not None:
+            validated_data['rating'] = rating
 
         return Post.objects.create(
             category=category,
