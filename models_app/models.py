@@ -364,6 +364,8 @@ class Post(models.Model):
             models.Index(fields=['-is_notice', '-created_at']),
             models.Index(fields=['category', 'tag', '-created_at']),
             models.Index(fields=['product', '-created_at']),
+            # 카테고리별 조회 시 정렬 최적화 (is_notice + created_at 순)
+            models.Index(fields=['category', '-is_notice', '-created_at']),
         ]
 
     def __str__(self):

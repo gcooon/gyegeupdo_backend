@@ -3,6 +3,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from .models import Product, ProductComment, ProductLike, Post, PostComment, PostLike
 from .serializers import (
     ProductListSerializer, ProductDetailSerializer,
@@ -342,6 +344,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
         return queryset
 
+    @method_decorator(cache_page(60 * 1))  # 1분 캐시 (게시판은 자주 업데이트됨)
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(queryset)
