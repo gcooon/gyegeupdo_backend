@@ -167,8 +167,8 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     @method_decorator(cache_page(60 * 5))  # 5분 캐시
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset().annotate(
-            _brand_count=Count('brands', filter=Q(brands__is_active=True)),
-            _product_count=Count('products', filter=Q(products__is_active=True)),
+            _brand_count=Count('brands', filter=Q(brands__is_active=True), distinct=True),
+            _product_count=Count('products', filter=Q(products__is_active=True), distinct=True),
         )
         serializer = self.get_serializer(queryset, many=True)
         return Response({
@@ -217,7 +217,7 @@ class BrandViewSet(viewsets.ReadOnlyModelViewSet):
     @method_decorator(cache_page(60 * 3))  # 3분 캐시
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset().annotate(
-            _product_count=Count('products', filter=Q(products__is_active=True)),
+            _product_count=Count('products', filter=Q(products__is_active=True), distinct=True),
         )
         serializer = self.get_serializer(queryset, many=True)
         return Response({
