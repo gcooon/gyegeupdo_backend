@@ -85,37 +85,67 @@ def home_summary(request):
             'days_left': 7,  # TODO: 실제 계산
         })
 
-    # 3. 최신 리뷰 (4개) - Post 모델에서 product_review 태그인 게시글
-    reviews = Post.objects.filter(
-        tag='product_review'
-    ).select_related('user', 'product', 'product__brand', 'category').order_by('-created_at')[:4]
+    # 3. 최신 리뷰/게시글 (4개) - 모든 게시글에서 product_review 우선 정렬
+    from django.db.models import Case, When, Value, IntegerField
+    from django.utils import timezone
+    from datetime import timedelta
+
+    reviews = Post.objects.select_related(
+        'user', 'product', 'product__brand', 'category'
+    ).annotate(
+        # product_review 태그 우선 정렬 (0: product_review, 1: 기타)
+        tag_priority=Case(
+            When(tag='product_review', then=Value(0)),
+            default=Value(1),
+            output_field=IntegerField()
+        )
+    ).order_by('tag_priority', '-created_at')[:4]
 
     reviews_data = []
     for r in reviews:
+        # 사용자 정보 (first_name 또는 email 앞부분 사용)
+        user_name = r.user.first_name if r.user and r.user.first_name else (
+            r.user.email.split('@')[0] if r.user and r.user.email else '익명'
+        )
+
         # 사용자 뱃지 정보
         user_badge = ''
         if hasattr(r.user, 'profile') and r.user.profile:
             user_badge = r.user.profile.badge or ''
 
+        # 상대 시간 계산
+        now = timezone.now()
+        diff = now - r.created_at
+        if diff < timedelta(hours=1):
+            created_at_display = f"{int(diff.total_seconds() // 60)}분 전"
+        elif diff < timedelta(days=1):
+            created_at_display = f"{int(diff.total_seconds() // 3600)}시간 전"
+        elif diff < timedelta(days=7):
+            created_at_display = f"{diff.days}일 전"
+        else:
+            created_at_display = r.created_at.strftime('%m/%d')
+
         reviews_data.append({
             'id': r.id,
             'category': r.category.slug if r.category else '',
-            'category_icon': r.category.icon if r.category else '',
+            'category_icon': r.category.icon if r.category else '📝',
+            'tag': r.tag,
+            'title': r.title,
             'user': {
-                'name': r.user.username if r.user else '익명',
+                'name': user_name,
                 'type': user_badge,
             },
             'product': {
                 'name': r.product.name if r.product else '',
                 'brand': r.product.brand.name if r.product and r.product.brand else '',
-                'tier': r.product.tier if r.product else 'C',
+                'tier': r.product.tier if r.product else '',
                 'slug': r.product.slug if r.product else '',
-            },
+            } if r.product else None,
             'rating': r.rating or 0,
             'content': r.content[:200] if r.content else '',
             'likes': r.like_count,
             'comments': r.comment_count,
-            'created_at': r.created_at.strftime('%Y-%m-%d %H:%M') if r.created_at else '',
+            'created_at': created_at_display,
         })
 
     # 4. 인기 사용자 계급도 (4개)
