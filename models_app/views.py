@@ -1,10 +1,12 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.pagination import PageNumberPagination
+from rest_framework.pagination import PageNumberPagination, CursorPagination
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from django.db.models.functions import Substr, Coalesce
+from django.db.models import Value
 from .models import Product, ProductComment, ProductLike, Post, PostComment, PostLike
 from .serializers import (
     ProductListSerializer, ProductDetailSerializer,
@@ -344,9 +346,23 @@ class PostViewSet(viewsets.ModelViewSet):
 
         return queryset
 
+    def get_list_queryset(self):
+        """
+        목록 조회 전용 최적화 쿼리셋
+        - content 필드 제외 (defer) → 대용량 텍스트 로딩 방지
+        - content_preview를 DB 레벨에서 계산 (Substr) → Python 오버헤드 제거
+        """
+        return self.get_queryset().defer('content').annotate(
+            _content_preview=Coalesce(
+                Substr('content', 1, 100),
+                Value('')
+            )
+        )
+
     @method_decorator(cache_page(60 * 1))  # 1분 캐시 (게시판은 자주 업데이트됨)
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
+        # 최적화된 쿼리셋 사용
+        queryset = self.filter_queryset(self.get_list_queryset())
         page = self.paginate_queryset(queryset)
 
         if page is not None:

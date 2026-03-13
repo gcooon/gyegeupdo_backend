@@ -351,7 +351,11 @@ class PostCommentCreateSerializer(serializers.ModelSerializer):
 
 
 class PostListSerializer(serializers.ModelSerializer):
-    """게시글 목록 시리얼라이저"""
+    """
+    게시글 목록 시리얼라이저 (최적화 버전)
+    - content_preview: DB Annotation (_content_preview) 또는 content 필드에서 추출
+    - user, product_info: select_related로 미리 로딩된 데이터 사용
+    """
     user = serializers.SerializerMethodField()
     category_slug = serializers.CharField(source='category.slug', read_only=True)
     category_name = serializers.CharField(source='category.name', read_only=True)
@@ -367,6 +371,7 @@ class PostListSerializer(serializers.ModelSerializer):
         ]
 
     def get_user(self, obj):
+        # select_related('user', 'user__profile')로 미리 로딩됨
         profile = getattr(obj.user, 'profile', None)
         nickname = obj.user.first_name or obj.user.email.split('@')[0]
         return {
@@ -376,6 +381,7 @@ class PostListSerializer(serializers.ModelSerializer):
         }
 
     def get_product_info(self, obj):
+        # select_related('product', 'product__brand')로 미리 로딩됨
         if not obj.product:
             return None
         return {
@@ -387,8 +393,17 @@ class PostListSerializer(serializers.ModelSerializer):
         }
 
     def get_content_preview(self, obj):
-        """내용 미리보기 (100자)"""
-        if obj.content:
+        """
+        내용 미리보기 (100자)
+        - DB Annotation (_content_preview)이 있으면 사용 (최적화)
+        - 없으면 content 필드에서 직접 추출 (폴백)
+        """
+        # DB에서 미리 계산된 값 사용 (defer('content')와 함께 사용)
+        if hasattr(obj, '_content_preview') and obj._content_preview:
+            preview = obj._content_preview
+            return preview + '...' if len(preview) >= 100 else preview
+        # 폴백: content 필드 직접 사용
+        if hasattr(obj, 'content') and obj.content:
             return obj.content[:100] + '...' if len(obj.content) > 100 else obj.content
         return None
 
