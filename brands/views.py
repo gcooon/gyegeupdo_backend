@@ -14,8 +14,7 @@ from .serializers import (
 @api_view(['GET'])
 def home_summary(request):
     """홈 페이지 전용 요약 API - 모든 데이터를 한 번에 반환"""
-    from models_app.models import Product
-    from reviews.models import Review
+    from models_app.models import Product, Post
     from tiers.models import TierDispute, UserTierChart
 
     # 1. 카테고리 목록 + TOP 3 제품
@@ -86,40 +85,36 @@ def home_summary(request):
             'days_left': 7,  # TODO: 실제 계산
         })
 
-    # 3. 최신 리뷰 (4개)
-    reviews = Review.objects.filter(
-        is_visible=True
-    ).select_related('user', 'product', 'product__brand', 'product__category').order_by('-created_at')[:4]
+    # 3. 최신 리뷰 (4개) - Post 모델에서 product_review 태그인 게시글
+    reviews = Post.objects.filter(
+        tag='product_review'
+    ).select_related('user', 'product', 'product__brand', 'category').order_by('-created_at')[:4]
 
     reviews_data = []
     for r in reviews:
-        # 사용자 타입 정보 (발볼, 사이즈 등)
-        user_type_parts = []
-        if r.width_score:
-            width_labels = {'narrow': '좁은 발', 'normal': '보통 발', 'wide': '넓은 발'}
-            user_type_parts.append(width_labels.get(r.width_score, ''))
-        if r.size_fit:
-            size_labels = {'half_up': '반 사이즈 업', 'true': '정사이즈', 'half_down': '반 사이즈 다운'}
-            user_type_parts.append(size_labels.get(r.size_fit, ''))
+        # 사용자 뱃지 정보
+        user_badge = ''
+        if hasattr(r.user, 'profile') and r.user.profile:
+            user_badge = r.user.profile.badge or ''
 
         reviews_data.append({
             'id': r.id,
-            'category': r.product.category.slug if r.product and r.product.category else '',
-            'category_icon': r.product.category.icon if r.product and r.product.category else '',
+            'category': r.category.slug if r.category else '',
+            'category_icon': r.category.icon if r.category else '',
             'user': {
                 'name': r.user.username if r.user else '익명',
-                'type': ' / '.join(filter(None, user_type_parts)),
+                'type': user_badge,
             },
             'product': {
                 'name': r.product.name if r.product else '',
                 'brand': r.product.brand.name if r.product and r.product.brand else '',
-                'tier': r.product.tier if r.product else 'B',
+                'tier': r.product.tier if r.product else 'C',
                 'slug': r.product.slug if r.product else '',
             },
-            'rating': r.fit_score,  # 착화감 점수를 rating으로 사용
-            'content': r.comment[:200] if r.comment else '',
-            'likes': 0,  # TODO: helpful_count 필드 추가
-            'comments': 0,
+            'rating': r.rating or 0,
+            'content': r.content[:200] if r.content else '',
+            'likes': r.like_count,
+            'comments': r.comment_count,
             'created_at': r.created_at.strftime('%Y-%m-%d %H:%M') if r.created_at else '',
         })
 
