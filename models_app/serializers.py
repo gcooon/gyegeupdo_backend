@@ -407,7 +407,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'title', 'tag', 'content', 'user', 'category_slug', 'category_name',
             'product_info', 'view_count', 'like_count', 'comment_count', 'is_notice',
-            'is_owner', 'is_liked', 'created_at', 'updated_at'
+            'is_owner', 'is_liked', 'rating', 'created_at', 'updated_at'
         ]
 
     def get_user(self, obj):
@@ -427,6 +427,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
             'name': obj.product.name,
             'slug': obj.product.slug,
             'brand_name': obj.product.brand.name,
+            'tier': obj.product.tier,
         }
 
     def get_is_owner(self, obj):
