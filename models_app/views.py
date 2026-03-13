@@ -349,17 +349,26 @@ class PostViewSet(viewsets.ModelViewSet):
     def get_list_queryset(self):
         """
         목록 조회 전용 최적화 쿼리셋
-        - content 필드 제외 (defer) → 대용량 텍스트 로딩 방지
-        - content_preview를 DB 레벨에서 계산 (Substr) → Python 오버헤드 제거
+        - only(): 필요한 필드만 명시적으로 로딩
+        - content_preview를 DB 레벨에서 계산 (Substr)
+
+        Note: defer('content') 대신 only() 사용
+        - defer + Substr 조합 시 Django 버전별 동작 차이 가능성 회피
+        - 명시적으로 필요한 필드만 로딩하여 더 안전
         """
-        return self.get_queryset().defer('content').annotate(
+        return self.get_queryset().only(
+            'id', 'title', 'tag', 'rating', 'view_count', 'like_count',
+            'comment_count', 'is_notice', 'created_at',
+            # FK 필드 (select_related로 조인됨)
+            'user', 'category', 'product',
+        ).annotate(
             _content_preview=Coalesce(
                 Substr('content', 1, 100),
                 Value('')
             )
         )
 
-    @method_decorator(cache_page(60 * 1))  # 1분 캐시 (게시판은 자주 업데이트됨)
+    @method_decorator(cache_page(30))  # 30초 캐시 (글 작성 후 반영 지연 최소화)
     def list(self, request, *args, **kwargs):
         # 최적화된 쿼리셋 사용
         queryset = self.filter_queryset(self.get_list_queryset())
