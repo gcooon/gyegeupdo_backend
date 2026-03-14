@@ -406,6 +406,10 @@ class PostComment(models.Model):
         verbose_name = '게시글 댓글'
         verbose_name_plural = '게시글 댓글'
         ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['post', '-created_at']),
+            models.Index(fields=['parent']),
+        ]
 
     def __str__(self):
         return f"{self.user.username}: {self.content[:30]}"

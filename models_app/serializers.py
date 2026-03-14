@@ -143,7 +143,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
             category=obj.category,
             product_type=obj.product_type,
             is_active=True
-        ).exclude(id=obj.id).order_by('-tier_score')[:3]
+        ).exclude(id=obj.id).select_related('brand').order_by('-tier_score')[:3]
 
         return [{
             'id': m.id,
@@ -190,6 +190,9 @@ class ProductDetailSerializer(serializers.ModelSerializer):
         }
 
     def get_is_liked(self, obj):
+        # ViewSet에서 annotate된 _is_liked 사용 (추가 쿼리 방지)
+        if hasattr(obj, '_is_liked'):
+            return obj._is_liked
         request = self.context.get('request')
         if request and request.user.is_authenticated:
             return ProductLike.objects.filter(product=obj, user=request.user).exists()
@@ -452,6 +455,9 @@ class PostDetailSerializer(serializers.ModelSerializer):
         return False
 
     def get_is_liked(self, obj):
+        # ViewSet에서 annotate된 _is_liked 사용 (추가 쿼리 방지)
+        if hasattr(obj, '_is_liked'):
+            return obj._is_liked
         request = self.context.get('request')
         if request and request.user.is_authenticated:
             return PostLike.objects.filter(post=obj, user=request.user).exists()

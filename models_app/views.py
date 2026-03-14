@@ -90,6 +90,17 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         instance = self.get_object()
         # 조회수 증가
         instance.increment_view()
+
+        # is_liked를 annotate로 미리 계산 (추가 쿼리 방지)
+        if request.user.is_authenticated:
+            from django.db.models import Exists, OuterRef
+            qs = Product.objects.filter(pk=instance.pk).annotate(
+                _is_liked=Exists(
+                    ProductLike.objects.filter(product=OuterRef('pk'), user=request.user)
+                )
+            ).select_related('brand', 'category').prefetch_related('specs', 'scores', 'traps')
+            instance = qs.first()
+
         serializer = self.get_serializer(instance, context={'request': request})
         return Response({
             'success': True,
@@ -378,7 +389,7 @@ class PostViewSet(viewsets.ModelViewSet):
             )
         )
 
-    @method_decorator(cache_page(30))  # 30초 캐시 (글 작성 후 반영 지연 최소화)
+    @method_decorator(cache_page(60))  # 60초 캐시
     def list(self, request, *args, **kwargs):
         # 최적화된 쿼리셋 사용
         queryset = self.filter_queryset(self.get_list_queryset())
@@ -409,6 +420,17 @@ class PostViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         # 조회수 증가
         instance.increase_view_count()
+
+        # is_liked를 annotate로 미리 계산 (추가 쿼리 방지)
+        if request.user.is_authenticated:
+            from django.db.models import Exists, OuterRef
+            qs = Post.objects.filter(pk=instance.pk).annotate(
+                _is_liked=Exists(
+                    PostLike.objects.filter(post=OuterRef('pk'), user=request.user)
+                )
+            )
+            instance = qs.select_related('user', 'user__profile', 'category', 'product', 'product__brand').first()
+
         serializer = self.get_serializer(instance, context={'request': request})
         return Response({
             'success': True,
