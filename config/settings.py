@@ -14,11 +14,28 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-dev-key-change-in-production')
+# Sentry Error Tracking
+SENTRY_DSN = os.getenv('SENTRY_DSN')
+if SENTRY_DSN:
+    import sentry_sdk
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        traces_sample_rate=0.1,  # 10% 성능 트레이싱
+        profiles_sample_rate=0.1,
+        send_default_pii=False,
+        environment=os.getenv('SENTRY_ENVIRONMENT', 'production'),
+    )
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+
+# SECURITY WARNING: keep the secret key used in production secret!
+# 프로덕션에서는 반드시 SECRET_KEY 환경변수를 설정해야 합니다.
+if DEBUG:
+    SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-dev-key-for-local-development-only')
+else:
+    SECRET_KEY = os.environ['SECRET_KEY']  # 미설정 시 KeyError로 즉시 실패
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,.railway.app,tier-chart.com').split(',')
 
@@ -246,7 +263,11 @@ AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME', 'ap-northeast-2')
 if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
     AWS_DEFAULT_ACL = 'public-read'
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    AWS_S3_FILE_OVERWRITE = False
+    # STORAGES dict에서 default 백엔드를 S3로 설정 (프로덕션 블록에서 반영됨)
+    _USE_S3_STORAGE = True
+else:
+    _USE_S3_STORAGE = False
 
 
 # Coupang Partners API
@@ -286,15 +307,25 @@ LOGGING = {
 
 # Production settings
 if not DEBUG:
-    # Static files with WhiteNoise
+    # Static files with WhiteNoise + Media storage
     STORAGES = {
         'default': {
+            'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+        } if _USE_S3_STORAGE else {
             'BACKEND': 'django.core.files.storage.FileSystemStorage',
         },
         'staticfiles': {
             'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
         },
     }
+
+    import logging as _logging
+    if not _USE_S3_STORAGE:
+        _logging.warning(
+            'WARNING: S3 storage not configured. '
+            'Media files will be lost on container restart. '
+            'Set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY env vars.'
+        )
 
     # Security settings
     SECURE_SSL_REDIRECT = True

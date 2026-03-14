@@ -148,12 +148,15 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         serializer_a = ProductDetailSerializer(product_a)
         serializer_b = ProductDetailSerializer(product_b)
 
-        # TODO: 실제 투표 수 조회 로직 추가
+        # 좋아요 수 기반 비교 비율 계산
+        likes_a = product_a.like_count or 0
+        likes_b = product_b.like_count or 0
+        total_likes = likes_a + likes_b
         data = {
             'model_a': serializer_a.data,
             'model_b': serializer_b.data,
-            'vote_a': 50,
-            'vote_b': 50,
+            'vote_a': round(likes_a / total_likes * 100) if total_likes > 0 else 50,
+            'vote_b': round(likes_b / total_likes * 100) if total_likes > 0 else 50,
             'seo_meta': {
                 'title': f"{product_a.name} vs {product_b.name} 비교 계급도 2026",
                 'description': f"{product_a.name}과 {product_b.name} 스펙, 후기 비교 분석"
@@ -184,8 +187,15 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
             reviews = reviews.filter(user__profile__pronation=pronation)
 
         # 통계
-        similar_count = reviews.count()
-        repurchase_rate = 73  # TODO: 실제 재구매율 계산
+        from django.db.models import Avg, Count
+        stats = reviews.aggregate(
+            total=Count('id'),
+            avg_fit=Avg('fit_score'),
+        )
+        # 사이즈 핏 최빈값 계산
+        size_fit_mode = reviews.values('size_fit').annotate(
+            cnt=Count('id')
+        ).order_by('-cnt').first()
 
         serializer = ReviewSerializer(reviews[:20], many=True)
 
@@ -193,9 +203,9 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
             'success': True,
             'data': {
                 'similar_user_stats': {
-                    'total': similar_count,
-                    'repurchase_rate': repurchase_rate,
-                    'avg_size_fit': 'true'
+                    'total': stats['total'] or 0,
+                    'avg_fit_score': round(stats['avg_fit'] or 0, 1),
+                    'avg_size_fit': size_fit_mode['size_fit'] if size_fit_mode else 'true',
                 },
                 'reviews': serializer.data
             },

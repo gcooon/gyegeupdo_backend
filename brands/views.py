@@ -11,6 +11,7 @@ from .serializers import (
 )
 
 
+@cache_page(60 * 5)  # 5분 캐시 — 가장 무거운 엔드포인트
 @api_view(['GET'])
 def home_summary(request):
     """홈 페이지 전용 요약 API - 모든 데이터를 한 번에 반환"""
@@ -64,9 +65,15 @@ def home_summary(request):
         'product', 'product__brand', 'product__category'
     ).order_by('-support_count', '-created_at')[:4]
 
+    from django.utils import timezone as _tz
+    from datetime import timedelta as _timedelta
+
     disputes_data = []
     for d in disputes:
         total_votes = d.support_count + d.oppose_count
+        # 이의제기 생성일 기준 7일 후까지 남은 일수 계산
+        deadline = d.created_at + _timedelta(days=7)
+        days_left = max(0, (deadline - _tz.now()).days)
         disputes_data.append({
             'id': d.id,
             'category': d.product.category.slug if d.product.category else '',
@@ -77,12 +84,12 @@ def home_summary(request):
             'product_slug': d.product.slug,
             'brand_name': d.product.brand.name if d.product.brand else '',
             'current_tier': d.product.tier,
-            'proposed_tier': d.proposed_tier,
+            'proposed_tier': d.dispute_type,
             'up_votes': d.support_count,
             'down_votes': d.oppose_count,
             'total_votes': total_votes,
             'reason': d.reason or '',
-            'days_left': 7,  # TODO: 실제 계산
+            'days_left': days_left,
         })
 
     # 3. 최신 리뷰/게시글 (4개) - 모든 게시글에서 product_review 우선 정렬

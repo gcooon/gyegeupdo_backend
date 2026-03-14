@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import QuizSession
 from models_app.models import Product
 from brands.models import Category
-import random
 
 
 class QuizInputSerializer(serializers.Serializer):
@@ -203,9 +202,9 @@ class QuizResultSerializer(serializers.ModelSerializer):
                 'usage': product.usage,
                 'product_type': product.product_type,
             },
-            'match_score': max(75, min(99, 95 - (rank - 1) * 5 + random.randint(-3, 3))),
+            'match_score': max(75, min(99, 95 - (rank - 1) * 7)),
             'reasons': reasons,
-            'similar_user_count': random.randint(100, 300),
+            'review_count': product.reviews.count() if hasattr(product, 'reviews') else 0,
         }
 
     def _generate_running_shoe_reasons(self, product, answers):
