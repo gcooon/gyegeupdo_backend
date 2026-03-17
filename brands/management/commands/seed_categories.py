@@ -323,6 +323,84 @@ CATEGORIES_DATA = [
             {'name': '베트멍', 'slug': 'vetements', 'domain': 'vetementswebsite.com', 'description': '뎀나 퇴장 후 하이프 소멸, 2017년 브랜드 평가 고착', 'scores': {'trend': 18, 'design': 50, 'community': 25, 'value': 20}},
         ],
     },
+    {
+        'name': '카메라',
+        'slug': 'camera',
+        'icon': '📷',
+        'group': 'tech',
+        'description': '카메라 브랜드 계급도 - 2024~2026 미러리스 시대 기준',
+        'display_order': 5,
+        'display_config': {
+            'color': '#1A1A2E',
+            'heroTitle': '카메라 계급도',
+            'heroDescription': '한눈에 비교하세요',
+            'heroSubDescription': '커뮤니티 반응과 전문 리뷰를 바탕으로 S~D 티어로 분류된 카메라 브랜드 순위표',
+            'itemLabel': '브랜드',
+            'quizCTA': '나에게 맞는 카메라 찾기',
+            'stats': {'modelCount': '55+', 'reviewCount': '3,000+', 'brandCount': '15'},
+        },
+        'brand_score_definitions': [
+            {'key': 'image_quality', 'label': '화질', 'weight': 30},
+            {'key': 'af_performance', 'label': 'AF 성능', 'weight': 25},
+            {'key': 'build_quality', 'label': '빌드 퀄리티', 'weight': 20},
+            {'key': 'ecosystem', 'label': '생태계', 'weight': 25},
+        ],
+        'score_definitions': [
+            {'key': 'image_quality', 'label': '화질', 'weight': 30},
+            {'key': 'af_performance', 'label': 'AF 성능', 'weight': 25},
+            {'key': 'build_quality', 'label': '빌드 퀄리티', 'weight': 20},
+            {'key': 'value', 'label': '가성비', 'weight': 25},
+        ],
+        'spec_definitions': [
+            {'key': 'sensor_size', 'label': '센서 크기', 'type': 'text'},
+            {'key': 'megapixels', 'label': '유효 화소', 'unit': 'MP', 'type': 'number'},
+            {'key': 'weight', 'label': '무게 (바디)', 'unit': 'g', 'type': 'number'},
+            {'key': 'max_fps', 'label': '최대 연사', 'unit': 'fps', 'type': 'number'},
+            {'key': 'video_resolution', 'label': '최대 동영상', 'type': 'text'},
+            {'key': 'viewfinder', 'label': '뷰파인더', 'type': 'text'},
+            {'key': 'stabilization', 'label': '손떨림 보정', 'type': 'text'},
+        ],
+        'filter_definitions': {
+            'product_type': [
+                {'value': 'mirrorless', 'label': '미러리스'},
+                {'value': 'dslr', 'label': 'DSLR'},
+                {'value': 'compact', 'label': '컴팩트'},
+                {'value': 'action', 'label': '액션캠'},
+                {'value': 'medium_format', 'label': '중형포맷'},
+                {'value': 'instant', 'label': '인스턴트'},
+            ],
+            'usage': [
+                {'value': 'professional', 'label': '프로/보도'},
+                {'value': 'enthusiast', 'label': '하이아마추어'},
+                {'value': 'travel', 'label': '여행/일상'},
+                {'value': 'vlog', 'label': '브이로그/영상'},
+                {'value': 'landscape', 'label': '풍경/건축'},
+                {'value': 'sports', 'label': '스포츠/야생'},
+            ],
+        },
+        'brands': [
+            # S티어 — 황제: 빅3, 미러리스 시대 최상위
+            {'name': '캐논', 'slug': 'canon', 'domain': 'canon.com', 'description': 'RF 마운트로 미러리스 시대를 재편한 카메라의 왕. EOS R 시스템과 압도적 렌즈 라인업', 'scores': {'image_quality': 92, 'af_performance': 95, 'build_quality': 90, 'ecosystem': 98}},
+            {'name': '소니', 'slug': 'sony', 'domain': 'sony.com', 'description': '미러리스 혁명의 선두주자. A7/A9 시리즈와 최고 수준의 AF·센서 기술력', 'scores': {'image_quality': 95, 'af_performance': 97, 'build_quality': 88, 'ecosystem': 95}},
+            {'name': '니콘', 'slug': 'nikon', 'domain': 'nikon.com', 'description': 'Z 마운트로 부활한 니콘. Z8/Z9으로 프로 시장 재진입, 최고 수준의 센서 화질', 'scores': {'image_quality': 96, 'af_performance': 93, 'build_quality': 92, 'ecosystem': 90}},
+            # A티어 — 왕: 특화 영역에서 강자
+            {'name': '후지필름', 'slug': 'fujifilm', 'domain': 'fujifilm.com', 'description': 'APS-C와 중형포맷의 양대 라인업. 필름 시뮬레이션과 레트로 디자인의 대명사', 'scores': {'image_quality': 90, 'af_performance': 82, 'build_quality': 85, 'ecosystem': 82}},
+            {'name': '파나소닉', 'slug': 'panasonic-lumix', 'domain': 'panasonic.com', 'description': 'S5 II부터 위상차 AF 탑재. 동영상 성능 최강, 루믹스 S 풀프레임 시스템', 'scores': {'image_quality': 88, 'af_performance': 80, 'build_quality': 82, 'ecosystem': 75}},
+            {'name': '라이카', 'slug': 'leica', 'domain': 'leica-camera.com', 'description': '카메라의 에르메스. M 시스템과 Q 시리즈의 전설적 광학, 사진 문화의 아이콘', 'scores': {'image_quality': 92, 'af_performance': 68, 'build_quality': 98, 'ecosystem': 62}},
+            {'name': 'OM System', 'slug': 'om-system', 'domain': 'om-system.com', 'description': '구 올림푸스. 마이크로 포서드의 강자, 초소형·초경량·방진방적의 아웃도어 특화', 'scores': {'image_quality': 78, 'af_performance': 80, 'build_quality': 88, 'ecosystem': 75}},
+            # B티어 — 양반: 니치 영역 강자
+            {'name': '리코/펜탁스', 'slug': 'ricoh-pentax', 'domain': 'ricoh-imaging.com', 'description': 'GR III 시리즈의 스트릿 포토 아이콘 + 펜탁스 DSLR 마니아층. OVF를 고수하는 장인정신', 'scores': {'image_quality': 82, 'af_performance': 60, 'build_quality': 82, 'ecosystem': 55}},
+            {'name': '시그마', 'slug': 'sigma', 'domain': 'sigma-global.com', 'description': 'fp 시리즈의 초소형 풀프레임. Art/Contemporary 렌즈 라인업은 업계 최고 수준', 'scores': {'image_quality': 85, 'af_performance': 65, 'build_quality': 75, 'ecosystem': 60}},
+            {'name': '핫셀블라드', 'slug': 'hasselblad', 'domain': 'hasselblad.com', 'description': '중형포맷의 전설. X2D 100C로 디지털 중형 시대를 선도, 1억 화소의 압도적 화질', 'scores': {'image_quality': 98, 'af_performance': 62, 'build_quality': 92, 'ecosystem': 45}},
+            {'name': 'DJI', 'slug': 'dji', 'domain': 'dji.com', 'description': '드론 1위 DJI의 카메라 진출. Osmo Action 시리즈와 짐벌 카메라의 강자', 'scores': {'image_quality': 68, 'af_performance': 72, 'build_quality': 78, 'ecosystem': 65}},
+            # C티어 — 중인: 특수 분야 특화
+            {'name': '고프로', 'slug': 'gopro', 'domain': 'gopro.com', 'description': '액션캠의 원조. Hero 시리즈로 익스트림 스포츠 촬영의 대명사', 'scores': {'image_quality': 58, 'af_performance': 55, 'build_quality': 80, 'ecosystem': 62}},
+            {'name': 'Insta360', 'slug': 'insta360', 'domain': 'insta360.com', 'description': '360도 카메라와 AI 편집의 혁신자. X4와 Ace Pro로 액션캠 시장 도전', 'scores': {'image_quality': 55, 'af_performance': 50, 'build_quality': 72, 'ecosystem': 58}},
+            # D티어 — 평민: 시장 영향력 약화
+            {'name': '캐논 (보급)', 'slug': 'canon-budget', 'domain': 'canon.com', 'description': 'EOS M 단종 후 R100으로 보급 시장 유지. 기능 제한이 아쉬운 엔트리 라인업', 'scores': {'image_quality': 65, 'af_performance': 55, 'build_quality': 50, 'ecosystem': 45}},
+            {'name': '코닥', 'slug': 'kodak', 'domain': 'kodak.com', 'description': '필름의 전설이었던 코닥. 현재는 인스턴트/토이 카메라 위주로 명맥 유지', 'scores': {'image_quality': 30, 'af_performance': 20, 'build_quality': 35, 'ecosystem': 20}},
+        ],
+    },
 ]
 
 

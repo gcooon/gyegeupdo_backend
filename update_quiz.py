@@ -194,4 +194,72 @@ watch.quiz_definitions = [
 watch.save()
 print('시계 퀴즈 업데이트 완료')
 
+# 카메라 퀴즈
+try:
+    camera = Category.objects.get(slug='camera')
+    camera.quiz_definitions = [
+        {
+            'key': 'experience',
+            'question': '사진/영상 경험이 어느 정도인가요?',
+            'emoji': '📷',
+            'options': [
+                {'value': 'beginner', 'label': '처음 시작해요', 'description': '스마트폰 사진만 찍어봄'},
+                {'value': 'intermediate', 'label': '어느 정도 찍어요', 'description': '조리개·셔터 개념은 안다'},
+                {'value': 'advanced', 'label': '꽤 오래 찍었어요', 'description': '수동 모드 촬영 가능'},
+                {'value': 'pro', 'label': '전문가/직업', 'description': '촬영이 직업이거나 준프로'},
+            ],
+        },
+        {
+            'key': 'usage',
+            'question': '주로 어떤 용도로 촬영하실 건가요?',
+            'emoji': '🎯',
+            'options': [
+                {'value': 'travel', 'label': '여행/일상 기록', 'description': '가볍게 들고 다니며 스냅'},
+                {'value': 'vlog', 'label': '브이로그/영상', 'description': '유튜브, 틱톡 영상 위주'},
+                {'value': 'landscape', 'label': '풍경/건축', 'description': '고화질 풍경·야경 촬영'},
+                {'value': 'sports', 'label': '스포츠/야생동물', 'description': '빠른 피사체 연사 촬영'},
+                {'value': 'professional', 'label': '인물/웨딩/상업', 'description': '포트레이트·상업 촬영'},
+                {'value': 'enthusiast', 'label': '취미로 깊게', 'description': '다양한 장르 두루두루'},
+            ],
+        },
+        {
+            'key': 'priority',
+            'question': '카메라에서 가장 중요하게 생각하는 것은?',
+            'emoji': '⭐',
+            'options': [
+                {'value': 'image_quality', 'label': '화질 최우선', 'description': '해상력·다이내믹레인지·색감'},
+                {'value': 'af_performance', 'label': 'AF/연사 속도', 'description': '빠르고 정확한 초점'},
+                {'value': 'portability', 'label': '휴대성/크기', 'description': '가볍고 작은 바디'},
+                {'value': 'video', 'label': '동영상 성능', 'description': '4K/8K 촬영, 로그 지원'},
+                {'value': 'value', 'label': '가성비', 'description': '가격 대비 성능'},
+            ],
+        },
+        {
+            'key': 'sensor',
+            'question': '원하는 센서 크기가 있나요?',
+            'emoji': '🔲',
+            'options': [
+                {'value': 'full_frame', 'label': '풀프레임', 'description': '최고 화질·보케, 크고 무거움'},
+                {'value': 'apsc', 'label': 'APS-C / M4/3', 'description': '가볍고 가성비 좋은 크롭'},
+                {'value': 'medium_format', 'label': '중형포맷', 'description': '풀프레임 이상의 초고화질'},
+                {'value': 'dont_know', 'label': '잘 모르겠어요', 'description': '추천해주세요'},
+            ],
+        },
+        {
+            'key': 'budget',
+            'question': '예산은 어느 정도인가요? (바디 기준)',
+            'emoji': '💰',
+            'options': [
+                {'value': 'under_100', 'label': '100만원 이하', 'description': '엔트리·보급기'},
+                {'value': '100_200', 'label': '100~200만원', 'description': '미드레인지'},
+                {'value': '200_400', 'label': '200~400만원', 'description': '하이엔드'},
+                {'value': 'over_400', 'label': '400만원 이상', 'description': '플래그십/프로'},
+            ],
+        },
+    ]
+    camera.save()
+    print('카메라 퀴즈 업데이트 완료')
+except Category.DoesNotExist:
+    print('카메라 카테고리가 없습니다. seed_categories를 먼저 실행하세요.')
+
 print('모든 퀴즈 정의 업데이트 완료!')

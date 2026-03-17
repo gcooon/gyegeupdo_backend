@@ -1,1 +1,1 @@
-web: python manage.py migrate && python manage.py seed_categories && python manage.py seed_products && python manage.py collectstatic --noinput && gunicorn config.wsgi --bind 0.0.0.0:$PORT
+web: python manage.py migrate && python manage.py seed_categories && python manage.py seed_products && python manage.py seed_posts && python update_quiz.py && python manage.py collectstatic --noinput && gunicorn config.wsgi --bind 0.0.0.0:$PORT
