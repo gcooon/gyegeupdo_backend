@@ -15,6 +15,7 @@ CATEGORIES_DATA = [
         'name': '러닝화',
         'slug': 'running-shoes',
         'icon': '👟',
+        'group': 'sports',
         'description': '러닝화 브랜드 계급도 - 커뮤니티 리뷰 기반',
         'display_order': 1,
         'display_config': {
@@ -78,6 +79,7 @@ CATEGORIES_DATA = [
         'name': '치킨',
         'slug': 'chicken',
         'icon': '🍗',
+        'group': 'food',
         'description': '대한민국 치킨 프랜차이즈 계급도',
         'display_order': 2,
         'display_config': {
@@ -144,6 +146,7 @@ CATEGORIES_DATA = [
         'name': '남자시계',
         'slug': 'mens-watch',
         'icon': '⌚',
+        'group': 'tech',
         'description': '남자 시계 브랜드 계급도 - 커뮤니티 반응 기반',
         'display_order': 3,
         'display_config': {
