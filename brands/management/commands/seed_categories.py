@@ -401,6 +401,326 @@ CATEGORIES_DATA = [
             {'name': '코닥', 'slug': 'kodak', 'domain': 'kodak.com', 'description': '필름의 전설이었던 코닥. 현재는 인스턴트/토이 카메라 위주로 명맥 유지', 'scores': {'image_quality': 30, 'af_performance': 20, 'build_quality': 35, 'ecosystem': 20}},
         ],
     },
+    # ============================================================
+    # 자동차 브랜드 계급도
+    # ============================================================
+    {
+        'name': '자동차',
+        'slug': 'car-brands',
+        'icon': '🚗',
+        'group': 'lifestyle',
+        'description': '자동차 브랜드 계급도 - 커뮤니티 평판과 전문 리뷰 기반',
+        'display_order': 6,
+        'display_config': {
+            'color': '#0F172A',
+            'heroTitle': '자동차 브랜드 계급도',
+            'heroDescription': '한눈에 비교하세요',
+            'heroSubDescription': '커뮤니티 평판과 전문 리뷰를 바탕으로 S~D 티어로 분류된 자동차 브랜드 순위표',
+            'itemLabel': '브랜드',
+            'quizCTA': '나에게 맞는 차 찾기',
+            'stats': {'modelCount': '50+', 'reviewCount': '5,000+', 'brandCount': '20'},
+        },
+        'brand_score_definitions': [
+            {'key': 'performance', 'label': '성능', 'weight': 25},
+            {'key': 'reliability', 'label': '신뢰성', 'weight': 30},
+            {'key': 'brand_value', 'label': '브랜드 가치', 'weight': 20},
+            {'key': 'value_for_money', 'label': '가성비', 'weight': 25},
+        ],
+        'score_definitions': [
+            {'key': 'performance', 'label': '성능', 'weight': 25},
+            {'key': 'comfort', 'label': '편의성', 'weight': 25},
+            {'key': 'reliability', 'label': '신뢰성', 'weight': 25},
+            {'key': 'value', 'label': '가성비', 'weight': 25},
+        ],
+        'spec_definitions': [
+            {'key': 'engine', 'label': '엔진/파워트레인', 'type': 'text'},
+            {'key': 'horsepower', 'label': '최대출력', 'unit': 'hp', 'type': 'number'},
+            {'key': 'fuel_economy', 'label': '연비', 'unit': 'km/L', 'type': 'number'},
+            {'key': 'price', 'label': '시작가', 'unit': '만원', 'type': 'number'},
+            {'key': 'size', 'label': '차급', 'type': 'text'},
+            {'key': 'drive', 'label': '구동방식', 'type': 'text'},
+        ],
+        'filter_definitions': {
+            'product_type': [
+                {'value': 'sedan', 'label': '세단'},
+                {'value': 'suv', 'label': 'SUV'},
+                {'value': 'ev', 'label': '전기차'},
+                {'value': 'sports', 'label': '스포츠카'},
+                {'value': 'truck', 'label': '트럭/픽업'},
+            ],
+            'usage': [
+                {'value': 'commute', 'label': '출퇴근'},
+                {'value': 'family', 'label': '패밀리'},
+                {'value': 'luxury', 'label': '럭셔리'},
+                {'value': 'performance', 'label': '퍼포먼스'},
+                {'value': 'outdoor', 'label': '아웃도어'},
+            ],
+        },
+        'brands': [
+            # S티어 — 황제
+            {'name': '메르세데스-벤츠', 'slug': 'mercedes-benz', 'domain': 'mercedes-benz.com', 'description': '자동차의 발명자. S클래스로 대표되는 럭셔리의 정점, AMG 퍼포먼스와 EQ 전동화까지', 'scores': {'performance': 92, 'reliability': 82, 'brand_value': 98, 'value_for_money': 60}},
+            {'name': 'BMW', 'slug': 'bmw', 'domain': 'bmw.com', 'description': '주행의 즐거움(Freude am Fahren). M 시리즈의 퍼포먼스와 iX의 전동화 리더십', 'scores': {'performance': 95, 'reliability': 80, 'brand_value': 95, 'value_for_money': 62}},
+            {'name': '포르쉐', 'slug': 'porsche', 'domain': 'porsche.com', 'description': '911의 전설. 스포츠카와 SUV 모두에서 최고의 드라이빙을 제공하는 브랜드', 'scores': {'performance': 98, 'reliability': 88, 'brand_value': 97, 'value_for_money': 55}},
+            # A티어 — 왕
+            {'name': '아우디', 'slug': 'audi', 'domain': 'audi.com', 'description': '기술을 통한 진보(Vorsprung durch Technik). 콰트로 AWD와 세련된 인테리어의 대명사', 'scores': {'performance': 88, 'reliability': 78, 'brand_value': 88, 'value_for_money': 65}},
+            {'name': '렉서스', 'slug': 'lexus', 'domain': 'lexus.com', 'description': '토요타의 럭셔리. 압도적 신뢰성과 정숙성, 하이브리드 기술의 선두주자', 'scores': {'performance': 78, 'reliability': 96, 'brand_value': 82, 'value_for_money': 75}},
+            {'name': '볼보', 'slug': 'volvo', 'domain': 'volvocars.com', 'description': '안전의 대명사. 북유럽 미니멀 디자인과 업계 최고 수준의 안전 기술', 'scores': {'performance': 80, 'reliability': 85, 'brand_value': 80, 'value_for_money': 72}},
+            {'name': '테슬라', 'slug': 'tesla', 'domain': 'tesla.com', 'description': '전기차 혁명의 선두주자. 오토파일럿과 OTA 업데이트로 자동차 산업을 재정의', 'scores': {'performance': 90, 'reliability': 68, 'brand_value': 90, 'value_for_money': 75}},
+            # B티어 — 양반
+            {'name': '토요타', 'slug': 'toyota', 'domain': 'toyota.com', 'description': '세계 판매 1위. 캠리/RAV4의 대중성과 랜드크루저의 내구성, 하이브리드의 원조', 'scores': {'performance': 72, 'reliability': 95, 'brand_value': 78, 'value_for_money': 85}},
+            {'name': '혼다', 'slug': 'honda', 'domain': 'honda.com', 'description': '엔진의 혼다. 시빅/어코드의 탄탄한 라인업과 VTEC 기술력, 탁월한 잔고장 없음', 'scores': {'performance': 75, 'reliability': 92, 'brand_value': 72, 'value_for_money': 85}},
+            {'name': '제네시스', 'slug': 'genesis', 'domain': 'genesis.com', 'description': '현대차의 럭셔리. G80/GV70으로 독일 3사에 도전하는 한국 프리미엄 브랜드', 'scores': {'performance': 82, 'reliability': 80, 'brand_value': 70, 'value_for_money': 82}},
+            {'name': '폭스바겐', 'slug': 'volkswagen', 'domain': 'volkswagen.com', 'description': '국민차의 원조. 골프/티구안의 대중성과 ID 시리즈의 전동화, 탄탄한 기본기', 'scores': {'performance': 78, 'reliability': 72, 'brand_value': 75, 'value_for_money': 70}},
+            {'name': '마쯔다', 'slug': 'mazda', 'domain': 'mazda.com', 'description': '인마일체(人馬一体). MX-5 미아타로 대표되는 드라이빙의 즐거움, 스카이액티브 기술', 'scores': {'performance': 80, 'reliability': 85, 'brand_value': 65, 'value_for_money': 78}},
+            # C티어 — 중인
+            {'name': '현대', 'slug': 'hyundai', 'domain': 'hyundai.com', 'description': '한국 자동차의 대표. 아이오닉/투싼의 글로벌 인기와 빠른 전동화 전환', 'scores': {'performance': 72, 'reliability': 75, 'brand_value': 65, 'value_for_money': 88}},
+            {'name': '기아', 'slug': 'kia', 'domain': 'kia.com', 'description': '디자인 혁신의 기아. EV6/EV9과 K시리즈의 가성비, 피터 슈라이어 디자인 유산', 'scores': {'performance': 72, 'reliability': 74, 'brand_value': 62, 'value_for_money': 90}},
+            {'name': '닛산', 'slug': 'nissan', 'domain': 'nissan.com', 'description': 'GT-R의 전설과 리프의 전기차 선구자. 최근 라인업 노후화가 아쉬운 브랜드', 'scores': {'performance': 70, 'reliability': 72, 'brand_value': 60, 'value_for_money': 75}},
+            {'name': '쉐보레', 'slug': 'chevrolet', 'domain': 'chevrolet.com', 'description': '아메리칸 머슬의 상징. 카마로/콜벳의 퍼포먼스와 트래버스/이쿼녹스의 대중성', 'scores': {'performance': 75, 'reliability': 68, 'brand_value': 65, 'value_for_money': 78}},
+            # D티어 — 평민
+            {'name': '스즈키', 'slug': 'suzuki', 'domain': 'suzuki.com', 'description': '소형차/경차 전문. 짐니의 매니아층이 있지만 한국 시장에서는 철수', 'scores': {'performance': 55, 'reliability': 78, 'brand_value': 40, 'value_for_money': 80}},
+            {'name': '미쓰비시', 'slug': 'mitsubishi', 'domain': 'mitsubishi-motors.com', 'description': 'EVO의 영광은 과거. 현재는 아웃랜더 중심의 제한적 라인업으로 시장 영향력 감소', 'scores': {'performance': 55, 'reliability': 65, 'brand_value': 42, 'value_for_money': 72}},
+            {'name': '르노', 'slug': 'renault', 'domain': 'renault.com', 'description': '유럽 대중차의 대표였으나 한국에서는 르노코리아로 존재감 약화. SM6/XM3 중심', 'scores': {'performance': 60, 'reliability': 58, 'brand_value': 45, 'value_for_money': 68}},
+        ],
+    },
+    # ============================================================
+    # 향수 계급도
+    # ============================================================
+    {
+        'name': '향수',
+        'slug': 'perfume',
+        'icon': '🧴',
+        'group': 'lifestyle',
+        'description': '향수 브랜드 계급도 - 조향 퀄리티와 커뮤니티 평판 기반',
+        'display_order': 7,
+        'display_config': {
+            'color': '#7C3AED',
+            'heroTitle': '향수 계급도',
+            'heroDescription': '한눈에 비교하세요',
+            'heroSubDescription': '향수 커뮤니티 평판과 전문 리뷰를 바탕으로 S~D 티어로 분류된 향수 브랜드 순위표',
+            'itemLabel': '브랜드',
+            'quizCTA': '나에게 맞는 향수 찾기',
+            'stats': {'modelCount': '55+', 'reviewCount': '3,500+', 'brandCount': '18'},
+        },
+        'brand_score_definitions': [
+            {'key': 'scent_quality', 'label': '향 퀄리티', 'weight': 30},
+            {'key': 'longevity', 'label': '지속력', 'weight': 25},
+            {'key': 'brand_prestige', 'label': '브랜드 위상', 'weight': 25},
+            {'key': 'value', 'label': '가성비', 'weight': 20},
+        ],
+        'score_definitions': [
+            {'key': 'scent_quality', 'label': '향 퀄리티', 'weight': 30},
+            {'key': 'longevity', 'label': '지속력', 'weight': 25},
+            {'key': 'sillage', 'label': '잔향/확산력', 'weight': 20},
+            {'key': 'value', 'label': '가성비', 'weight': 25},
+        ],
+        'spec_definitions': [
+            {'key': 'concentration', 'label': '농도', 'type': 'text'},
+            {'key': 'volume', 'label': '용량', 'unit': 'ml', 'type': 'number'},
+            {'key': 'top_note', 'label': '탑노트', 'type': 'text'},
+            {'key': 'heart_note', 'label': '미들노트', 'type': 'text'},
+            {'key': 'base_note', 'label': '베이스노트', 'type': 'text'},
+            {'key': 'perfumer', 'label': '조향사', 'type': 'text'},
+        ],
+        'filter_definitions': {
+            'product_type': [
+                {'value': 'edp', 'label': 'EDP (오 드 퍼퓸)'},
+                {'value': 'edt', 'label': 'EDT (오 드 뚜왈렛)'},
+                {'value': 'parfum', 'label': '퍼퓸/엑스트레'},
+                {'value': 'cologne', 'label': '코롱'},
+                {'value': 'niche', 'label': '니치 향수'},
+            ],
+            'usage': [
+                {'value': 'daily', 'label': '데일리'},
+                {'value': 'office', 'label': '오피스'},
+                {'value': 'date', 'label': '데이트'},
+                {'value': 'formal', 'label': '포멀/행사'},
+                {'value': 'summer', 'label': '여름용'},
+                {'value': 'winter', 'label': '겨울용'},
+            ],
+        },
+        'brands': [
+            # S티어
+            {'name': '메종 프란시스 커정', 'slug': 'maison-francis-kurkdjian', 'domain': 'maisonfranciskurkdjian.com', 'description': '바카라 루즈 540으로 전 세계를 사로잡은 니치 향수의 아이콘. 프란시스 커정의 천재적 조향', 'scores': {'scent_quality': 96, 'longevity': 90, 'brand_prestige': 95, 'value': 55}},
+            {'name': '톰 포드', 'slug': 'tom-ford', 'domain': 'tomford.com', 'description': '럭셔리 향수의 대명사. 우드 계열과 오리엔탈 향의 관능적 해석, Private Blend의 프리미엄', 'scores': {'scent_quality': 92, 'longevity': 88, 'brand_prestige': 95, 'value': 58}},
+            {'name': '르 라보', 'slug': 'le-labo', 'domain': 'lelabofragrances.com', 'description': '상탈 33의 뉴욕 감성. 핸드메이드 향수 문화를 만든 니치 향수 브랜드의 선두주자', 'scores': {'scent_quality': 94, 'longevity': 85, 'brand_prestige': 92, 'value': 60}},
+            # A티어
+            {'name': '딥티크', 'slug': 'diptyque', 'domain': 'diptyqueparis.com', 'description': '필로시코스와 도손의 파리 감성. 캔들로 시작해 향수까지, 프랑스 니치의 대표', 'scores': {'scent_quality': 88, 'longevity': 78, 'brand_prestige': 88, 'value': 65}},
+            {'name': '바이레도', 'slug': 'byredo', 'domain': 'byredo.com', 'description': '집시 워터, 블랑쉬의 미니멀 향. 스웨덴 출신 벤 고햄의 모던 니치 브랜드', 'scores': {'scent_quality': 88, 'longevity': 80, 'brand_prestige': 85, 'value': 62}},
+            {'name': '조 말론', 'slug': 'jo-malone', 'domain': 'jomalone.com', 'description': '레이어링의 원조. 영국 감성의 깔끔한 향, 입문용부터 선물용까지 대중적 니치', 'scores': {'scent_quality': 82, 'longevity': 65, 'brand_prestige': 85, 'value': 70}},
+            {'name': '크리드', 'slug': 'creed', 'domain': 'creedboutique.com', 'description': '아벤투스의 전설. 250년 역사의 왕실 납품 향수 하우스, 남성 향수의 성지', 'scores': {'scent_quality': 92, 'longevity': 92, 'brand_prestige': 90, 'value': 48}},
+            {'name': '샤넬', 'slug': 'chanel-perfume', 'domain': 'chanel.com', 'description': 'No.5의 전설. 블루 드 샤넬/코코 마드모아젤 등 대중과 럭셔리를 모두 잡은 하우스', 'scores': {'scent_quality': 85, 'longevity': 82, 'brand_prestige': 95, 'value': 68}},
+            # B티어
+            {'name': '디올', 'slug': 'dior-perfume', 'domain': 'dior.com', 'description': '소바쥬의 대중적 성공. 미스 디올부터 소바쥬까지 남녀 모두에게 사랑받는 하우스', 'scores': {'scent_quality': 82, 'longevity': 80, 'brand_prestige': 88, 'value': 72}},
+            {'name': '에르메스', 'slug': 'hermes-perfume', 'domain': 'hermes.com', 'description': '떼르 데르메스와 정원 시리즈. 장 클로드 엘레나의 예술적 조향, 향수계의 에르메스', 'scores': {'scent_quality': 88, 'longevity': 72, 'brand_prestige': 92, 'value': 62}},
+            {'name': '이솝', 'slug': 'aesop-perfume', 'domain': 'aesop.com', 'description': '마라케시 인텐스와 타싯의 자연주의 향. 호주 스킨케어 브랜드의 향수 라인', 'scores': {'scent_quality': 82, 'longevity': 72, 'brand_prestige': 78, 'value': 68}},
+            {'name': '베르사체', 'slug': 'versace-perfume', 'domain': 'versace.com', 'description': '에로스와 딜런 블루의 대중적 인기. 화려하고 강렬한 이탈리아 감성의 향', 'scores': {'scent_quality': 75, 'longevity': 82, 'brand_prestige': 78, 'value': 80}},
+            {'name': '불가리', 'slug': 'bvlgari-perfume', 'domain': 'bulgari.com', 'description': '옴니아와 아쿠아 시리즈. 이탈리안 주얼리 하우스의 세련된 향수 라인', 'scores': {'scent_quality': 78, 'longevity': 75, 'brand_prestige': 82, 'value': 72}},
+            # C티어
+            {'name': '캘빈 클라인', 'slug': 'calvin-klein', 'domain': 'calvinklein.com', 'description': 'CK One으로 유니섹스 향수를 개척. 이터니티/옵세션 등 90년대 아이코닉 향수들', 'scores': {'scent_quality': 68, 'longevity': 65, 'brand_prestige': 68, 'value': 88}},
+            {'name': '돌체앤가바나', 'slug': 'dolce-gabbana', 'domain': 'dolcegabbana.com', 'description': '라이트 블루의 여름 대표 향. 더 원 시리즈의 따뜻한 남성 향수', 'scores': {'scent_quality': 72, 'longevity': 70, 'brand_prestige': 72, 'value': 78}},
+            {'name': '휴고 보스', 'slug': 'hugo-boss', 'domain': 'hugoboss.com', 'description': '보스 보틀드의 직장인 필수템. 무난하고 깔끔한 오피스 향수의 대표', 'scores': {'scent_quality': 68, 'longevity': 68, 'brand_prestige': 65, 'value': 82}},
+            # D티어
+            {'name': '다비도프', 'slug': 'davidoff', 'domain': 'zinodavidoff.com', 'description': '쿨 워터의 90년대 추억. 과거의 영광에 비해 현재는 라인업 축소', 'scores': {'scent_quality': 60, 'longevity': 62, 'brand_prestige': 52, 'value': 85}},
+            {'name': '플레이보이', 'slug': 'playboy-perfume', 'domain': 'playboy.com', 'description': '저가 향수 라인. 입문용으로는 가능하나 향의 깊이와 지속력에서 한계', 'scores': {'scent_quality': 38, 'longevity': 40, 'brand_prestige': 30, 'value': 90}},
+        ],
+    },
+    # ============================================================
+    # 커피 프랜차이즈 계급도
+    # ============================================================
+    {
+        'name': '커피 프랜차이즈',
+        'slug': 'coffee',
+        'icon': '☕',
+        'group': 'food',
+        'description': '커피 프랜차이즈 계급도 - 맛/가격/접근성 기반',
+        'display_order': 8,
+        'display_config': {
+            'color': '#78350F',
+            'heroTitle': '커피 프랜차이즈 계급도',
+            'heroDescription': '한눈에 비교하세요',
+            'heroSubDescription': '커뮤니티 반응과 전문 리뷰를 바탕으로 S~D 티어로 분류된 커피 프랜차이즈 순위표',
+            'itemLabel': '프랜차이즈',
+            'quizCTA': '나에게 맞는 커피 찾기',
+            'stats': {'modelCount': '45+', 'reviewCount': '4,000+', 'brandCount': '15'},
+        },
+        'brand_score_definitions': [
+            {'key': 'taste', 'label': '맛/퀄리티', 'weight': 35},
+            {'key': 'price', 'label': '가격 경쟁력', 'weight': 25},
+            {'key': 'accessibility', 'label': '접근성/매장 수', 'weight': 20},
+            {'key': 'ambiance', 'label': '매장 분위기', 'weight': 20},
+        ],
+        'score_definitions': [
+            {'key': 'taste', 'label': '맛', 'weight': 35},
+            {'key': 'price', 'label': '가격', 'weight': 25},
+            {'key': 'size', 'label': '양', 'weight': 20},
+            {'key': 'value', 'label': '가성비', 'weight': 20},
+        ],
+        'spec_definitions': [
+            {'key': 'price_americano', 'label': '아메리카노 가격', 'unit': '원', 'type': 'number'},
+            {'key': 'size', 'label': '기본 사이즈', 'unit': 'ml', 'type': 'number'},
+            {'key': 'bean_origin', 'label': '원두 산지', 'type': 'text'},
+            {'key': 'roast', 'label': '로스팅', 'type': 'text'},
+            {'key': 'store_count', 'label': '매장 수', 'unit': '개', 'type': 'number'},
+        ],
+        'filter_definitions': {
+            'product_type': [
+                {'value': 'espresso', 'label': '에스프레소 계열'},
+                {'value': 'drip', 'label': '드립/핸드드립'},
+                {'value': 'cold_brew', 'label': '콜드브루'},
+                {'value': 'latte', 'label': '라떼/밀크'},
+                {'value': 'specialty', 'label': '시그니처/스페셜티'},
+                {'value': 'non_coffee', 'label': '논커피'},
+            ],
+            'usage': [
+                {'value': 'daily', 'label': '매일 마시는'},
+                {'value': 'treat', 'label': '가끔 특별하게'},
+                {'value': 'study', 'label': '공부/작업'},
+                {'value': 'takeout', 'label': '테이크아웃'},
+                {'value': 'meeting', 'label': '미팅/약속'},
+            ],
+        },
+        'brands': [
+            # S티어
+            {'name': '블루보틀', 'slug': 'blue-bottle', 'domain': 'bluebottlecoffee.com', 'description': '스페셜티 커피의 상징. 싱글 오리진 원두와 정교한 추출, 미니멀한 매장 경험', 'scores': {'taste': 95, 'price': 45, 'accessibility': 55, 'ambiance': 95}},
+            {'name': '스타벅스 리저브', 'slug': 'starbucks-reserve', 'domain': 'starbucks.com', 'description': '스타벅스의 프리미엄 라인. 리저브 바와 로스터리의 최상급 원두와 경험', 'scores': {'taste': 90, 'price': 50, 'accessibility': 65, 'ambiance': 92}},
+            # A티어
+            {'name': '스타벅스', 'slug': 'starbucks', 'domain': 'starbucks.com', 'description': '글로벌 커피 1위. 한국 1,900+매장, 사이렌 오더의 편의성과 시즌 음료의 강점', 'scores': {'taste': 78, 'price': 55, 'accessibility': 98, 'ambiance': 85}},
+            {'name': '폴 바셋', 'slug': 'paul-bassett', 'domain': 'paulbassett.co.kr', 'description': '바리스타 챔피언의 커피. WBC 우승자 폴 바셋의 이름을 건 프리미엄 커피', 'scores': {'taste': 88, 'price': 55, 'accessibility': 60, 'ambiance': 82}},
+            {'name': '테라로사', 'slug': 'terarosa', 'domain': 'terarosa.com', 'description': '강릉에서 시작된 스페셜티 로스터리. 자체 로스팅 원두와 대형 매장의 분위기', 'scores': {'taste': 90, 'price': 52, 'accessibility': 50, 'ambiance': 88}},
+            # B티어
+            {'name': '투썸플레이스', 'slug': 'twosome', 'domain': 'twosome.co.kr', 'description': '케이크와 커피의 조합. 디저트 카페 포지셔닝과 넓은 매장 공간의 강점', 'scores': {'taste': 72, 'price': 60, 'accessibility': 85, 'ambiance': 78}},
+            {'name': '이디야커피', 'slug': 'ediya', 'domain': 'ediya.com', 'description': '가성비 커피의 대명사. 3,500+매장으로 전국 어디서나, 합리적 가격의 기본기', 'scores': {'taste': 65, 'price': 88, 'accessibility': 95, 'ambiance': 60}},
+            {'name': '할리스커피', 'slug': 'hollys', 'domain': 'hollys.co.kr', 'description': '한국 커피 프랜차이즈 1세대. 고르곤졸라 피자와 함께 성장한 카페 문화의 선구자', 'scores': {'taste': 70, 'price': 68, 'accessibility': 72, 'ambiance': 72}},
+            {'name': '커피빈', 'slug': 'coffee-bean', 'domain': 'coffeebean.co.kr', 'description': 'LA에서 온 글로벌 체인. 바닐라 라떼와 아이스 블렌디드의 팬덤, 미국식 커피 문화', 'scores': {'taste': 72, 'price': 58, 'accessibility': 68, 'ambiance': 75}},
+            # C티어
+            {'name': '메가커피', 'slug': 'mega-coffee', 'domain': 'megacoffee.me', 'description': '초저가 대용량의 혁명. 1,500원 아메리카노와 3,000+매장의 가성비 폭풍', 'scores': {'taste': 55, 'price': 95, 'accessibility': 90, 'ambiance': 45}},
+            {'name': '컴포즈커피', 'slug': 'compose', 'domain': 'composecoffee.com', 'description': 'BTS 뷔의 브랜드. 저가 커피 시장의 다크호스, 빠른 매장 확장 중', 'scores': {'taste': 55, 'price': 92, 'accessibility': 82, 'ambiance': 50}},
+            {'name': '빽다방', 'slug': 'paik-coffee', 'domain': 'paikscoffee.com', 'description': '백종원의 저가 커피. 2,000원대 아메리카노와 음료 메뉴의 다양성', 'scores': {'taste': 58, 'price': 90, 'accessibility': 80, 'ambiance': 48}},
+            {'name': '더벤티', 'slug': 'the-venti', 'domain': 'theventi.co.kr', 'description': '대용량의 원조. 32oz 아이스 아메리카노로 가성비 시장을 개척한 브랜드', 'scores': {'taste': 52, 'price': 88, 'accessibility': 70, 'ambiance': 45}},
+            # D티어
+            {'name': '매머드커피', 'slug': 'mammoth-coffee', 'domain': 'mammothexpress.co.kr', 'description': '1,500원 초저가 커피. 무인 매장 위주로 편의성은 높지만 맛의 깊이는 한계', 'scores': {'taste': 42, 'price': 95, 'accessibility': 60, 'ambiance': 30}},
+            {'name': '셀프커피', 'slug': 'self-coffee', 'domain': 'selfcoffee.co.kr', 'description': '무인 커피 자판기형 매장. 가격은 최저이지만 원두 퀄리티와 경험에서 아쉬움', 'scores': {'taste': 35, 'price': 98, 'accessibility': 55, 'ambiance': 20}},
+        ],
+    },
+    # ============================================================
+    # 남자지갑 계급도
+    # ============================================================
+    {
+        'name': '남자지갑',
+        'slug': 'mens-wallet',
+        'icon': '👛',
+        'group': 'lifestyle',
+        'description': '남자 지갑 브랜드 계급도 - 소재/디자인/가성비 기반',
+        'display_order': 9,
+        'display_config': {
+            'color': '#44403C',
+            'heroTitle': '남자지갑 계급도',
+            'heroDescription': '한눈에 비교하세요',
+            'heroSubDescription': '커뮤니티 반응과 전문 리뷰를 바탕으로 S~D 티어로 분류된 남자지갑 브랜드 순위표',
+            'itemLabel': '브랜드',
+            'quizCTA': '나에게 맞는 지갑 찾기',
+            'stats': {'modelCount': '45+', 'reviewCount': '2,000+', 'brandCount': '16'},
+        },
+        'brand_score_definitions': [
+            {'key': 'material', 'label': '소재 퀄리티', 'weight': 30},
+            {'key': 'design', 'label': '디자인', 'weight': 25},
+            {'key': 'brand_value', 'label': '브랜드 가치', 'weight': 25},
+            {'key': 'value', 'label': '가성비', 'weight': 20},
+        ],
+        'score_definitions': [
+            {'key': 'material', 'label': '소재', 'weight': 30},
+            {'key': 'design', 'label': '디자인', 'weight': 25},
+            {'key': 'durability', 'label': '내구성', 'weight': 25},
+            {'key': 'value', 'label': '가성비', 'weight': 20},
+        ],
+        'spec_definitions': [
+            {'key': 'material_type', 'label': '소재', 'type': 'text'},
+            {'key': 'size', 'label': '크기', 'type': 'text'},
+            {'key': 'card_slots', 'label': '카드 수납', 'unit': '칸', 'type': 'number'},
+            {'key': 'coin_pocket', 'label': '동전 수납', 'type': 'text'},
+            {'key': 'made_in', 'label': '제조국', 'type': 'text'},
+        ],
+        'filter_definitions': {
+            'product_type': [
+                {'value': 'bifold', 'label': '반지갑'},
+                {'value': 'long', 'label': '장지갑'},
+                {'value': 'card_holder', 'label': '카드홀더/지퍼'},
+                {'value': 'money_clip', 'label': '머니클립'},
+                {'value': 'compact', 'label': '슬림/미니'},
+            ],
+            'usage': [
+                {'value': 'daily', 'label': '데일리'},
+                {'value': 'business', 'label': '비즈니스'},
+                {'value': 'gift', 'label': '선물용'},
+                {'value': 'minimal', 'label': '미니멀'},
+                {'value': 'luxury', 'label': '럭셔리'},
+            ],
+        },
+        'brands': [
+            # S티어
+            {'name': '루이비통', 'slug': 'louis-vuitton-wallet', 'domain': 'louisvuitton.com', 'description': '모노그램의 상징. LV 지갑은 남성 럭셔리 입문의 정석, 리세일 가치도 최상위', 'scores': {'material': 90, 'design': 92, 'brand_value': 98, 'value': 50}},
+            {'name': '구찌', 'slug': 'gucci-wallet', 'domain': 'gucci.com', 'description': 'GG 시그니처와 웹 스트라이프. 클래식과 트렌디를 모두 잡은 이탈리아 럭셔리', 'scores': {'material': 88, 'design': 95, 'brand_value': 95, 'value': 52}},
+            {'name': '보테가 베네타', 'slug': 'bottega-veneta', 'domain': 'bottegaveneta.com', 'description': '인트레치아토 위빙의 장인정신. 로고 없이 소재로 말하는 진정한 럭셔리', 'scores': {'material': 98, 'design': 90, 'brand_value': 92, 'value': 48}},
+            # A티어
+            {'name': '프라다', 'slug': 'prada-wallet', 'domain': 'prada.com', 'description': '사피아노 레더의 실용적 럭셔리. 미니멀한 디자인과 뛰어난 내구성의 대명사', 'scores': {'material': 90, 'design': 85, 'brand_value': 90, 'value': 55}},
+            {'name': '발렌시아가', 'slug': 'balenciaga-wallet', 'domain': 'balenciaga.com', 'description': '스트리트 럭셔리의 아이콘. 대담한 로고와 독특한 실루엣의 모던 하우스', 'scores': {'material': 82, 'design': 88, 'brand_value': 85, 'value': 55}},
+            {'name': '생 로랑', 'slug': 'saint-laurent-wallet', 'domain': 'ysl.com', 'description': 'YSL 카삭드레 로고의 세련된 미니멀리즘. 남성 지갑 라인의 슬림한 디자인', 'scores': {'material': 85, 'design': 88, 'brand_value': 88, 'value': 58}},
+            {'name': '몽블랑', 'slug': 'montblanc-wallet', 'domain': 'montblanc.com', 'description': '마이스터슈튁의 전통. 만년필로 시작한 장인정신이 가죽 제품에도, 비즈니스 필수', 'scores': {'material': 88, 'design': 82, 'brand_value': 82, 'value': 68}},
+            # B티어
+            {'name': '코치', 'slug': 'coach-wallet', 'domain': 'coach.com', 'description': '어포더블 럭셔리의 대표. 합리적 가격에 좋은 가죽 퀄리티, 선물용으로 인기', 'scores': {'material': 78, 'design': 75, 'brand_value': 72, 'value': 82}},
+            {'name': '버버리', 'slug': 'burberry-wallet', 'domain': 'burberry.com', 'description': '체크 패턴의 영국 헤리티지. 빈티지 체크와 TB 모노그램의 클래식한 디자인', 'scores': {'material': 82, 'design': 78, 'brand_value': 80, 'value': 62}},
+            {'name': '폴 스미스', 'slug': 'paul-smith-wallet', 'domain': 'paulsmith.com', 'description': '멀티 스트라이프의 위트. 겉은 단정하고 안은 화려한 영국식 유머의 가죽 제품', 'scores': {'material': 78, 'design': 82, 'brand_value': 72, 'value': 72}},
+            {'name': '벨루티', 'slug': 'berluti', 'domain': 'berluti.com', 'description': 'LVMH의 남성 전문 하우스. 베네치아 레더의 독특한 파티나 마감이 시그니처', 'scores': {'material': 92, 'design': 85, 'brand_value': 78, 'value': 45}},
+            # C티어
+            {'name': '타미 힐피거', 'slug': 'tommy-hilfiger-wallet', 'domain': 'tommy.com', 'description': '아메리칸 캐주얼의 대표. 합리적 가격의 기본에 충실한 남성 지갑 라인', 'scores': {'material': 62, 'design': 65, 'brand_value': 62, 'value': 85}},
+            {'name': '캘빈 클라인', 'slug': 'calvin-klein-wallet', 'domain': 'calvinklein.com', 'description': 'CK 로고의 심플한 디자인. 입문~중급 가격대의 무난한 일상 지갑', 'scores': {'material': 60, 'design': 62, 'brand_value': 60, 'value': 85}},
+            {'name': '닥스', 'slug': 'daks-wallet', 'domain': 'daks.com', 'description': '영국 왕실 납품 브랜드. 체크 패턴이 특징인 중장년층 선호 가죽 제품', 'scores': {'material': 72, 'design': 58, 'brand_value': 55, 'value': 75}},
+            # D티어
+            {'name': '금강', 'slug': 'kumkang-wallet', 'domain': 'kumkang.com', 'description': '국내 가죽 제품 전통 브랜드. 합리적 가격이지만 디자인과 브랜드 인지도에서 아쉬움', 'scores': {'material': 60, 'design': 45, 'brand_value': 38, 'value': 82}},
+            {'name': '랜드리버', 'slug': 'landrover-wallet', 'domain': 'landriver.co.kr', 'description': '국내 저가 가죽 브랜드. 가격은 착하지만 소재와 마감에서 한계가 뚜렷', 'scores': {'material': 45, 'design': 40, 'brand_value': 30, 'value': 85}},
+        ],
+    },
 ]
 
 
