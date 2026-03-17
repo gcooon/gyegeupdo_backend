@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from django.db.models.functions import Substr, Coalesce
-from django.db.models import Value
+from django.db.models import Value, Count, Q, Exists, OuterRef
 from .models import Product, ProductComment, ProductLike, Post, PostComment, PostLike
 from .serializers import (
     ProductListSerializer, ProductDetailSerializer,
@@ -34,7 +34,9 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         return ProductListSerializer
 
     def get_queryset(self):
-        queryset = super().get_queryset().prefetch_related('specs', 'scores')
+        queryset = super().get_queryset().prefetch_related('specs', 'scores').annotate(
+            review_count=Count('reviews', filter=Q(reviews__is_visible=True))
+        )
 
         # 필터링
         params = self.request.query_params
@@ -417,19 +419,30 @@ class PostViewSet(viewsets.ModelViewSet):
         })
 
     def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        # 조회수 증가
-        instance.increase_view_count()
+        pk = self.kwargs.get('pk')
 
-        # is_liked를 annotate로 미리 계산 (추가 쿼리 방지)
+        # 단일 쿼리로 조회 + is_liked annotate (인증 유저)
+        qs = Post.objects.select_related(
+            'user', 'user__profile', 'category', 'product', 'product__brand'
+        ).filter(pk=pk)
+
         if request.user.is_authenticated:
-            from django.db.models import Exists, OuterRef
-            qs = Post.objects.filter(pk=instance.pk).annotate(
+            qs = qs.annotate(
                 _is_liked=Exists(
                     PostLike.objects.filter(post=OuterRef('pk'), user=request.user)
                 )
             )
-            instance = qs.select_related('user', 'user__profile', 'category', 'product', 'product__brand').first()
+
+        instance = qs.first()
+        if not instance:
+            return Response({
+                'success': False,
+                'data': None,
+                'message': '게시글을 찾을 수 없습니다.'
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        # 조회수 비동기적으로 증가 (F expression으로 race condition 방지)
+        Post.objects.filter(pk=pk).update(view_count=instance.view_count + 1)
 
         serializer = self.get_serializer(instance, context={'request': request})
         return Response({

@@ -306,7 +306,8 @@ class PostCommentSerializer(serializers.ModelSerializer):
     def get_replies(self, obj):
         if obj.parent is not None:
             return []
-        replies = obj.replies.select_related('user', 'user__profile').order_by('created_at')[:5]
+        # prefetch_related로 미리 로딩된 데이터 활용 (새 쿼리 방지)
+        replies = sorted(obj.replies.all(), key=lambda r: r.created_at)[:5]
         return PostCommentSerializer(replies, many=True, context=self.context).data
 
     def get_is_owner(self, obj):
