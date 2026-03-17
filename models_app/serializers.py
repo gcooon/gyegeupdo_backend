@@ -70,7 +70,7 @@ class ProductListSerializer(serializers.ModelSerializer):
     """제품 목록용 시리얼라이저"""
     brand = BrandListSerializer(read_only=True)
     category_slug = serializers.CharField(source='category.slug', read_only=True)
-    review_count = serializers.IntegerField(read_only=True, default=0)
+    review_count = serializers.SerializerMethodField()
     trend = serializers.SerializerMethodField()
     specs = serializers.SerializerMethodField()
     scores = serializers.SerializerMethodField()
@@ -98,6 +98,12 @@ class ProductListSerializer(serializers.ModelSerializer):
         """점수를 딕셔너리로 반환"""
         return {score.key: score.value for score in obj.scores.all()}
 
+    def get_review_count(self, obj):
+        """annotate된 값 우선, 없으면 property 사용"""
+        if hasattr(obj, '_annotated_review_count'):
+            return obj._annotated_review_count
+        return obj.review_count
+
 
 class ProductDetailSerializer(serializers.ModelSerializer):
     """제품 상세용 시리얼라이저"""
@@ -106,7 +112,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     specs = ProductSpecSerializer(many=True, read_only=True)
     scores = ProductScoreSerializer(many=True, read_only=True)
     traps = ProductTrapSerializer(many=True, read_only=True)
-    review_count = serializers.IntegerField(read_only=True, default=0)
+    review_count = serializers.SerializerMethodField()
     prev_version = serializers.SerializerMethodField()
     alternatives = serializers.SerializerMethodField()
     filter_labels = serializers.SerializerMethodField()
@@ -125,6 +131,12 @@ class ProductDetailSerializer(serializers.ModelSerializer):
             'view_count', 'like_count', 'is_liked',
             'created_at', 'updated_at'
         ]
+
+    def get_review_count(self, obj):
+        """annotate된 값 우선, 없으면 property 사용"""
+        if hasattr(obj, '_annotated_review_count'):
+            return obj._annotated_review_count
+        return obj.review_count
 
     def get_prev_version(self, obj):
         if obj.prev_version:

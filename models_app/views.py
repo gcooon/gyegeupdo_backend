@@ -35,7 +35,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset().prefetch_related('specs', 'scores').annotate(
-            review_count=Count('reviews', filter=Q(reviews__is_visible=True))
+            _annotated_review_count=Count('reviews', filter=Q(reviews__is_visible=True))
         )
 
         # 필터링
