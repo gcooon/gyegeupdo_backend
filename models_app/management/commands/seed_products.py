@@ -2812,7 +2812,7 @@ COFFEE_DATA = [
     },
     # ---- 매머드커피 ----
     {
-        'brand_slug': 'mammoth',
+        'brand_slug': 'mammoth-coffee',
         'name': '아메리카노',
         'slug': 'mammoth-americano',
         'description': '매머드커피 아메리카노. 대용량 저가 커피의 신흥 강자',
@@ -2824,7 +2824,7 @@ COFFEE_DATA = [
         'scores': {'taste': 45, 'price': 98, 'size': 90, 'value': 88},
     },
     {
-        'brand_slug': 'mammoth',
+        'brand_slug': 'mammoth-coffee',
         'name': '카페 라떼',
         'slug': 'mammoth-caffe-latte',
         'description': '매머드 대용량 라떼. 저렴한 가격에 푸짐한 양',
@@ -2836,7 +2836,7 @@ COFFEE_DATA = [
         'scores': {'taste': 43, 'price': 95, 'size': 90, 'value': 85},
     },
     {
-        'brand_slug': 'mammoth',
+        'brand_slug': 'mammoth-coffee',
         'name': '초코 라떼',
         'slug': 'mammoth-choco-latte',
         'description': '매머드 초코 라떼. 달콤한 초콜릿과 우유의 대용량 음료',
@@ -2972,7 +2972,7 @@ COFFEE_DATA = [
         'scores': {'taste': 12, 'price': 80, 'size': 25, 'value': 40},
     },
     {
-        'brand_slug': 'mammoth',
+        'brand_slug': 'mammoth-coffee',
         'name': '아이스티 복숭아',
         'slug': 'mammoth-iced-peach-tea',
         'description': '매머드 복숭아 아이스티. 커피가 아닌 시럽 기반 음료, 대용량이지만 맛의 깊이가 없는 설탕물에 가까운 메뉴',
@@ -2992,7 +2992,7 @@ COFFEE_DATA = [
 MENS_WALLET_DATA = [
     # ---- 루이비통 ----
     {
-        'brand_slug': 'louis-vuitton',
+        'brand_slug': 'louis-vuitton-wallet',
         'name': '멀티플 월렛',
         'slug': 'lv-multiple-wallet',
         'description': '루이비통 대표 반지갑. 모노그램 캔버스에 슬림한 디자인으로 남성 선물 1순위',
@@ -3004,7 +3004,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 88, 'design': 90, 'durability': 85, 'value': 72},
     },
     {
-        'brand_slug': 'louis-vuitton',
+        'brand_slug': 'louis-vuitton-wallet',
         'name': '슬렌더 월렛',
         'slug': 'lv-slender-wallet',
         'description': '초슬림 모노그램 반지갑. 미니멀한 일상용으로 인기',
@@ -3016,7 +3016,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 85, 'design': 88, 'durability': 83, 'value': 70},
     },
     {
-        'brand_slug': 'louis-vuitton',
+        'brand_slug': 'louis-vuitton-wallet',
         'name': '지피 월렛',
         'slug': 'lv-zippy-wallet',
         'description': '루이비통 장지갑의 아이콘. 라운드 지퍼로 수납력 최강',
@@ -3028,7 +3028,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 88, 'design': 85, 'durability': 88, 'value': 65},
     },
     {
-        'brand_slug': 'louis-vuitton',
+        'brand_slug': 'louis-vuitton-wallet',
         'name': '포켓 오거나이저',
         'slug': 'lv-pocket-organizer',
         'description': '카드 중심 초슬림 지갑. 명함지갑 겸 카드홀더로 인기',
@@ -3041,7 +3041,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 구찌 ----
     {
-        'brand_slug': 'gucci',
+        'brand_slug': 'gucci-wallet',
         'name': 'GG 마몽 반지갑',
         'slug': 'gucci-gg-marmont-bifold',
         'description': '더블G 메탈 로고의 시그니처 반지갑. 매트한 블랙 가죽이 인기',
@@ -3053,7 +3053,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 85, 'design': 88, 'durability': 80, 'value': 72},
     },
     {
-        'brand_slug': 'gucci',
+        'brand_slug': 'gucci-wallet',
         'name': '오피디아 GG 반지갑',
         'slug': 'gucci-ophidia-gg-bifold',
         'description': 'GG 수프림 캔버스에 웹 스트라이프 디테일. 구찌 헤리티지의 상징',
@@ -3065,7 +3065,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 82, 'design': 85, 'durability': 78, 'value': 70},
     },
     {
-        'brand_slug': 'gucci',
+        'brand_slug': 'gucci-wallet',
         'name': '점보 GG 반지갑',
         'slug': 'gucci-jumbo-gg-bifold',
         'description': '대형 GG 패턴의 모던 해석. 엠보싱 가죽에 미니멀한 디자인',
@@ -3115,7 +3115,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 프라다 ----
     {
-        'brand_slug': 'prada',
+        'brand_slug': 'prada-wallet',
         'name': '사피아노 반지갑',
         'slug': 'prada-saffiano-bifold',
         'description': '프라다 시그니처 사피아노 가죽 반지갑. 스크래치에 강하고 실용적인 명품 지갑의 대명사',
@@ -3127,7 +3127,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 90, 'design': 82, 'durability': 92, 'value': 80},
     },
     {
-        'brand_slug': 'prada',
+        'brand_slug': 'prada-wallet',
         'name': '사피아노 카드홀더',
         'slug': 'prada-saffiano-card-holder',
         'description': '프라다 사피아노 가죽 카드홀더. 미니멀 트렌드에 맞는 슬림한 디자인',
@@ -3139,7 +3139,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 90, 'design': 80, 'durability': 90, 'value': 82},
     },
     {
-        'brand_slug': 'prada',
+        'brand_slug': 'prada-wallet',
         'name': '사피아노 장지갑',
         'slug': 'prada-saffiano-long-wallet',
         'description': '프라다 사피아노 장지갑. 넉넉한 카드슬롯과 지퍼 코인포켓 구성',
@@ -3152,7 +3152,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 발렌시아가 ----
     {
-        'brand_slug': 'balenciaga',
+        'brand_slug': 'balenciaga-wallet',
         'name': '캐시 반지갑',
         'slug': 'balenciaga-cash-bifold',
         'description': '발렌시아가 캐시 라인 반지갑. 큼직한 로고 프린트가 특징인 스트릿 감성 지갑',
@@ -3164,7 +3164,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 78, 'design': 75, 'durability': 78, 'value': 60},
     },
     {
-        'brand_slug': 'balenciaga',
+        'brand_slug': 'balenciaga-wallet',
         'name': '네오 클래식 카드홀더',
         'slug': 'balenciaga-neo-classic-card-holder',
         'description': '네오 클래식 라인의 미니멀 카드홀더. 에이징이 매력적인 아레나 가죽',
@@ -3177,7 +3177,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 생 로랑 ----
     {
-        'brand_slug': 'saint-laurent',
+        'brand_slug': 'saint-laurent-wallet',
         'name': '카상드르 반지갑',
         'slug': 'saint-laurent-cassandre-bifold',
         'description': 'YSL 카상드르 로고의 시그니처 반지갑. 매트한 그레인 가죽과 골드 로고',
@@ -3189,7 +3189,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 82, 'design': 85, 'durability': 80, 'value': 70},
     },
     {
-        'brand_slug': 'saint-laurent',
+        'brand_slug': 'saint-laurent-wallet',
         'name': '타이니 모노그램 카드케이스',
         'slug': 'saint-laurent-tiny-monogram-card-case',
         'description': '미니멀한 YSL 엠보싱 카드케이스. 슬림하고 세련된 일상용 카드홀더',
@@ -3201,7 +3201,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 80, 'design': 82, 'durability': 78, 'value': 72},
     },
     {
-        'brand_slug': 'saint-laurent',
+        'brand_slug': 'saint-laurent-wallet',
         'name': '카상드르 장지갑',
         'slug': 'saint-laurent-cassandre-long-wallet',
         'description': 'YSL 카상드르 로고 장지갑. 라운드 지퍼로 넉넉한 수납 제공',
@@ -3288,7 +3288,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 버버리 ----
     {
-        'brand_slug': 'burberry',
+        'brand_slug': 'burberry-wallet',
         'name': '빈티지 체크 반지갑',
         'slug': 'burberry-vintage-check-bifold',
         'description': '버버리 시그니처 빈티지 체크 패턴 반지갑. 영국 헤리티지의 상징',
@@ -3300,7 +3300,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 78, 'design': 82, 'durability': 78, 'value': 65},
     },
     {
-        'brand_slug': 'burberry',
+        'brand_slug': 'burberry-wallet',
         'name': 'TB 모노그램 반지갑',
         'slug': 'burberry-tb-monogram-bifold',
         'description': 'TB 모노그램 엠보싱 가죽 반지갑. 리카르도 티시의 모던 버버리',
@@ -3375,7 +3375,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 타미힐피거 ----
     {
-        'brand_slug': 'tommy-hilfiger',
+        'brand_slug': 'tommy-hilfiger-wallet',
         'name': '이튼 반지갑',
         'slug': 'tommy-eton-bifold',
         'description': '타미힐피거 이튼 라인 반지갑. 심플한 가죽에 메탈 로고 포인트. 10만원대 가성비 지갑',
@@ -3387,7 +3387,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 62, 'design': 60, 'durability': 65, 'value': 85},
     },
     {
-        'brand_slug': 'tommy-hilfiger',
+        'brand_slug': 'tommy-hilfiger-wallet',
         'name': '프리미엄 가죽 반지갑',
         'slug': 'tommy-premium-leather-bifold',
         'description': '프리미엄 라인 가죽 반지갑. 타미 플래그 로고와 상급 가죽 사용',
@@ -3400,7 +3400,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 캘빈클라인 ----
     {
-        'brand_slug': 'calvin-klein',
+        'brand_slug': 'calvin-klein-wallet',
         'name': 'CK 반지갑',
         'slug': 'ck-bifold-wallet',
         'description': 'CK 미니멀 반지갑. 깔끔한 디자인과 합리적 가격의 기본 가죽 지갑',
@@ -3412,7 +3412,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 60, 'design': 62, 'durability': 62, 'value': 82},
     },
     {
-        'brand_slug': 'calvin-klein',
+        'brand_slug': 'calvin-klein-wallet',
         'name': 'CK 슬림 카드케이스',
         'slug': 'ck-slim-card-case',
         'description': 'CK 로고 엠보싱 카드케이스. 미니멀한 디자인에 합리적인 가격',
@@ -3424,7 +3424,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 58, 'design': 60, 'durability': 60, 'value': 82},
     },
     {
-        'brand_slug': 'calvin-klein',
+        'brand_slug': 'calvin-klein-wallet',
         'name': 'CK 모노그램 반지갑',
         'slug': 'ck-monogram-bifold',
         'description': 'CK 올오버 모노그램 패턴 반지갑. 트렌디한 로고 디자인',
@@ -3437,7 +3437,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 닥스 ----
     {
-        'brand_slug': 'daks',
+        'brand_slug': 'daks-wallet',
         'name': '체크 반지갑',
         'slug': 'daks-check-bifold',
         'description': '닥스 하우스 체크 반지갑. 영국 로열 워런트 브랜드의 클래식한 가죽 지갑',
@@ -3449,7 +3449,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 60, 'design': 58, 'durability': 65, 'value': 72},
     },
     {
-        'brand_slug': 'daks',
+        'brand_slug': 'daks-wallet',
         'name': '가죽 반지갑',
         'slug': 'daks-leather-bifold',
         'description': '닥스 심플 가죽 반지갑. 로고 엠보싱과 깔끔한 가죽의 기본 지갑',
@@ -3462,7 +3462,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 금강 ----
     {
-        'brand_slug': 'kumkang',
+        'brand_slug': 'kumkang-wallet',
         'name': '클래식 가죽 반지갑',
         'slug': 'kumkang-classic-bifold',
         'description': '금강제화 클래식 반지갑. 국내 가죽 장인의 정성이 담긴 실용적 가죽 지갑',
@@ -3474,7 +3474,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 60, 'design': 50, 'durability': 70, 'value': 75},
     },
     {
-        'brand_slug': 'kumkang',
+        'brand_slug': 'kumkang-wallet',
         'name': '프리미엄 가죽 반지갑',
         'slug': 'kumkang-premium-bifold',
         'description': '금강제화 프리미엄 라인. 이탈리안 가죽을 사용한 상급 반지갑',
@@ -3487,7 +3487,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 랜드로버 ----
     {
-        'brand_slug': 'landrover',
+        'brand_slug': 'landrover-wallet',
         'name': '베이직 가죽 반지갑',
         'slug': 'landrover-basic-bifold',
         'description': '랜드로버 베이직 반지갑. 실용적이고 합리적인 가격의 기본 가죽 지갑',
@@ -3499,7 +3499,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 48, 'design': 42, 'durability': 55, 'value': 72},
     },
     {
-        'brand_slug': 'landrover',
+        'brand_slug': 'landrover-wallet',
         'name': '카드 반지갑',
         'slug': 'landrover-card-bifold',
         'description': '랜드로버 카드 중심 반지갑. 슬림한 디자인에 여러 카드 수납 가능',
@@ -3515,7 +3515,7 @@ MENS_WALLET_DATA = [
     # material(30), design(25), durability(25), value(20)
     # ============================================================
     {
-        'brand_slug': 'kumkang',
+        'brand_slug': 'kumkang-wallet',
         'name': '합성 가죽 반지갑',
         'slug': 'kumkang-synthetic-bifold',
         'description': '금강제화 최저가 합성 가죽 지갑. PU 가죽 사용으로 1년 이내 표면 벗겨짐 발생, 디자인도 구식',
@@ -3527,7 +3527,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 25, 'design': 30, 'durability': 28, 'value': 55},
     },
     {
-        'brand_slug': 'landrover',
+        'brand_slug': 'landrover-wallet',
         'name': '나일론 벨크로 반지갑',
         'slug': 'landrover-nylon-velcro-bifold',
         'description': '랜드로버 나일론 벨크로 지갑. 아웃도어용이지만 내구성 약하고 찍찍이 소리가 거슬리는 저가 지갑',
@@ -3539,7 +3539,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 18, 'design': 22, 'durability': 35, 'value': 60},
     },
     {
-        'brand_slug': 'daks',
+        'brand_slug': 'daks-wallet',
         'name': '합성 가죽 카드홀더',
         'slug': 'daks-synthetic-card-holder',
         'description': '닥스 브랜드 이름만 붙은 저가 합성 가죽 카드홀더. 대량 생산된 OEM 제품으로 실질적 브랜드 가치 없음',
