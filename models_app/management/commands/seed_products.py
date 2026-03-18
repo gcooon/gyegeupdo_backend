@@ -615,6 +615,19 @@ RUNNING_SHOES_DATA = [
     {'brand_slug': 'adidas', 'name': 'Runfalcon 5', 'slug': 'adidas-runfalcon-5', 'description': '아디다스 최저가 러닝화. 체육 수업용이나 캐주얼 착용, 러닝 기능 최소', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 39000, 'price_max': 55000, 'release_year': 2024, 'version_number': 5, 'specs': {'weight': '270', 'stack_height': '20', 'drop': '10', 'upper': '메쉬', 'midsole': '기본 EVA'}, 'scores': {'cushion': 42, 'responsiveness': 35, 'stability': 48, 'durability': 52}},
     {'brand_slug': 'reebok', 'name': 'Lite Plus 4', 'slug': 'reebok-lite-plus-4', 'description': '리복 최저가 러닝화. 캐주얼 겸용, 러닝 전용으로는 부족', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 35000, 'price_max': 49000, 'release_year': 2023, 'version_number': 4, 'specs': {'weight': '240', 'stack_height': '18', 'drop': '8', 'upper': '메쉬', 'midsole': '기본 EVA'}, 'scores': {'cushion': 38, 'responsiveness': 30, 'stability': 42, 'durability': 48}},
     {'brand_slug': 'skechers', 'name': 'Bounder 2.0', 'slug': 'skechers-bounder-2', 'description': '스케쳐스 캐주얼 운동화. 러닝 성능은 미미, 일상 착용용', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 39000, 'price_max': 55000, 'release_year': 2023, 'version_number': 2, 'specs': {'weight': '250', 'stack_height': '18', 'drop': '6', 'upper': '메쉬', 'midsole': 'Memory Foam (기본)'}, 'scores': {'cushion': 40, 'responsiveness': 28, 'stability': 38, 'durability': 50}},
+    # === 트레일 러닝화 (B/C 티어 믹스) ===
+    {'brand_slug': 'saucony', 'name': 'Peregrine 14', 'slug': 'saucony-peregrine-14', 'description': '써코니 대표 트레일 러닝화. PWRRUN 쿠셔닝과 록 플레이트로 험한 지형에서도 안정적', 'product_type': 'trail', 'usage': 'daily', 'price_min': 159000, 'price_max': 179000, 'release_year': 2024, 'version_number': 14, 'specs': {'weight': '285', 'stack_height': '26', 'drop': '4', 'upper': '트레일 메쉬', 'midsole': 'PWRRUN + 록 플레이트'}, 'scores': {'cushion': 72, 'responsiveness': 68, 'stability': 78, 'durability': 80}},
+    {'brand_slug': 'hoka', 'name': 'Speedgoat 6', 'slug': 'hoka-speedgoat-6', 'description': '호카 대표 트레일 러닝화. 비브람 메가그립 아웃솔과 맥시멀 쿠셔닝으로 울트라 트레일에 최적', 'product_type': 'trail', 'usage': 'daily', 'price_min': 189000, 'price_max': 209000, 'release_year': 2024, 'version_number': 6, 'specs': {'weight': '292', 'stack_height': '33', 'drop': '4', 'upper': '트레일 메쉬', 'midsole': 'CMEVA + Vibram Megagrip'}, 'scores': {'cushion': 85, 'responsiveness': 72, 'stability': 75, 'durability': 82}},
+    {'brand_slug': 'hoka', 'name': 'Challenger 7', 'slug': 'hoka-challenger-7', 'description': '호카 도로/트레일 겸용 러닝화. 가벼운 트레일과 도심 러닝 모두 가능한 하이브리드', 'product_type': 'trail', 'usage': 'beginner', 'price_min': 159000, 'price_max': 179000, 'release_year': 2024, 'version_number': 7, 'specs': {'weight': '250', 'stack_height': '30', 'drop': '5', 'upper': '엔지니어드 메쉬', 'midsole': 'CMEVA'}, 'scores': {'cushion': 78, 'responsiveness': 68, 'stability': 72, 'durability': 78}},
+    {'brand_slug': 'nike', 'name': 'Pegasus Trail 5', 'slug': 'nike-pegasus-trail-5', 'description': '페가수스의 트레일 버전. React X 폼과 트레일 아웃솔로 도로/산길 겸용', 'product_type': 'trail', 'usage': 'beginner', 'price_min': 159000, 'price_max': 179000, 'release_year': 2024, 'version_number': 5, 'specs': {'weight': '288', 'stack_height': '28', 'drop': '10', 'upper': '트레일 메쉬', 'midsole': 'React X + 트레일 아웃솔'}, 'scores': {'cushion': 75, 'responsiveness': 70, 'stability': 72, 'durability': 76}},
+    {'brand_slug': 'new-balance', 'name': 'Fresh Foam Hierro v8', 'slug': 'new-balance-hierro-v8', 'description': '뉴발란스 프리미엄 트레일 러닝화. Fresh Foam X와 비브람 아웃솔로 장거리 트레일 대응', 'product_type': 'trail', 'usage': 'daily', 'price_min': 169000, 'price_max': 189000, 'release_year': 2024, 'version_number': 8, 'specs': {'weight': '295', 'stack_height': '30', 'drop': '8', 'upper': '트레일 메쉬', 'midsole': 'Fresh Foam X + Vibram'}, 'scores': {'cushion': 80, 'responsiveness': 68, 'stability': 75, 'durability': 82}},
+    {'brand_slug': 'salomon', 'name': 'Ultra Glide 3', 'slug': 'salomon-ultra-glide-3', 'description': '살로몬 장거리 트레일 러닝화. 에너지 폼과 컨태그립으로 울트라 거리에 최적화', 'product_type': 'trail', 'usage': 'daily', 'price_min': 169000, 'price_max': 189000, 'release_year': 2024, 'version_number': 3, 'specs': {'weight': '280', 'stack_height': '30', 'drop': '6', 'upper': '트레일 메쉬', 'midsole': 'Energy Foam + Contagrip MA'}, 'scores': {'cushion': 76, 'responsiveness': 72, 'stability': 74, 'durability': 80}},
+    {'brand_slug': 'salomon', 'name': 'Speedcross 6', 'slug': 'salomon-speedcross-6', 'description': '살로몬 대표 트레일 러닝화. 공격적인 러그 패턴과 퀵레이스로 진흙 지형에서 독보적 그립', 'product_type': 'trail', 'usage': 'beginner', 'price_min': 149000, 'price_max': 169000, 'release_year': 2023, 'version_number': 6, 'specs': {'weight': '310', 'stack_height': '26', 'drop': '10', 'upper': '센시핏 메쉬', 'midsole': 'Energy Cell + Contagrip MA'}, 'scores': {'cushion': 65, 'responsiveness': 62, 'stability': 80, 'durability': 82}},
+    # === S 티어 러닝화 추가 (평균 85+) ===
+    {'brand_slug': 'asics', 'name': 'Metaspeed Sky Paris', 'slug': 'asics-metaspeed-sky-paris', 'description': '파리 올림픽용 아식스 최상위 레이싱 슈즈. FF TURBO PLUS와 카본 무빙 솔로 역대급 에너지 리턴', 'product_type': 'speed', 'usage': 'race', 'price_min': 310000, 'price_max': 340000, 'release_year': 2024, 'version_number': 3, 'specs': {'weight': '182', 'stack_height': '39', 'drop': '5', 'upper': '모션랩 어퍼 2.0', 'midsole': 'FF TURBO PLUS + 카본 무빙 솔'}, 'scores': {'cushion': 92, 'responsiveness': 97, 'stability': 86, 'durability': 78}},
+    {'brand_slug': 'nike', 'name': 'Alphafly 3 Elite', 'slug': 'nike-alphafly-3-elite', 'description': '나이키 최상위 레이싱 모델. ZoomX 폼 업그레이드와 최적화된 카본+에어줌 조합으로 극한의 추진력', 'product_type': 'speed', 'usage': 'race', 'price_min': 380000, 'price_max': 410000, 'release_year': 2025, 'version_number': 3, 'specs': {'weight': '205', 'stack_height': '40', 'drop': '4', 'upper': '아토미니트 3.0', 'midsole': 'ZoomX+ Air Zoom + 카본'}, 'scores': {'cushion': 96, 'responsiveness': 97, 'stability': 86, 'durability': 88}},
+    {'brand_slug': 'hoka', 'name': 'Cielo X2', 'slug': 'hoka-cielo-x2', 'description': '호카 차세대 카본 슈퍼슈즈. PEBA 폼 개선과 신형 카본 플레이트로 경량화+반발력 극대화', 'product_type': 'speed', 'usage': 'race', 'price_min': 320000, 'price_max': 350000, 'release_year': 2025, 'version_number': 2, 'specs': {'weight': '172', 'stack_height': '40', 'drop': '5', 'upper': '크릴 메쉬 2.0', 'midsole': 'PEBA X + 카본 플레이트'}, 'scores': {'cushion': 88, 'responsiveness': 96, 'stability': 85, 'durability': 86}},
+    {'brand_slug': 'saucony', 'name': 'Endorphin Elite 2', 'slug': 'saucony-endorphin-elite-2', 'description': '써코니 최상위 레이싱 슈즈. SPEEDROLL 기술과 카본 플레이트로 자연스러운 전방 추진력', 'product_type': 'speed', 'usage': 'race', 'price_min': 310000, 'price_max': 340000, 'release_year': 2025, 'version_number': 2, 'specs': {'weight': '185', 'stack_height': '39', 'drop': '8', 'upper': '슬림 메쉬', 'midsole': 'PWRRUN HG + 카본 SPEEDROLL'}, 'scores': {'cushion': 90, 'responsiveness': 96, 'stability': 85, 'durability': 86}},
 ]
 
 # ============================================================================
@@ -921,6 +934,10 @@ CHICKEN_DATA = [
     {'brand_slug': 'hosigi', 'name': '호식이 간장치킨', 'slug': 'hosigi-soy-chicken', 'description': '호식이 간장치킨. 양은 많지만 간장 소스가 너무 달고 텁텁하다는 평가', 'product_type': 'soy', 'usage': 'family', 'price_min': 25000, 'price_max': 25000, 'specs': {'price': '25000', 'calories': '2800', 'serving': '1600', 'spicy_level': '없음', 'cooking_method': '튀김+간장소스'}, 'scores': {'taste': 45, 'price': 85, 'crispy': 35, 'popularity': 38}},
     {'brand_slug': '60gye', 'name': '순살치킨', 'slug': '60gye-boneless-chicken', 'description': '60계 순살치킨. 저렴하지만 퍽퍽하고 기름진 순살, 식감이 아쉬움', 'product_type': 'fried', 'usage': 'solo', 'price_min': 24900, 'price_max': 26900, 'specs': {'price': '24900', 'calories': '1800', 'serving': '800', 'spicy_level': '없음', 'cooking_method': '튀김'}, 'scores': {'taste': 42, 'price': 82, 'crispy': 38, 'popularity': 35}},
     {'brand_slug': 'cheogajip', 'name': '매운양념치킨', 'slug': 'cheogajip-hot-seasoned', 'description': '처갓집 매운 양념. 지나치게 매워서 치킨 맛을 느끼기 어렵다는 평가', 'product_type': 'seasoned', 'usage': 'beer', 'price_min': 24000, 'price_max': 26000, 'specs': {'price': '24000', 'calories': '1900', 'serving': '900', 'spicy_level': '아주 매움', 'cooking_method': '튀김+매운양념'}, 'scores': {'taste': 48, 'price': 68, 'crispy': 42, 'popularity': 35}},
+    # === D 티어 치킨 메뉴 추가 (평균 <45) ===
+    {'brand_slug': 'kfc', 'name': '뼈없는치킨', 'slug': 'kfc-boneless-chicken', 'description': 'KFC 뼈없는 치킨. 퍽퍽한 식감에 오리지널 레시피의 맛이 살지 않는다는 평가. 가격 대비 양도 적어 가성비 최하', 'product_type': 'fried', 'usage': 'solo', 'price_min': 17900, 'price_max': 19900, 'specs': {'price': '17900', 'calories': '1200', 'serving': '500', 'spicy_level': '없음', 'cooking_method': '튀김'}, 'scores': {'taste': 42, 'price': 45, 'crispy': 40, 'popularity': 38}},
+    {'brand_slug': '60gye', 'name': '고추장치킨', 'slug': '60gye-gochujang-chicken', 'description': '60계 고추장 양념치킨. 고추장 소스가 인위적이고 달기만 하다는 혹평. 바삭함도 완전히 사라지는 양념', 'product_type': 'seasoned', 'usage': 'solo', 'price_min': 23900, 'price_max': 25900, 'specs': {'price': '23900', 'calories': '1750', 'serving': '850', 'spicy_level': '약간', 'cooking_method': '튀김+고추장양념'}, 'scores': {'taste': 35, 'price': 78, 'crispy': 25, 'popularity': 28}},
+    {'brand_slug': 'cheogajip', 'name': '매운양념순살', 'slug': 'cheogajip-hot-boneless', 'description': '처갓집 매운 양념 순살. 순살의 퍽퍽함에 과도한 매운 양념이 더해져 치킨 본연의 맛이 없다는 평가. 양도 적음', 'product_type': 'seasoned', 'usage': 'beer', 'price_min': 25000, 'price_max': 27000, 'specs': {'price': '25000', 'calories': '1600', 'serving': '750', 'spicy_level': '아주 매움', 'cooking_method': '튀김+매운양념'}, 'scores': {'taste': 38, 'price': 58, 'crispy': 30, 'popularity': 30}},
 ]
 
 # ============================================================================
@@ -1297,6 +1314,44 @@ MENS_WATCH_DATA = [
     {'brand_slug': 'casio-gshock', 'name': 'Casio F-91W', 'slug': 'casio-f91w', 'description': '세계에서 가장 많이 팔린 시계. 2천원대 시작, 실용성의 극치지만 소장가치는 최소', 'product_type': 'sport', 'usage': 'sport', 'price_min': 20000, 'price_max': 35000, 'specs': {'case_diameter': '33.2', 'case_thickness': '8.5', 'water_resistance': '30', 'movement': '쿼츠', 'power_reserve': '배터리 7년', 'case_material': '수지', 'crystal': '아크릴'}, 'scores': {'heritage': 60, 'craftsmanship': 40, 'resale': 10, 'prestige': 20}},
     {'brand_slug': 'casio-gshock', 'name': 'Casio MTP-1183', 'slug': 'casio-mtp-1183', 'description': '카시오 기본 아날로그. 저가 드레스워치, 정장용으로 무난하지만 그 이상도 이하도 아님', 'product_type': 'dress', 'usage': 'formal', 'price_min': 30000, 'price_max': 50000, 'specs': {'case_diameter': '38', 'case_thickness': '8', 'water_resistance': '50', 'movement': '쿼츠', 'power_reserve': '배터리 3년', 'case_material': '스테인리스 스틸', 'crystal': '미네랄'}, 'scores': {'heritage': 45, 'craftsmanship': 35, 'resale': 8, 'prestige': 18}},
     {'brand_slug': 'seiko', 'name': 'Seiko SUR', 'slug': 'seiko-sur-quartz', 'description': '세이코 기본 쿼츠. 회사 면접용이나 캐주얼 착용, 시계 매니아에게는 관심 밖', 'product_type': 'dress', 'usage': 'formal', 'price_min': 100000, 'price_max': 180000, 'specs': {'case_diameter': '40.2', 'case_thickness': '8.2', 'water_resistance': '100', 'movement': '쿼츠 VJ42', 'power_reserve': '배터리 3년', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 60, 'craftsmanship': 48, 'resale': 15, 'prestige': 30}},
+    # ---- 바쉐론 콘스탄틴 (S티어) ----
+    {'brand_slug': 'vacheron-constantin', 'name': '오버시즈 4500V', 'slug': 'vacheron-overseas-4500v', 'description': '바쉐론 콘스탄틴의 럭셔리 스포츠워치. 교체 가능한 3종 스트랩과 제네바 씰의 완벽한 마감', 'product_type': 'sport', 'usage': 'casual', 'price_min': 35000000, 'price_max': 45000000, 'specs': {'case_diameter': '41', 'case_thickness': '11', 'water_resistance': '150', 'movement': '칼리버 5100', 'power_reserve': '60', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 100, 'craftsmanship': 98, 'resale': 92, 'prestige': 98}},
+    {'brand_slug': 'vacheron-constantin', 'name': '파트리모니 85180', 'slug': 'vacheron-patrimony-85180', 'description': '순수한 드레스워치의 정수. 얇고 우아한 케이스에 제네바 씰 인증 무브먼트', 'product_type': 'dress', 'usage': 'formal', 'price_min': 30000000, 'price_max': 40000000, 'specs': {'case_diameter': '40', 'case_thickness': '8.1', 'water_resistance': '30', 'movement': '칼리버 1400', 'power_reserve': '40', 'case_material': '18K 핑크골드', 'crystal': '사파이어'}, 'scores': {'heritage': 100, 'craftsmanship': 100, 'resale': 90, 'prestige': 98}},
+    # ---- 아 랑에 운트 죄네 (S티어) ----
+    {'brand_slug': 'a-lange-soehne', 'name': '랑에 1', 'slug': 'lange-1-191032', 'description': '독일 시계 제조의 아이콘. 비대칭 다이얼과 빅데이트의 독창적 디자인, 3/4 플레이트의 완벽한 마감', 'product_type': 'dress', 'usage': 'formal', 'price_min': 45000000, 'price_max': 55000000, 'specs': {'case_diameter': '38.5', 'case_thickness': '9.8', 'water_resistance': '30', 'movement': '칼리버 L121.1', 'power_reserve': '72', 'case_material': '18K 핑크골드', 'crystal': '사파이어'}, 'scores': {'heritage': 95, 'craftsmanship': 100, 'resale': 92, 'prestige': 97}},
+    {'brand_slug': 'a-lange-soehne', 'name': '삭소니아', 'slug': 'lange-saxonia-380032', 'description': '미니멀리즘의 극치. 2핸드 수동 와인딩의 순수한 아름다움, 실버 그레인 다이얼', 'product_type': 'dress', 'usage': 'formal', 'price_min': 25000000, 'price_max': 32000000, 'specs': {'case_diameter': '38.5', 'case_thickness': '7.8', 'water_resistance': '30', 'movement': '칼리버 L093.1', 'power_reserve': '45', 'case_material': '18K 화이트골드', 'crystal': '사파이어'}, 'scores': {'heritage': 92, 'craftsmanship': 100, 'resale': 88, 'prestige': 95}},
+    # ---- 브레게 (S티어) ----
+    {'brand_slug': 'breguet', 'name': '클래식 5177', 'slug': 'breguet-classique-5177', 'description': '시계 역사의 아버지 브레게의 클래식 라인. 기요셰 다이얼과 브레게 바늘의 전통적 아름다움', 'product_type': 'dress', 'usage': 'formal', 'price_min': 25000000, 'price_max': 32000000, 'specs': {'case_diameter': '38', 'case_thickness': '8.7', 'water_resistance': '30', 'movement': '칼리버 777Q', 'power_reserve': '55', 'case_material': '18K 핑크골드', 'crystal': '사파이어'}, 'scores': {'heritage': 100, 'craftsmanship': 97, 'resale': 88, 'prestige': 96}},
+    {'brand_slug': 'breguet', 'name': '마린 5517', 'slug': 'breguet-marine-5517', 'description': '브레게의 스포츠워치. 항해 역사에서 영감받은 웨이브 기요셰 다이얼과 티타늄 케이스', 'product_type': 'sport', 'usage': 'casual', 'price_min': 22000000, 'price_max': 28000000, 'specs': {'case_diameter': '40', 'case_thickness': '11.5', 'water_resistance': '100', 'movement': '칼리버 777A', 'power_reserve': '55', 'case_material': '티타늄', 'crystal': '사파이어'}, 'scores': {'heritage': 98, 'craftsmanship': 96, 'resale': 85, 'prestige': 94}},
+    # ---- 예거 르쿨트르 (A티어) ----
+    {'brand_slug': 'jaeger-lecoultre', 'name': '레베르소 클래식 미디엄', 'slug': 'jlc-reverso-classic-medium', 'description': '세계에서 가장 유명한 뒤집는 시계. 1931년 폴로 선수를 위해 탄생한 아르데코 명작', 'product_type': 'dress', 'usage': 'formal', 'price_min': 12000000, 'price_max': 16000000, 'specs': {'case_diameter': '40.1x24.4', 'case_thickness': '9.7', 'water_resistance': '30', 'movement': '칼리버 822/2', 'power_reserve': '42', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 98, 'craftsmanship': 96, 'resale': 85, 'prestige': 95}},
+    {'brand_slug': 'jaeger-lecoultre', 'name': '마스터 울트라 씬 문', 'slug': 'jlc-master-ultra-thin-moon', 'description': '39mm 울트라 씬 문페이즈. 925 실버 기요셰 다이얼과 122년에 한 번 조정하는 문페이즈', 'product_type': 'dress', 'usage': 'formal', 'price_min': 15000000, 'price_max': 19000000, 'specs': {'case_diameter': '39', 'case_thickness': '10.3', 'water_resistance': '50', 'movement': '칼리버 925/1', 'power_reserve': '70', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 96, 'craftsmanship': 98, 'resale': 82, 'prestige': 93}},
+    {'brand_slug': 'jaeger-lecoultre', 'name': '폴라리스 데이트', 'slug': 'jlc-polaris-date', 'description': 'JLC의 스포츠워치 라인. 1968년 멤보복스 폴라리스에서 영감받은 모던 다이버', 'product_type': 'diver', 'usage': 'casual', 'price_min': 11000000, 'price_max': 14000000, 'specs': {'case_diameter': '42', 'case_thickness': '12', 'water_resistance': '200', 'movement': '칼리버 899/1', 'power_reserve': '70', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 92, 'craftsmanship': 95, 'resale': 78, 'prestige': 90}},
+    # ---- 블랑팡 (A티어) ----
+    {'brand_slug': 'blancpain', 'name': '피프티 패덤스', 'slug': 'blancpain-fifty-fathoms-5015', 'description': '현대 다이버워치의 원조. 1953년 프랑스 해군 잠수사를 위해 탄생한 전설적 다이버', 'product_type': 'diver', 'usage': 'casual', 'price_min': 20000000, 'price_max': 25000000, 'specs': {'case_diameter': '45', 'case_thickness': '15.4', 'water_resistance': '300', 'movement': '칼리버 1315', 'power_reserve': '120', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 100, 'craftsmanship': 95, 'resale': 82, 'prestige': 92}},
+    {'brand_slug': 'blancpain', 'name': '빌르레 울트라 슬림', 'slug': 'blancpain-villeret-ultraslim', 'description': '블랑팡 클래식 드레스워치. 그랑 드코르 엔그레이빙과 더블 베젤의 우아한 디자인', 'product_type': 'dress', 'usage': 'formal', 'price_min': 16000000, 'price_max': 22000000, 'specs': {'case_diameter': '40', 'case_thickness': '7.7', 'water_resistance': '30', 'movement': '칼리버 1151', 'power_reserve': '100', 'case_material': '18K 레드골드', 'crystal': '사파이어'}, 'scores': {'heritage': 98, 'craftsmanship': 96, 'resale': 80, 'prestige': 90}},
+    # ---- 피아제 (A티어) ----
+    {'brand_slug': 'piaget', 'name': '알티플라노 울트라씬', 'slug': 'piaget-altiplano-ultrathin', 'description': '세계에서 가장 얇은 자동 시계 중 하나. 6.4mm 케이스에 피아제 인하우스 무브먼트의 극한 슬림', 'product_type': 'dress', 'usage': 'formal', 'price_min': 22000000, 'price_max': 30000000, 'specs': {'case_diameter': '41', 'case_thickness': '6.4', 'water_resistance': '30', 'movement': '칼리버 1200P', 'power_reserve': '44', 'case_material': '18K 핑크골드', 'crystal': '사파이어'}, 'scores': {'heritage': 92, 'craftsmanship': 95, 'resale': 78, 'prestige': 92}},
+    {'brand_slug': 'piaget', 'name': '폴로 데이트', 'slug': 'piaget-polo-date-g0a46018', 'description': '피아제의 럭셔리 스포츠워치. 1979년 탄생한 폴로 라인의 현대적 해석, 슬림한 스포츠워치', 'product_type': 'sport', 'usage': 'casual', 'price_min': 17000000, 'price_max': 22000000, 'specs': {'case_diameter': '42', 'case_thickness': '9.4', 'water_resistance': '100', 'movement': '칼리버 1110P', 'power_reserve': '50', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 90, 'craftsmanship': 92, 'resale': 78, 'prestige': 90}},
+    # ---- 까르띠에 (B티어) ----
+    {'brand_slug': 'cartier', 'name': '산토스 드 까르띠에', 'slug': 'cartier-santos-medium', 'description': '세계 최초의 손목시계. 1904년 비행사 산토스 뒤몽을 위해 탄생한 아이코닉 스포츠워치', 'product_type': 'sport', 'usage': 'casual', 'price_min': 9500000, 'price_max': 12000000, 'specs': {'case_diameter': '39.8', 'case_thickness': '9.08', 'water_resistance': '100', 'movement': '칼리버 1847 MC', 'power_reserve': '40', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 100, 'craftsmanship': 88, 'resale': 80, 'prestige': 92}},
+    {'brand_slug': 'cartier', 'name': '탱크 프랑세즈', 'slug': 'cartier-tank-francaise-medium', 'description': '1차 세계대전 전차에서 영감받은 탱크의 모던 버전. 까르띠에 우아함의 정수', 'product_type': 'dress', 'usage': 'formal', 'price_min': 8000000, 'price_max': 10000000, 'specs': {'case_diameter': '36.7x30.5', 'case_thickness': '8.75', 'water_resistance': '30', 'movement': '칼리버 1853 MC', 'power_reserve': '40', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 98, 'craftsmanship': 85, 'resale': 82, 'prestige': 92}},
+    {'brand_slug': 'cartier', 'name': '발롱 블루 드 까르띠에', 'slug': 'cartier-ballon-bleu-40mm', 'description': '하늘에 뜬 푸른 풍선. 독특한 라운드 케이스와 블루 카보숑 크라운의 까르띠에 베스트셀러', 'product_type': 'dress', 'usage': 'casual', 'price_min': 8500000, 'price_max': 11000000, 'specs': {'case_diameter': '40', 'case_thickness': '12.4', 'water_resistance': '30', 'movement': '칼리버 1847 MC', 'power_reserve': '40', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 92, 'craftsmanship': 85, 'resale': 78, 'prestige': 88}},
+    # ---- 파네라이 (B티어) ----
+    {'brand_slug': 'panerai', 'name': '루미노르 마리나 PAM01312', 'slug': 'panerai-luminor-marina-pam01312', 'description': '파네라이의 아이콘. 크라운 브릿지 가드와 샌드위치 다이얼의 이탈리아 해군 DNA', 'product_type': 'sport', 'usage': 'casual', 'price_min': 10000000, 'price_max': 13000000, 'specs': {'case_diameter': '44', 'case_thickness': '15.6', 'water_resistance': '300', 'movement': '칼리버 P.9010', 'power_reserve': '72', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 88, 'craftsmanship': 85, 'resale': 72, 'prestige': 85}},
+    {'brand_slug': 'panerai', 'name': '서브머시블 PAM00973', 'slug': 'panerai-submersible-pam00973', 'description': '파네라이의 다이버 라인. 회전 베젤과 300m 방수의 프로 다이버 스펙에 파네라이 특유의 존재감', 'product_type': 'diver', 'usage': 'sport', 'price_min': 12000000, 'price_max': 16000000, 'specs': {'case_diameter': '42', 'case_thickness': '14.2', 'water_resistance': '300', 'movement': '칼리버 P.900', 'power_reserve': '72', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 85, 'craftsmanship': 85, 'resale': 70, 'prestige': 82}},
+    # ---- 론진 (C티어) ----
+    {'brand_slug': 'longines', 'name': '마스터 컬렉션', 'slug': 'longines-master-collection-40mm', 'description': '론진의 대표 드레스워치. 190년 전통의 클래식 디자인과 실리콘 헤어스프링의 인하우스 무브먼트', 'product_type': 'dress', 'usage': 'formal', 'price_min': 2800000, 'price_max': 3500000, 'specs': {'case_diameter': '40', 'case_thickness': '10.3', 'water_resistance': '30', 'movement': 'L888', 'power_reserve': '72', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 90, 'craftsmanship': 78, 'resale': 55, 'prestige': 75}},
+    {'brand_slug': 'longines', 'name': '스피릿', 'slug': 'longines-spirit-40mm', 'description': '론진의 파일럿 스포츠워치. 항공 헤리티지에서 영감받은 디자인과 COSC 크로노미터 인증', 'product_type': 'pilot', 'usage': 'casual', 'price_min': 2600000, 'price_max': 3200000, 'specs': {'case_diameter': '40', 'case_thickness': '11.9', 'water_resistance': '100', 'movement': 'L888.4', 'power_reserve': '72', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 88, 'craftsmanship': 78, 'resale': 52, 'prestige': 72}},
+    # ---- 브라이틀링 (C티어) ----
+    {'brand_slug': 'breitling', 'name': '나비타이머 B01 크로노 43', 'slug': 'breitling-navitimer-b01-43', 'description': '파일럿 크로노그래프의 전설. 1952년 항공 슬라이드 룰 베젤의 아이코닉 디자인', 'product_type': 'chronograph', 'usage': 'casual', 'price_min': 10000000, 'price_max': 12000000, 'specs': {'case_diameter': '43', 'case_thickness': '13.6', 'water_resistance': '30', 'movement': '칼리버 B01', 'power_reserve': '70', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 92, 'craftsmanship': 82, 'resale': 62, 'prestige': 78}},
+    {'brand_slug': 'breitling', 'name': '슈퍼오션 오토매틱 42', 'slug': 'breitling-superocean-auto-42', 'description': '브라이틀링의 다이버 라인. 300m 방수와 현대적 디자인의 프로페셔널 다이버', 'product_type': 'diver', 'usage': 'sport', 'price_min': 6500000, 'price_max': 8000000, 'specs': {'case_diameter': '42', 'case_thickness': '13', 'water_resistance': '300', 'movement': '칼리버 17', 'power_reserve': '38', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 85, 'craftsmanship': 80, 'resale': 58, 'prestige': 75}},
+    # ---- 노모스 (C티어) ----
+    {'brand_slug': 'nomos', 'name': '탕겐테 38', 'slug': 'nomos-tangente-38', 'description': '바우하우스 디자인의 교과서. 글라슈테 인하우스 무브먼트와 미니멀한 독일 미학', 'product_type': 'dress', 'usage': 'formal', 'price_min': 2200000, 'price_max': 2800000, 'specs': {'case_diameter': '37.5', 'case_thickness': '6.45', 'water_resistance': '30', 'movement': '알파', 'power_reserve': '43', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 72, 'craftsmanship': 85, 'resale': 55, 'prestige': 72}},
+    {'brand_slug': 'nomos', 'name': '오리온 네오매틱', 'slug': 'nomos-orion-neomatic-39', 'description': '노모스의 클래식 자동 시계. 네오매틱 인하우스 칼리버와 곡면 다이얼의 세련된 디자인', 'product_type': 'dress', 'usage': 'casual', 'price_min': 3200000, 'price_max': 3800000, 'specs': {'case_diameter': '39', 'case_thickness': '8.7', 'water_resistance': '30', 'movement': 'DUW 3001', 'power_reserve': '42', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 70, 'craftsmanship': 85, 'resale': 52, 'prestige': 70}},
+    # ---- 스마트워치 (D티어) ----
+    {'brand_slug': 'smartwatch', 'name': 'Apple Watch Ultra 2', 'slug': 'apple-watch-ultra-2', 'description': '애플의 최상위 스마트워치. 티타늄 케이스와 100m 방수, 정밀 GPS로 아웃도어 특화', 'product_type': 'sport', 'usage': 'sport', 'price_min': 1149000, 'price_max': 1249000, 'specs': {'case_diameter': '49', 'case_thickness': '14.4', 'water_resistance': '100', 'movement': 'Apple S9 SiP', 'power_reserve': '36시간', 'case_material': '티타늄', 'crystal': '사파이어'}, 'scores': {'heritage': 15, 'craftsmanship': 82, 'resale': 25, 'prestige': 42}},
+    {'brand_slug': 'smartwatch', 'name': 'Galaxy Watch 6 Classic', 'slug': 'samsung-galaxy-watch-6-classic', 'description': '삼성 갤럭시워치 클래식. 회전 베젤과 사파이어 글라스의 전통 시계 감성 스마트워치', 'product_type': 'sport', 'usage': 'casual', 'price_min': 499000, 'price_max': 599000, 'specs': {'case_diameter': '47', 'case_thickness': '10.9', 'water_resistance': '50', 'movement': 'Exynos W930', 'power_reserve': '40시간', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 10, 'craftsmanship': 75, 'resale': 18, 'prestige': 35}},
 ]
 
 
@@ -1369,6 +1424,20 @@ FASHION_BRANDS_DATA = [
     {'brand_slug': 'fear-of-god', 'name': 'Essentials 후디', 'slug': 'fog-essentials-hoodie', 'description': '대중화가 브랜드 가치를 희석시킨 대표 사례', 'product_type': 'knitwear', 'usage': 'street', 'price_min': 80000, 'price_max': 150000, 'release_year': 2018, 'specs': {'price_range': '8만~15만', 'country': '미국', 'founded_year': '2013', 'key_item': '에센셜즈 후디'}, 'scores': {'design': 55, 'quality': 58, 'trend': 28, 'value': 25}},
     {'brand_slug': 'thom-browne', 'name': '삼색 스트라이프 수트', 'slug': 'thom-browne-suit', 'description': '숏 수트의 원조. 디자인은 인정받지만 팬덤이 좁음', 'product_type': 'outerwear', 'usage': 'formal', 'price_min': 3000000, 'price_max': 6000000, 'release_year': 2010, 'specs': {'price_range': '300만~600만', 'country': '미국', 'founded_year': '2001', 'key_item': '숏 수트'}, 'scores': {'design': 78, 'quality': 82, 'trend': 28, 'value': 38}},
     {'brand_slug': 'vetements', 'name': 'DHL 프린트 티셔츠', 'slug': 'vetements-dhl-tee', 'description': '2016년 하이프의 아이콘. 지금은 브랜드 자체가 추억', 'product_type': 'knitwear', 'usage': 'street', 'price_min': 300000, 'price_max': 500000, 'release_year': 2016, 'specs': {'price_range': '30만~50만', 'country': '스위스', 'founded_year': '2014', 'key_item': 'DHL 티셔츠'}, 'scores': {'design': 52, 'quality': 50, 'trend': 18, 'value': 22}},
+
+    # ---- 평민(D) 브랜드 추가 아이템 ----
+    {'brand_slug': 'off-white', 'name': '인더스트리얼 벨트', 'slug': 'off-white-industrial-belt', 'description': '한때 스트릿 패션의 상징이었던 노란 산업용 벨트. 버질 사후 리디자인 없이 재고 소진 중, 하이프 완전 소멸', 'product_type': 'accessory', 'usage': 'street', 'price_min': 250000, 'price_max': 400000, 'release_year': 2016, 'specs': {'price_range': '25만~40만', 'country': '이탈리아', 'founded_year': '2012', 'key_item': '인더스트리얼 벨트'}, 'scores': {'design': 50, 'quality': 45, 'trend': 22, 'value': 20}},
+    {'brand_slug': 'gucci-fashion', 'name': 'GG 캔버스 토트', 'slug': 'gucci-gg-canvas-tote', 'description': '구찌 GG 캔버스 토트백. 미켈레 시대의 맥시멀리즘 잔재로 중고시장에서 가격 급락, 사바토 전환기에 존재감 상실', 'product_type': 'bag', 'usage': 'casual', 'price_min': 1500000, 'price_max': 2500000, 'release_year': 2020, 'specs': {'price_range': '150만~250만', 'country': '이탈리아', 'founded_year': '1921', 'key_item': 'GG 캔버스 토트'}, 'scores': {'design': 52, 'quality': 70, 'trend': 25, 'value': 42}},
+    {'brand_slug': 'fear-of-god', 'name': 'Essentials 티셔츠', 'slug': 'fog-essentials-tshirt', 'description': '에센셜즈 로고 티셔츠. 대량 생산 + 어디서나 보이는 오버노출로 브랜드 프리미엄이 완전히 사라진 아이템', 'product_type': 'knitwear', 'usage': 'street', 'price_min': 40000, 'price_max': 70000, 'release_year': 2019, 'specs': {'price_range': '4만~7만', 'country': '미국', 'founded_year': '2013', 'key_item': '에센셜즈 티셔츠'}, 'scores': {'design': 42, 'quality': 48, 'trend': 20, 'value': 18}},
+
+    # ---- 액세서리 추가 (기존 2개 → 5개) ----
+    {'brand_slug': 'hermes', 'name': '에마이유 뱅글', 'slug': 'hermes-enamel-bangle', 'description': '에르메스 에나멜 뱅글 브레이슬릿. 핸드페인팅 에나멜과 금속 테두리의 럭셔리 액세서리, 에르메스 입문 아이템으로 인기', 'product_type': 'accessory', 'usage': 'formal', 'price_min': 800000, 'price_max': 1500000, 'release_year': 2000, 'specs': {'price_range': '80만~150만', 'country': '프랑스', 'founded_year': '1837', 'key_item': '에나멜 뱅글'}, 'scores': {'design': 90, 'quality': 95, 'trend': 82, 'value': 88}},
+    {'brand_slug': 'dior-fashion', 'name': '새들 벨트백', 'slug': 'dior-saddle-belt-bag', 'description': '디올 새들 라인의 벨트백. 킴 존스의 남성 라인에서 재해석된 아이코닉 실루엣의 크로스바디 액세서리', 'product_type': 'accessory', 'usage': 'casual', 'price_min': 2000000, 'price_max': 3000000, 'release_year': 2019, 'specs': {'price_range': '200만~300만', 'country': '프랑스', 'founded_year': '1946', 'key_item': '새들 벨트백'}, 'scores': {'design': 82, 'quality': 85, 'trend': 75, 'value': 78}},
+    {'brand_slug': 'brunello-cucinelli', 'name': '캐시미어 머플러', 'slug': 'cucinelli-cashmere-scarf', 'description': '브루넬로 쿠치넬리 캐시미어 머플러. 이탈리아 움브리아 장인이 만든 2-ply 캐시미어의 극한의 부드러움, 콰이어트 럭셔리 소품의 정점', 'product_type': 'accessory', 'usage': 'formal', 'price_min': 800000, 'price_max': 1500000, 'release_year': 2022, 'specs': {'price_range': '80만~150만', 'country': '이탈리아', 'founded_year': '1978', 'key_item': '캐시미어 머플러'}, 'scores': {'design': 82, 'quality': 98, 'trend': 78, 'value': 88}},
+
+    # ---- 아웃도어 추가 (기존 2개 → 4개) ----
+    {'brand_slug': 'arcteryx', 'name': '아톰 LT 후디', 'slug': 'arcteryx-atom-lt-hoody', 'description': '아크테릭스 미드레이어의 정석. 코어로프트 인슐레이션과 통기성 사이드패널로 도심~산악 모두 커버하는 사계절 아우터', 'product_type': 'outerwear', 'usage': 'outdoor', 'price_min': 350000, 'price_max': 420000, 'release_year': 2024, 'specs': {'price_range': '35만~42만', 'country': '캐나다', 'founded_year': '1989', 'key_item': '아톰 LT 후디'}, 'scores': {'design': 75, 'quality': 92, 'trend': 85, 'value': 75}},
+    {'brand_slug': 'arcteryx', 'name': '감마 MX 후디', 'slug': 'arcteryx-gamma-mx-hoody', 'description': '아크테릭스 소프트쉘의 대표. 방풍·발수·스트레치를 모두 갖춘 올라운드 아웃도어 재킷, 등산부터 도심 통근까지', 'product_type': 'outerwear', 'usage': 'outdoor', 'price_min': 400000, 'price_max': 500000, 'release_year': 2024, 'specs': {'price_range': '40만~50만', 'country': '캐나다', 'founded_year': '1989', 'key_item': '감마 MX 후디'}, 'scores': {'design': 72, 'quality': 90, 'trend': 82, 'value': 72}},
 ]
 
 
@@ -2192,6 +2261,120 @@ CAMERA_DATA = [
         'specs': {'sensor_size': '1/5인치', 'megapixels': '10', 'weight': '325', 'max_fps': '1', 'video_resolution': '없음', 'viewfinder': 'LCD', 'stabilization': '없음'},
         'scores': {'image_quality': 20, 'af_performance': 15, 'build_quality': 35, 'value': 45},
     },
+    # ============================================================
+    # DSLR 추가 (기존 1개 → 4개)
+    # ============================================================
+    {
+        'brand_slug': 'canon',
+        'name': 'EOS 1D X Mark III',
+        'slug': 'canon-eos-1dx-mark-iii',
+        'description': '캐논 DSLR 플래그십의 마지막 걸작. 20fps 연사와 듀얼 픽셀 AF로 스포츠·보도 현장에서 여전히 활약하는 전설',
+        'product_type': 'dslr',
+        'usage': 'professional',
+        'price_min': 8490000,
+        'price_max': 8490000,
+        'release_year': 2020,
+        'specs': {'sensor_size': '풀프레임', 'megapixels': '20.1', 'weight': '1440', 'max_fps': '20', 'video_resolution': '5.5K 60p RAW', 'viewfinder': 'OVF 100% 시야율', 'stabilization': '없음'},
+        'scores': {'image_quality': 88, 'af_performance': 92, 'build_quality': 98, 'value': 55},
+    },
+    {
+        'brand_slug': 'nikon',
+        'name': 'D850',
+        'slug': 'nikon-d850',
+        'description': '니콘 DSLR의 최고봉. 4570만 화소 고해상도에 7fps 연사, 풍경·스튜디오 촬영의 절대 기준이었던 카메라',
+        'product_type': 'dslr',
+        'usage': 'landscape',
+        'price_min': 3990000,
+        'price_max': 3990000,
+        'release_year': 2017,
+        'specs': {'sensor_size': '풀프레임', 'megapixels': '45.7', 'weight': '1005', 'max_fps': '7', 'video_resolution': '4K 30p', 'viewfinder': 'OVF 100% 시야율', 'stabilization': '없음'},
+        'scores': {'image_quality': 95, 'af_performance': 78, 'build_quality': 92, 'value': 82},
+    },
+    {
+        'brand_slug': 'ricoh-pentax',
+        'name': 'PENTAX K-1 Mark II',
+        'slug': 'pentax-k1-mark-ii',
+        'description': '펜탁스 풀프레임 DSLR의 끝판왕. 3640만 화소에 5축 IBIS, 리얼 레졸루션 시스템으로 초고해상도 촬영. OVF를 고수하는 장인의 카메라',
+        'product_type': 'dslr',
+        'usage': 'landscape',
+        'price_min': 2490000,
+        'price_max': 2490000,
+        'release_year': 2018,
+        'specs': {'sensor_size': '풀프레임', 'megapixels': '36.4', 'weight': '1010', 'max_fps': '4.4', 'video_resolution': '1080p 30p', 'viewfinder': 'OVF 100% 시야율', 'stabilization': '센서시프트 5스톱'},
+        'scores': {'image_quality': 88, 'af_performance': 55, 'build_quality': 90, 'value': 78},
+    },
+    # ============================================================
+    # 인스턴트 카메라 추가 (기존 1개 → 4개)
+    # ============================================================
+    {
+        'brand_slug': 'fujifilm',
+        'name': 'Instax Mini 99',
+        'slug': 'fujifilm-instax-mini-99',
+        'description': '후지필름 인스턴트 카메라의 프리미엄 라인. 색상 효과 필터 다이얼과 밝기 조절로 창의적인 즉석 사진 촬영 가능',
+        'product_type': 'instant',
+        'usage': 'travel',
+        'price_min': 250000,
+        'price_max': 280000,
+        'release_year': 2024,
+        'specs': {'sensor_size': '없음 (필름)', 'megapixels': 'N/A', 'weight': '340', 'max_fps': 'N/A', 'video_resolution': '없음', 'viewfinder': '광학식', 'stabilization': '없음'},
+        'scores': {'image_quality': 35, 'af_performance': 25, 'build_quality': 55, 'value': 52},
+    },
+    {
+        'brand_slug': 'fujifilm',
+        'name': 'Instax Wide 400',
+        'slug': 'fujifilm-instax-wide-400',
+        'description': '와이드 포맷 인스턴트 카메라. 일반 인스턴트보다 2배 넓은 사진으로 파티·여행용 추억 기록에 최적',
+        'product_type': 'instant',
+        'usage': 'travel',
+        'price_min': 180000,
+        'price_max': 200000,
+        'release_year': 2023,
+        'specs': {'sensor_size': '없음 (필름)', 'megapixels': 'N/A', 'weight': '659', 'max_fps': 'N/A', 'video_resolution': '없음', 'viewfinder': '광학식', 'stabilization': '없음'},
+        'scores': {'image_quality': 30, 'af_performance': 20, 'build_quality': 48, 'value': 55},
+    },
+    {
+        'brand_slug': 'kodak',
+        'name': 'Printomatic',
+        'slug': 'kodak-printomatic',
+        'description': '코닥 초저가 인스턴트 카메라. ZINK 무잉크 인화 기술로 스티커 사진 즉석 출력, 토이 카메라 감성',
+        'product_type': 'instant',
+        'usage': 'travel',
+        'price_min': 80000,
+        'price_max': 100000,
+        'release_year': 2017,
+        'specs': {'sensor_size': '1/5인치', 'megapixels': '10', 'weight': '215', 'max_fps': 'N/A', 'video_resolution': '없음', 'viewfinder': '없음', 'stabilization': '없음'},
+        'scores': {'image_quality': 15, 'af_performance': 10, 'build_quality': 25, 'value': 50},
+    },
+    # ============================================================
+    # D티어 추가 (가중평균 <45)
+    # image_quality(30), af_performance(25), build_quality(20), value(25)
+    # ============================================================
+    {
+        'brand_slug': 'canon-budget',
+        'name': 'EOS 4000D',
+        'slug': 'canon-eos-4000d',
+        'description': '캐논 최저가 DSLR. 플라스틱 마운트와 구형 센서, Wi-Fi도 없는 극한의 보급기. 학습용 이외에는 추천 어려움',
+        'product_type': 'dslr',
+        'usage': 'travel',
+        'price_min': 400000,
+        'price_max': 450000,
+        'release_year': 2018,
+        'specs': {'sensor_size': 'APS-C', 'megapixels': '18', 'weight': '436', 'max_fps': '3', 'video_resolution': '1080p 30p', 'viewfinder': 'OVF 95% 시야율', 'stabilization': '없음'},
+        'scores': {'image_quality': 42, 'af_performance': 30, 'build_quality': 25, 'value': 55},
+    },
+    {
+        'brand_slug': 'kodak',
+        'name': 'PIXPRO FZ55',
+        'slug': 'kodak-pixpro-fz55',
+        'description': '코닥 초저가 디지털 카메라. 1/2.3인치 센서에 5배 줌, 스마트폰보다 못한 화질이지만 코닥 이름으로 판매되는 엔트리 제품',
+        'product_type': 'compact',
+        'usage': 'travel',
+        'price_min': 100000,
+        'price_max': 130000,
+        'release_year': 2022,
+        'specs': {'sensor_size': '1/2.3인치', 'megapixels': '16', 'weight': '106', 'max_fps': '1', 'video_resolution': '1080p 30p', 'viewfinder': '없음 (LCD만)', 'stabilization': '없음'},
+        'scores': {'image_quality': 22, 'af_performance': 18, 'build_quality': 20, 'value': 48},
+    },
 ]
 
 
@@ -2322,6 +2505,31 @@ CAR_BRANDS_DATA = [
     {'brand_slug': 'renault', 'name': 'Kwid', 'slug': 'renault-kwid-2024', 'description': '르노의 초저가 경차. 인도 시장용 모델을 글로벌화한 차량, 안전·품질 모두 최저 수준', 'product_type': 'sedan', 'usage': 'commute', 'price_min': 1000, 'price_max': 1500, 'release_year': 2024, 'specs': {'engine': '1.0L 직3', 'horsepower': 68, 'fuel_economy': 18.0, 'price': 1000, 'size': '소형', 'drive': 'FWD'}, 'scores': {'performance': 20, 'comfort': 25, 'reliability': 42, 'value': 55}},
     # ---- 스즈키 D티어 추가 ----
     {'brand_slug': 'suzuki', 'name': 'Celerio', 'slug': 'suzuki-celerio-2024', 'description': '스즈키 최저가 해치백. 신흥국 시장용 초소형차, 선진국 기준으로는 모든 면에서 부족', 'product_type': 'sedan', 'usage': 'commute', 'price_min': 1000, 'price_max': 1500, 'release_year': 2024, 'specs': {'engine': '1.0L 직3', 'horsepower': 67, 'fuel_economy': 21.0, 'price': 1000, 'size': '소형', 'drive': 'FWD'}, 'scores': {'performance': 22, 'comfort': 28, 'reliability': 62, 'value': 58}},
+
+    # ============================================================
+    # C티어 추가 — 저가/실용 차량 (가중평균 45-59)
+    # performance(25), comfort(25), reliability(25), value(25)
+    # ============================================================
+    {'brand_slug': 'nissan', 'name': 'Versa', 'slug': 'nissan-versa-2024', 'description': '닛산 최저가 세단. 넓은 뒷좌석이 장점이지만 파워트레인과 승차감 모두 경쟁 모델 대비 부족', 'product_type': 'sedan', 'usage': 'commute', 'price_min': 2000, 'price_max': 2500, 'release_year': 2024, 'specs': {'engine': '1.6L 직4', 'horsepower': 122, 'fuel_economy': 14.5, 'price': 2000, 'size': '소형', 'drive': 'FWD'}, 'scores': {'performance': 38, 'comfort': 48, 'reliability': 65, 'value': 68}},
+    {'brand_slug': 'nissan', 'name': 'Kicks', 'slug': 'nissan-kicks-2024', 'description': '닛산 소형 크로스오버. 도심 기동성은 괜찮지만 동력 성능과 실내 품질이 가격 대비 아쉬운 수준', 'product_type': 'suv', 'usage': 'commute', 'price_min': 2500, 'price_max': 3000, 'release_year': 2024, 'specs': {'engine': '1.6L 직4', 'horsepower': 122, 'fuel_economy': 14.0, 'price': 2500, 'size': '소형', 'drive': 'FWD'}, 'scores': {'performance': 40, 'comfort': 52, 'reliability': 62, 'value': 65}},
+    {'brand_slug': 'chevrolet', 'name': 'Spark', 'slug': 'chevrolet-spark-2024', 'description': '쉐보레 최저가 시티카. 좁은 실내와 부족한 안전 장비, 도심 단거리 이동만을 위한 최소한의 차', 'product_type': 'sedan', 'usage': 'commute', 'price_min': 1200, 'price_max': 1800, 'release_year': 2024, 'specs': {'engine': '1.0L 직4', 'horsepower': 75, 'fuel_economy': 16.5, 'price': 1200, 'size': '소형', 'drive': 'FWD'}, 'scores': {'performance': 30, 'comfort': 35, 'reliability': 60, 'value': 72}},
+    {'brand_slug': 'chevrolet', 'name': 'Trax', 'slug': 'chevrolet-trax-2024', 'description': '쉐보레 소형 SUV. 리뉴얼로 디자인은 개선됐지만 동력 성능과 실내 품질이 여전히 아쉬운 수준', 'product_type': 'suv', 'usage': 'commute', 'price_min': 2500, 'price_max': 3200, 'release_year': 2024, 'specs': {'engine': '1.2L 직3 터보', 'horsepower': 137, 'fuel_economy': 13.5, 'price': 2500, 'size': '소형', 'drive': 'FWD'}, 'scores': {'performance': 42, 'comfort': 50, 'reliability': 58, 'value': 68}},
+    {'brand_slug': 'renault', 'name': 'Duster', 'slug': 'renault-duster-2024', 'description': '르노 가성비 SUV. 오프로드 성능은 의외로 괜찮지만 신뢰성과 실내 품질이 경쟁 모델 대비 뒤처짐', 'product_type': 'suv', 'usage': 'commute', 'price_min': 2200, 'price_max': 3000, 'release_year': 2024, 'specs': {'engine': '1.6L 직4', 'horsepower': 115, 'fuel_economy': 13.0, 'price': 2200, 'size': '중형', 'drive': 'FWD/AWD'}, 'scores': {'performance': 45, 'comfort': 48, 'reliability': 50, 'value': 70}},
+
+    # ============================================================
+    # 트럭 제품 추가 (product_type='truck')
+    # ============================================================
+    {'brand_slug': 'toyota', 'name': 'Hilux', 'slug': 'toyota-hilux-2024', 'description': '세계에서 가장 많이 팔린 픽업 트럭. 극한 환경에서 검증된 내구성과 신뢰성의 아이콘', 'product_type': 'truck', 'usage': 'outdoor', 'price_min': 4000, 'price_max': 5500, 'release_year': 2024, 'specs': {'engine': '2.8L 직4 디젤 터보', 'horsepower': 204, 'fuel_economy': 11.0, 'price': 4000, 'size': '대형', 'drive': '4WD'}, 'scores': {'performance': 72, 'comfort': 65, 'reliability': 98, 'value': 85}},
+    {'brand_slug': 'toyota', 'name': 'Tundra', 'slug': 'toyota-tundra-2024', 'description': '토요타 풀사이즈 픽업. 트윈터보 V6와 i-FORCE MAX 하이브리드로 미국 픽업 시장에 도전', 'product_type': 'truck', 'usage': 'outdoor', 'price_min': 5500, 'price_max': 8000, 'release_year': 2024, 'specs': {'engine': '3.5L V6 트윈터보 하이브리드', 'horsepower': 437, 'fuel_economy': 9.0, 'price': 5500, 'size': '대형', 'drive': '4WD'}, 'scores': {'performance': 85, 'comfort': 78, 'reliability': 90, 'value': 72}},
+    {'brand_slug': 'hyundai', 'name': 'Santa Cruz', 'slug': 'hyundai-santa-cruz-2024', 'description': '현대 스포츠 어드벤처 트럭. 유니바디 기반 크로스오버 픽업, 도심과 레저 활동의 균형', 'product_type': 'truck', 'usage': 'outdoor', 'price_min': 3500, 'price_max': 4500, 'release_year': 2024, 'specs': {'engine': '2.5L 직4 터보', 'horsepower': 281, 'fuel_economy': 11.5, 'price': 3500, 'size': '중형', 'drive': 'AWD'}, 'scores': {'performance': 75, 'comfort': 72, 'reliability': 74, 'value': 82}},
+    {'brand_slug': 'chevrolet', 'name': 'Silverado 1500', 'slug': 'chevrolet-silverado-1500-2024', 'description': '쉐보레 풀사이즈 픽업 트럭. 미국 픽업 시장의 빅3, 강력한 V8과 넉넉한 적재 공간', 'product_type': 'truck', 'usage': 'outdoor', 'price_min': 5000, 'price_max': 8500, 'release_year': 2024, 'specs': {'engine': '5.3L V8 / 6.2L V8', 'horsepower': 420, 'fuel_economy': 8.0, 'price': 5000, 'size': '대형', 'drive': '4WD'}, 'scores': {'performance': 82, 'comfort': 75, 'reliability': 70, 'value': 72}},
+
+    # ============================================================
+    # 아웃도어 제품 추가 (usage='outdoor')
+    # ============================================================
+    {'brand_slug': 'toyota', 'name': '4Runner', 'slug': 'toyota-4runner-2024', 'description': '토요타 정통 오프로더. 바디 온 프레임 구조와 검증된 TNGA-F 플랫폼의 중형 SUV', 'product_type': 'suv', 'usage': 'outdoor', 'price_min': 5000, 'price_max': 7000, 'release_year': 2024, 'specs': {'engine': '2.4L 직4 터보 하이브리드', 'horsepower': 326, 'fuel_economy': 10.5, 'price': 5000, 'size': '대형', 'drive': '4WD'}, 'scores': {'performance': 78, 'comfort': 72, 'reliability': 95, 'value': 78}},
+    {'brand_slug': 'toyota', 'name': 'Land Cruiser 250', 'slug': 'toyota-land-cruiser-250', 'description': '랜드크루저 프라도 후속. 오프로드 성능과 도심 편의성을 모두 갖춘 프리미엄 중형 SUV', 'product_type': 'suv', 'usage': 'outdoor', 'price_min': 7500, 'price_max': 10000, 'release_year': 2024, 'specs': {'engine': '2.4L 직4 터보 하이브리드', 'horsepower': 326, 'fuel_economy': 11.0, 'price': 7500, 'size': '중대형', 'drive': '4WD'}, 'scores': {'performance': 80, 'comfort': 82, 'reliability': 95, 'value': 72}},
+    {'brand_slug': 'suzuki', 'name': 'Jimny Sierra', 'slug': 'suzuki-jimny-sierra-2024', 'description': '짐니 5도어 롱 바디 버전. 짐니의 오프로드 DNA에 실용적인 뒷좌석 공간을 더한 모델', 'product_type': 'suv', 'usage': 'outdoor', 'price_min': 2800, 'price_max': 3500, 'release_year': 2024, 'specs': {'engine': '1.5L 직4', 'horsepower': 102, 'fuel_economy': 12.5, 'price': 2800, 'size': '소형', 'drive': '4WD'}, 'scores': {'performance': 48, 'comfort': 45, 'reliability': 80, 'value': 72}},
 ]
 
 
@@ -2983,6 +3191,129 @@ COFFEE_DATA = [
         'specs': {'price_americano': 1500, 'size': 590, 'bean_origin': '해당없음', 'roast': '해당없음', 'store_count': 800},
         'scores': {'taste': 20, 'price': 72, 'size': 55, 'value': 22},
     },
+
+    # ============================================================
+    # 미팅 용도 추가 (usage='meeting')
+    # taste(35), price(25), size(20), value(20)
+    # ============================================================
+    {
+        'brand_slug': 'starbucks-reserve',
+        'name': '리저브 미팅 세트',
+        'slug': 'starbucks-reserve-meeting-set',
+        'description': '스타벅스 리저브 바 미팅 전용 세트. 프리미엄 드립 2잔 + 페어링 디저트, 비즈니스 미팅에 최적화된 프리미엄 경험',
+        'product_type': 'drip',
+        'usage': 'meeting',
+        'price_min': 15000,
+        'price_max': 20000,
+        'specs': {'price_americano': 5500, 'size': 355, 'bean_origin': '리저브 싱글 오리진', 'roast': '미디엄', 'store_count': 45},
+        'scores': {'taste': 90, 'price': 30, 'size': 60, 'value': 42},
+    },
+    {
+        'brand_slug': 'blue-bottle',
+        'name': '핸드드립 체험 세트',
+        'slug': 'blue-bottle-pourover-experience',
+        'description': '블루보틀 핸드드립 체험. 바리스타가 직접 추출하는 과정을 함께 즐기는 프리미엄 미팅 메뉴, 특별한 커피 경험 제공',
+        'product_type': 'drip',
+        'usage': 'meeting',
+        'price_min': 12000,
+        'price_max': 15000,
+        'specs': {'price_americano': 5000, 'size': 355, 'bean_origin': '시즌별 싱글 오리진', 'roast': '라이트', 'store_count': 25},
+        'scores': {'taste': 94, 'price': 32, 'size': 55, 'value': 45},
+    },
+    {
+        'brand_slug': 'paul-bassett',
+        'name': '미팅 패키지',
+        'slug': 'paul-bassett-meeting-package',
+        'description': '폴 바셋 비즈니스 미팅 패키지. 스페셜티 에스프레소 2잔과 티라미수 세트, 프리미엄 오피스 미팅에 적합',
+        'product_type': 'espresso',
+        'usage': 'meeting',
+        'price_min': 13000,
+        'price_max': 16000,
+        'specs': {'price_americano': 4800, 'size': 355, 'bean_origin': '스페셜티 블렌드', 'roast': '미디엄', 'store_count': 75},
+        'scores': {'taste': 88, 'price': 35, 'size': 60, 'value': 48},
+    },
+    {
+        'brand_slug': 'terarosa',
+        'name': '미팅 핸드드립 세트',
+        'slug': 'terarosa-meeting-hand-drip-set',
+        'description': '테라로사 미팅 전용 핸드드립 세트. 2인 기준 시즌 스페셜티 드립과 자체 베이커리 페어링, 분위기 있는 카페 미팅의 정석',
+        'product_type': 'drip',
+        'usage': 'meeting',
+        'price_min': 14000,
+        'price_max': 18000,
+        'specs': {'price_americano': 5000, 'size': 355, 'bean_origin': '시즌별 스페셜티', 'roast': '라이트~미디엄', 'store_count': 35},
+        'scores': {'taste': 92, 'price': 32, 'size': 55, 'value': 48},
+    },
+
+    # ============================================================
+    # S티어 추가 (가중평균 85+)
+    # taste(35), price(25), size(20), value(20)
+    # ============================================================
+    {
+        'brand_slug': 'blue-bottle',
+        'name': '시즌 한정 싱글 오리진 에스프레소',
+        'slug': 'blue-bottle-seasonal-single-origin-espresso',
+        'description': '블루보틀 시즌 한정 에스프레소. 최상급 마이크로랏 원두를 사용한 에스프레소, 밸런스와 풍미가 압도적인 블루보틀의 숨은 명작',
+        'product_type': 'espresso',
+        'usage': 'treat',
+        'price_min': 5500,
+        'price_max': 6500,
+        'specs': {'price_americano': 5000, 'size': 355, 'bean_origin': '시즌 마이크로랏', 'roast': '라이트~미디엄', 'store_count': 25},
+        'scores': {'taste': 96, 'price': 78, 'size': 70, 'value': 88},
+    },
+    {
+        'brand_slug': 'starbucks-reserve',
+        'name': '클로버 브루잉',
+        'slug': 'starbucks-reserve-clover-brewing',
+        'description': '클로버 추출기로 뽑는 스타벅스 리저브 커피. 진공 추출로 원두 본연의 캐릭터를 극대화, 매장 한정 프리미엄 메뉴',
+        'product_type': 'drip',
+        'usage': 'treat',
+        'price_min': 7500,
+        'price_max': 9500,
+        'specs': {'price_americano': 5500, 'size': 355, 'bean_origin': '리저브 싱글 오리진', 'roast': '미디엄', 'store_count': 45},
+        'scores': {'taste': 92, 'price': 80, 'size': 72, 'value': 85},
+    },
+    {
+        'brand_slug': 'terarosa',
+        'name': '에티오피아 예가체프 내추럴',
+        'slug': 'terarosa-ethiopia-yirgacheffe-natural',
+        'description': '테라로사 에티오피아 예가체프 내추럴 핸드드립. 블루베리와 와인 같은 발효 풍미가 압도적, 스페셜티 커피의 진수',
+        'product_type': 'drip',
+        'usage': 'treat',
+        'price_min': 7000,
+        'price_max': 9000,
+        'specs': {'price_americano': 5000, 'size': 355, 'bean_origin': '에티오피아 예가체프 내추럴', 'roast': '라이트', 'store_count': 35},
+        'scores': {'taste': 96, 'price': 75, 'size': 72, 'value': 88},
+    },
+
+    # ============================================================
+    # D티어 추가 (가중평균 <45)
+    # taste(35), price(25), size(20), value(20)
+    # ============================================================
+    {
+        'brand_slug': 'the-venti',
+        'name': '초코 프라페 32oz',
+        'slug': 'the-venti-choco-frappe-32oz',
+        'description': '더벤티 초코 프라페 초대용량. 커피 맛은 전혀 느껴지지 않는 설탕 얼음 음료, 양만 많고 맛의 깊이가 없음',
+        'product_type': 'non_coffee',
+        'usage': 'treat',
+        'price_min': 3500,
+        'price_max': 4000,
+        'specs': {'price_americano': 2000, 'size': 946, 'bean_origin': '해당없음', 'roast': '해당없음', 'store_count': 1000},
+        'scores': {'taste': 18, 'price': 68, 'size': 55, 'value': 20},
+    },
+    {
+        'brand_slug': 'compose',
+        'name': '자몽 에이드',
+        'slug': 'compose-grapefruit-ade',
+        'description': '컴포즈 자몽 에이드. 시럽과 탄산수 기반의 단순한 음료, 과일 맛도 인공적이고 커피 전문점 메뉴라기엔 너무 단조로움',
+        'product_type': 'non_coffee',
+        'usage': 'treat',
+        'price_min': 2500,
+        'price_max': 3000,
+        'specs': {'price_americano': 1500, 'size': 473, 'bean_origin': '해당없음', 'roast': '해당없음', 'store_count': 2500},
+        'scores': {'taste': 22, 'price': 70, 'size': 48, 'value': 25},
+    },
 ]
 
 
@@ -3214,7 +3545,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 몽블랑 ----
     {
-        'brand_slug': 'montblanc',
+        'brand_slug': 'montblanc-wallet',
         'name': '마이스터슈튁 반지갑',
         'slug': 'montblanc-meisterstuck-bifold',
         'description': '몽블랑 시그니처 마이스터슈튁 반지갑. 클래식한 블랙 가죽에 스타 엠블럼. 비즈니스맨의 정석',
@@ -3226,7 +3557,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 88, 'design': 82, 'durability': 90, 'value': 82},
     },
     {
-        'brand_slug': 'montblanc',
+        'brand_slug': 'montblanc-wallet',
         'name': '사토리얼 반지갑',
         'slug': 'montblanc-sartorial-bifold',
         'description': '사피아노 패턴의 모던 라인. 다양한 컬러와 슬림한 디자인이 특징',
@@ -3238,7 +3569,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 85, 'design': 80, 'durability': 88, 'value': 85},
     },
     {
-        'brand_slug': 'montblanc',
+        'brand_slug': 'montblanc-wallet',
         'name': '마이스터슈튁 카드홀더',
         'slug': 'montblanc-meisterstuck-card-holder',
         'description': '마이스터슈튁 라인의 슬림 카드홀더. 미니멀 트렌드에 맞는 몽블랑',
@@ -3251,7 +3582,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 코치 ----
     {
-        'brand_slug': 'coach',
+        'brand_slug': 'coach-wallet',
         'name': '슬림 바이폴드',
         'slug': 'coach-slim-bifold',
         'description': '코치 슬림 반지갑. 부드러운 카프스킨과 합리적 가격의 가성비 명품 지갑',
@@ -3263,7 +3594,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 72, 'design': 70, 'durability': 75, 'value': 85},
     },
     {
-        'brand_slug': 'coach',
+        'brand_slug': 'coach-wallet',
         'name': '3-in-1 월렛',
         'slug': 'coach-3-in-1-wallet',
         'description': '지갑, 카드케이스, 키링이 세트인 3-in-1. 선물용으로 인기',
@@ -3275,7 +3606,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 70, 'design': 72, 'durability': 73, 'value': 88},
     },
     {
-        'brand_slug': 'coach',
+        'brand_slug': 'coach-wallet',
         'name': '슬림 카드케이스',
         'slug': 'coach-slim-card-case',
         'description': '코치 시그니처 패턴 카드케이스. 가볍고 실용적인 미니멀 지갑',
@@ -3313,7 +3644,7 @@ MENS_WALLET_DATA = [
     },
     # ---- 폴 스미스 ----
     {
-        'brand_slug': 'paul-smith',
+        'brand_slug': 'paul-smith-wallet',
         'name': '멀티 스트라이프 반지갑',
         'slug': 'paul-smith-multi-stripe-bifold',
         'description': '폴 스미스 시그니처 멀티 스트라이프 반지갑. 클래식한 외관 속 감각적인 내부 디자인',
@@ -3325,7 +3656,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 80, 'design': 85, 'durability': 78, 'value': 78},
     },
     {
-        'brand_slug': 'paul-smith',
+        'brand_slug': 'paul-smith-wallet',
         'name': '미니 반지갑',
         'slug': 'paul-smith-mini-bifold',
         'description': '컴팩트한 사이즈의 미니 지갑. 심플한 외관에 스트라이프 포인트',
@@ -3337,7 +3668,7 @@ MENS_WALLET_DATA = [
         'scores': {'material': 78, 'design': 83, 'durability': 75, 'value': 78},
     },
     {
-        'brand_slug': 'paul-smith',
+        'brand_slug': 'paul-smith-wallet',
         'name': '멀티 스트라이프 카드홀더',
         'slug': 'paul-smith-multi-stripe-card-holder',
         'description': '폴 스미스 카드홀더. 내부 멀티 스트라이프가 감각적인 슬림 카드케이스',
@@ -3549,6 +3880,136 @@ MENS_WALLET_DATA = [
         'price_max': 40000,
         'specs': {'material_type': 'PU 합성가죽', 'size': '10x7x0.5cm', 'card_slots': 3, 'coin_pocket': '없음', 'made_in': '중국'},
         'scores': {'material': 22, 'design': 28, 'durability': 25, 'value': 50},
+    },
+    # ============================================================
+    # 머니클립 추가 (기존 0개 → 4개)
+    # ============================================================
+    {
+        'brand_slug': 'montblanc-wallet',
+        'name': '마이스터슈튁 머니클립',
+        'slug': 'montblanc-meisterstuck-money-clip',
+        'description': '몽블랑 시그니처 마이스터슈튁 머니클립. 스타 엠블럼이 새겨진 스테인리스 클립과 카프스킨의 조합, 비즈니스맨의 미니멀 지갑',
+        'product_type': 'money_clip',
+        'usage': 'business',
+        'price_min': 280000,
+        'price_max': 380000,
+        'specs': {'material_type': '카프스킨/스테인리스', 'size': '11x5x1cm', 'card_slots': 4, 'coin_pocket': '없음', 'made_in': '독일/이탈리아'},
+        'scores': {'material': 85, 'design': 80, 'durability': 85, 'value': 82},
+    },
+    {
+        'brand_slug': 'coach-wallet',
+        'name': '머니클립 카드케이스',
+        'slug': 'coach-money-clip-card-case',
+        'description': '코치 슬림 머니클립 카드케이스. 자석 머니클립과 카드 슬롯을 결합한 합리적 미니멀 지갑',
+        'product_type': 'money_clip',
+        'usage': 'minimal',
+        'price_min': 100000,
+        'price_max': 150000,
+        'specs': {'material_type': '크로스그레인 가죽', 'size': '11x5x0.8cm', 'card_slots': 3, 'coin_pocket': '없음', 'made_in': '베트남/필리핀'},
+        'scores': {'material': 70, 'design': 68, 'durability': 72, 'value': 85},
+    },
+    {
+        'brand_slug': 'paul-smith-wallet',
+        'name': '멀티 스트라이프 머니클립',
+        'slug': 'paul-smith-money-clip-wallet',
+        'description': '폴 스미스 시그니처 멀티 스트라이프 머니클립. 외부는 클래식한 블랙, 내부에 감각적인 스트라이프 포인트',
+        'product_type': 'money_clip',
+        'usage': 'daily',
+        'price_min': 200000,
+        'price_max': 280000,
+        'specs': {'material_type': '카프스킨', 'size': '11x5x1cm', 'card_slots': 4, 'coin_pocket': '없음', 'made_in': '이탈리아/스페인'},
+        'scores': {'material': 78, 'design': 82, 'durability': 75, 'value': 78},
+    },
+    {
+        'brand_slug': 'tommy-hilfiger-wallet',
+        'name': '이튼 머니클립',
+        'slug': 'tommy-eton-money-clip',
+        'description': '타미힐피거 이튼 라인 머니클립. 메탈 클립과 슬림 가죽 케이스, 5만원대 가성비 머니클립 입문용',
+        'product_type': 'money_clip',
+        'usage': 'daily',
+        'price_min': 50000,
+        'price_max': 80000,
+        'specs': {'material_type': '카프스킨/메탈', 'size': '11x5x0.8cm', 'card_slots': 2, 'coin_pocket': '없음', 'made_in': '인도/중국'},
+        'scores': {'material': 55, 'design': 58, 'durability': 60, 'value': 85},
+    },
+    # ============================================================
+    # 컴팩트/미니 지갑 추가 (기존 1개 → 4개)
+    # ============================================================
+    {
+        'brand_slug': 'balenciaga-wallet',
+        'name': '페이퍼 미니 월렛',
+        'slug': 'balenciaga-paper-mini-wallet',
+        'description': '발렌시아가 페이퍼 라인 미니 지갑. 접으면 손바닥 사이즈, 카드·지폐·동전 수납 가능한 올인원 컴팩트',
+        'product_type': 'compact',
+        'usage': 'minimal',
+        'price_min': 380000,
+        'price_max': 480000,
+        'specs': {'material_type': '그레인 카프스킨', 'size': '9.5x7x2.5cm', 'card_slots': 3, 'coin_pocket': '있음', 'made_in': '이탈리아'},
+        'scores': {'material': 78, 'design': 75, 'durability': 72, 'value': 55},
+    },
+    {
+        'brand_slug': 'prada-wallet',
+        'name': '사피아노 미니 카드케이스',
+        'slug': 'prada-saffiano-mini-card-case',
+        'description': '프라다 사피아노 미니 카드케이스. 삼각 로고가 포인트인 초슬림 카드 전용 미니 월렛, 뒷주머니에도 편안',
+        'product_type': 'compact',
+        'usage': 'minimal',
+        'price_min': 350000,
+        'price_max': 420000,
+        'specs': {'material_type': '사피아노 가죽', 'size': '9x6x1cm', 'card_slots': 4, 'coin_pocket': '없음', 'made_in': '이탈리아'},
+        'scores': {'material': 88, 'design': 78, 'durability': 88, 'value': 78},
+    },
+    {
+        'brand_slug': 'bottega-veneta',
+        'name': '인트레치아토 미니 폴드',
+        'slug': 'bottega-intrecciato-mini-fold',
+        'description': '보테가 인트레치아토 미니 접이식 지갑. 장인정신이 담긴 위빙 가죽의 손바닥 사이즈 컴팩트',
+        'product_type': 'compact',
+        'usage': 'minimal',
+        'price_min': 550000,
+        'price_max': 680000,
+        'specs': {'material_type': '인트레치아토 나파 가죽', 'size': '9x7x2cm', 'card_slots': 4, 'coin_pocket': '있음', 'made_in': '이탈리아'},
+        'scores': {'material': 95, 'design': 88, 'durability': 88, 'value': 72},
+    },
+    # ============================================================
+    # C티어 추가 (가중평균 45-59)
+    # material(30), design(25), durability(25), value(20)
+    # ============================================================
+    {
+        'brand_slug': 'tommy-hilfiger-wallet',
+        'name': '나일론 반지갑',
+        'slug': 'tommy-nylon-bifold',
+        'description': '타미힐피거 나일론 반지갑. 캐주얼한 스포티 디자인이지만 가죽 대비 고급감이 떨어지고 내구성에서 아쉬움',
+        'product_type': 'bifold',
+        'usage': 'daily',
+        'price_min': 40000,
+        'price_max': 60000,
+        'specs': {'material_type': '나일론/합성가죽', 'size': '11x9x2cm', 'card_slots': 4, 'coin_pocket': '있음', 'made_in': '중국'},
+        'scores': {'material': 42, 'design': 48, 'durability': 50, 'value': 75},
+    },
+    {
+        'brand_slug': 'calvin-klein-wallet',
+        'name': 'CK 합성가죽 반지갑',
+        'slug': 'ck-synthetic-bifold',
+        'description': 'CK 합성가죽 반지갑. 로고는 있지만 PU 가죽 특유의 벗겨짐이 1년 내 발생, 선물용으로도 애매한 포지션',
+        'product_type': 'bifold',
+        'usage': 'daily',
+        'price_min': 40000,
+        'price_max': 60000,
+        'specs': {'material_type': 'PU 합성가죽', 'size': '11x9x2cm', 'card_slots': 4, 'coin_pocket': '있음', 'made_in': '중국'},
+        'scores': {'material': 35, 'design': 50, 'durability': 40, 'value': 72},
+    },
+    {
+        'brand_slug': 'daks-wallet',
+        'name': '캔버스 반지갑',
+        'slug': 'daks-canvas-bifold',
+        'description': '닥스 코팅 캔버스 반지갑. 체크 패턴은 있지만 코팅이 갈라지기 쉽고 디자인이 구식. 중장년 선물용에서 점유율 하락 중',
+        'product_type': 'bifold',
+        'usage': 'gift',
+        'price_min': 50000,
+        'price_max': 80000,
+        'specs': {'material_type': '코팅 캔버스/합성가죽', 'size': '11x9x2cm', 'card_slots': 4, 'coin_pocket': '있음', 'made_in': '중국'},
+        'scores': {'material': 40, 'design': 45, 'durability': 48, 'value': 68},
     },
 ]
 
@@ -4306,6 +4767,247 @@ PERFUME_DATA = [
         'release_year': 2021,
         'specs': {'concentration': 'EDP', 'volume': 100, 'top_note': '그래니 스미스 애플, 레몬', 'heart_note': '화이트 피치, 재스민', 'base_note': '머스크, 시더우드, 캐시미어', 'perfumer': '알베르토 모리야스'},
         'scores': {'scent_quality': 42, 'longevity': 40, 'sillage': 38, 'value': 45},
+    },
+
+    # ============================================================
+    # 퍼퓸(Parfum) 제품 추가 (product_type='parfum')
+    # scent_quality(30), longevity(25), sillage(20), value(25)
+    # ============================================================
+    {
+        'brand_slug': 'maison-francis-kurkdjian',
+        'name': 'Baccarat Rouge 540 Extrait',
+        'slug': 'mfk-baccarat-rouge-540-extrait',
+        'description': 'BR540의 극강 버전. 앰버와 머스크가 더욱 농밀해진 엑스트레, 한 번 뿌리면 하루종일 지속되는 향의 정수',
+        'product_type': 'parfum',
+        'usage': 'date',
+        'price_min': 450000,
+        'price_max': 720000,
+        'release_year': 2017,
+        'specs': {'concentration': 'Extrait de Parfum', 'volume': 70, 'top_note': '사프란, 재스민', 'heart_note': '앰버그리스, 시더우드, 비터 아몬드', 'base_note': '퍼 발삼, 머스크, 앰버', 'perfumer': '프란시스 커정'},
+        'scores': {'scent_quality': 98, 'longevity': 98, 'sillage': 97, 'value': 48},
+    },
+    {
+        'brand_slug': 'maison-francis-kurkdjian',
+        'name': 'Grand Soir Extrait',
+        'slug': 'mfk-grand-soir-extrait',
+        'description': '그랑 수아르의 퍼퓸 버전. 벤조인과 바닐라의 따뜻한 앰버가 극대화된 관능적 저녁 향수',
+        'product_type': 'parfum',
+        'usage': 'formal',
+        'price_min': 450000,
+        'price_max': 700000,
+        'release_year': 2019,
+        'specs': {'concentration': 'Extrait de Parfum', 'volume': 70, 'top_note': '라벤더, 넛맥', 'heart_note': '앰버, 벤조인, 통카빈', 'base_note': '바닐라, 오리엔탈 머스크, 우디', 'perfumer': '프란시스 커정'},
+        'scores': {'scent_quality': 96, 'longevity': 96, 'sillage': 92, 'value': 50},
+    },
+    {
+        'brand_slug': 'tom-ford',
+        'name': 'Tobacco Vanille Parfum',
+        'slug': 'tom-ford-tobacco-vanille-parfum',
+        'description': '타바코 바닐의 퍼퓸 농도. 담배잎과 바닐라의 관능적 블렌드가 더욱 진하고 오래 지속, 겨울 향수의 최종 진화',
+        'product_type': 'parfum',
+        'usage': 'winter',
+        'price_min': 380000,
+        'price_max': 650000,
+        'release_year': 2022,
+        'specs': {'concentration': 'Parfum', 'volume': 50, 'top_note': '담배잎, 스파이시', 'heart_note': '바닐라, 코코아, 통카빈', 'base_note': '드라이 프루츠, 우디, 앰버', 'perfumer': '올리비에 질로틴'},
+        'scores': {'scent_quality': 96, 'longevity': 96, 'sillage': 94, 'value': 45},
+    },
+    {
+        'brand_slug': 'tom-ford',
+        'name': 'Lost Cherry Parfum',
+        'slug': 'tom-ford-lost-cherry-parfum',
+        'description': '로스트 체리의 퍼퓸 농도. 블랙 체리와 아몬드의 유혹이 더욱 깊고 농밀하게 지속되는 궁극의 버전',
+        'product_type': 'parfum',
+        'usage': 'date',
+        'price_min': 380000,
+        'price_max': 650000,
+        'release_year': 2023,
+        'specs': {'concentration': 'Parfum', 'volume': 50, 'top_note': '블랙 체리, 아몬드', 'heart_note': '체리 리큐어, 터키 로즈, 재스민', 'base_note': '페루 발삼, 샌달우드, 통카빈, 앰버', 'perfumer': '루이즈 터너'},
+        'scores': {'scent_quality': 93, 'longevity': 94, 'sillage': 92, 'value': 42},
+    },
+    {
+        'brand_slug': 'creed',
+        'name': 'Aventus Parfum',
+        'slug': 'creed-aventus-parfum',
+        'description': '아벤투스의 최종 진화. 파인애플과 자작나무의 시그니처를 퍼퓸 농도로 극대화, 24시간 이상 지속되는 전설적 향',
+        'product_type': 'parfum',
+        'usage': 'formal',
+        'price_min': 580000,
+        'price_max': 850000,
+        'release_year': 2024,
+        'specs': {'concentration': 'Parfum', 'volume': 100, 'top_note': '파인애플, 베르가못, 블랙커런트', 'heart_note': '자작나무, 재스민, 패출리', 'base_note': '머스크, 앰버그리스, 바닐라, 오크모스', 'perfumer': '올리비에 크리드'},
+        'scores': {'scent_quality': 97, 'longevity': 96, 'sillage': 92, 'value': 38},
+    },
+
+    # ============================================================
+    # 니치 제품 추가 (product_type='niche')
+    # scent_quality(30), longevity(25), sillage(20), value(25)
+    # ============================================================
+    {
+        'brand_slug': 'le-labo',
+        'name': 'Bergamote 22',
+        'slug': 'le-labo-bergamote-22',
+        'description': '깨끗한 베르가못의 정수. 시트러스와 앰버의 투명한 조화, 르 라보 라인업 중 가장 프레시하고 세련된 선택',
+        'product_type': 'niche',
+        'usage': 'office',
+        'price_min': 260000,
+        'price_max': 460000,
+        'release_year': 2015,
+        'specs': {'concentration': 'EDP', 'volume': 50, 'top_note': '베르가못, 자몽, 프티그레인', 'heart_note': '오렌지블로썸, 앰브록산', 'base_note': '시더우드, 머스크, 베티버', 'perfumer': '프랭크 뵐클'},
+        'scores': {'scent_quality': 90, 'longevity': 78, 'sillage': 72, 'value': 55},
+    },
+    {
+        'brand_slug': 'le-labo',
+        'name': 'Noir 29',
+        'slug': 'le-labo-noir-29',
+        'description': '어둠의 향. 무화과, 머스크, 베티버가 만드는 심오한 우디 향수, 지적이고 미스터리한 분위기의 정수',
+        'product_type': 'niche',
+        'usage': 'date',
+        'price_min': 260000,
+        'price_max': 460000,
+        'release_year': 2013,
+        'specs': {'concentration': 'EDP', 'volume': 50, 'top_note': '무화과, 전나무', 'heart_note': '머스크, 시더우드, 베티버', 'base_note': '캐시미어, 힌오키, 앰버', 'perfumer': '프랭크 뵐클'},
+        'scores': {'scent_quality': 92, 'longevity': 85, 'sillage': 80, 'value': 55},
+    },
+    {
+        'brand_slug': 'byredo',
+        'name': 'Mixed Emotions',
+        'slug': 'byredo-mixed-emotions',
+        'description': '혼재된 감정. 블랙 커런트 버드와 바이올렛의 불확실한 감성, 코로나 시대의 복잡한 감정을 담은 향수',
+        'product_type': 'niche',
+        'usage': 'daily',
+        'price_min': 220000,
+        'price_max': 380000,
+        'release_year': 2021,
+        'specs': {'concentration': 'EDP', 'volume': 50, 'top_note': '마테, 블랙 커런트 버드', 'heart_note': '바이올렛, 시클라멘', 'base_note': '비롤리나 우드, 머스크, 앰버', 'perfumer': '제롬 에피네트'},
+        'scores': {'scent_quality': 86, 'longevity': 76, 'sillage': 72, 'value': 55},
+    },
+    {
+        'brand_slug': 'byredo',
+        'name': 'Unnamed',
+        'slug': 'byredo-unnamed',
+        'description': '이름 없는 향수. 벤 고햄이 후각으로만 표현한 추상적 향, 로즈와 우디의 미니멀한 구성이 바이레도의 철학을 대표',
+        'product_type': 'niche',
+        'usage': 'daily',
+        'price_min': 280000,
+        'price_max': 450000,
+        'release_year': 2019,
+        'specs': {'concentration': 'EDP', 'volume': 50, 'top_note': '핑크 페퍼, 알데하이드', 'heart_note': '로즈 앱솔루트, 아이리스', 'base_note': '블론드 우드, 머스크, 앰버', 'perfumer': '제롬 에피네트'},
+        'scores': {'scent_quality': 88, 'longevity': 80, 'sillage': 75, 'value': 52},
+    },
+    {
+        'brand_slug': 'diptyque',
+        'name': "Orphéon",
+        'slug': 'diptyque-orpheon',
+        'description': '오르페온 재즈 클럽. 1960년대 파리 재즈바의 분위기를 담은 향수, 통카빈과 시더우드의 따뜻하고 세련된 밤의 향',
+        'product_type': 'niche',
+        'usage': 'date',
+        'price_min': 180000,
+        'price_max': 290000,
+        'release_year': 2021,
+        'specs': {'concentration': 'EDP', 'volume': 75, 'top_note': '주니퍼 베리, 핑크 페퍼', 'heart_note': '재스민, 통카빈', 'base_note': '시더우드, 앰브록산, 머스크', 'perfumer': '올리비에 페슈'},
+        'scores': {'scent_quality': 90, 'longevity': 80, 'sillage': 75, 'value': 68},
+    },
+    {
+        'brand_slug': 'diptyque',
+        'name': "L'Ombre dans l'Eau",
+        'slug': 'diptyque-lombre-dans-leau',
+        'description': '물 위의 그림자. 불가리안 로즈와 블랙커런트 리프의 그린 로즈, 딥티크 초창기부터 사랑받는 클래식 니치 향수',
+        'product_type': 'niche',
+        'usage': 'daily',
+        'price_min': 160000,
+        'price_max': 260000,
+        'release_year': 1983,
+        'specs': {'concentration': 'EDT', 'volume': 100, 'top_note': '블랙커런트 리프, 그린 노트', 'heart_note': '불가리안 로즈, 다마스크 로즈', 'base_note': '머스크, 시더우드', 'perfumer': '데스몬드 녹스-리트'},
+        'scores': {'scent_quality': 88, 'longevity': 68, 'sillage': 65, 'value': 70},
+    },
+
+    # ============================================================
+    # S티어 추가 (가중평균 85+)
+    # scent_quality(30), longevity(25), sillage(20), value(25)
+    # ============================================================
+    {
+        'brand_slug': 'tom-ford',
+        'name': 'Oud Wood Intense',
+        'slug': 'tom-ford-oud-wood-intense',
+        'description': '우드 우드의 인텐스 버전. 원작의 세련된 우디를 더욱 깊고 풍부하게 증폭시킨 프리미엄 우드 향수, 매니아층의 열렬한 지지',
+        'product_type': 'edp',
+        'usage': 'formal',
+        'price_min': 350000,
+        'price_max': 600000,
+        'release_year': 2017,
+        'specs': {'concentration': 'EDP', 'volume': 50, 'top_note': '아가우드, 팔삼 우드', 'heart_note': '카다멈, 앰버, 스파이스', 'base_note': '샌달우드, 레더, 통카빈, 베티버', 'perfumer': '리차드 에르핀'},
+        'scores': {'scent_quality': 95, 'longevity': 94, 'sillage': 88, 'value': 52},
+    },
+    {
+        'brand_slug': 'le-labo',
+        'name': 'Santal 26',
+        'slug': 'le-labo-santal-26',
+        'description': '샌달우드 캔들로 유명한 향을 퍼퓸화. 크리미한 샌달우드와 머스크의 깊은 조합, 공간과 몸 모두를 감싸는 포근한 향',
+        'product_type': 'edp',
+        'usage': 'winter',
+        'price_min': 260000,
+        'price_max': 460000,
+        'release_year': 2014,
+        'specs': {'concentration': 'EDP', 'volume': 50, 'top_note': '스모키 우드, 앰버', 'heart_note': '샌달우드, 시더우드', 'base_note': '머스크, 코코아, 바닐라', 'perfumer': '다프네 부제'},
+        'scores': {'scent_quality': 94, 'longevity': 90, 'sillage': 85, 'value': 55},
+    },
+    {
+        'brand_slug': 'dior-perfume',
+        'name': "Sauvage Elixir",
+        'slug': 'dior-sauvage-elixir',
+        'description': '소바쥬의 최종 보스. 엘릭서 농도로 극대화된 암브록산과 향신료, 전 세계 1위 남성 향수의 궁극 버전',
+        'product_type': 'edp',
+        'usage': 'date',
+        'price_min': 180000,
+        'price_max': 280000,
+        'release_year': 2021,
+        'specs': {'concentration': 'Elixir', 'volume': 60, 'top_note': '자몽, 시나몬, 카다멈, 넛맥', 'heart_note': '라벤더, 리코리스, 섀니', 'base_note': '앰브록산, 샌달우드, 패출리, 바닐라', 'perfumer': '프랑수아 드마시'},
+        'scores': {'scent_quality': 92, 'longevity': 95, 'sillage': 90, 'value': 78},
+    },
+
+    # ============================================================
+    # C티어 추가 (가중평균 45-59)
+    # scent_quality(30), longevity(25), sillage(20), value(25)
+    # ============================================================
+    {
+        'brand_slug': 'hugo-boss',
+        'name': 'Boss Bottled Night',
+        'slug': 'hugo-boss-bottled-night',
+        'description': '보스 보틀 나이트. 원작의 인기에 편승한 저녁 버전이지만 합성 향료감이 강하고 독창성이 부족',
+        'product_type': 'edt',
+        'usage': 'date',
+        'price_min': 50000,
+        'price_max': 100000,
+        'release_year': 2010,
+        'specs': {'concentration': 'EDT', 'volume': 100, 'top_note': '라벤더, 자작나무 잎', 'heart_note': '바이올렛 리프, 다비아나', 'base_note': '머스크, 우디, 코우마린', 'perfumer': '아니크 메나르도'},
+        'scores': {'scent_quality': 55, 'longevity': 58, 'sillage': 55, 'value': 68},
+    },
+    {
+        'brand_slug': 'versace-perfume',
+        'name': 'Man Eau Fraiche',
+        'slug': 'versace-man-eau-fraiche',
+        'description': '베르사체 오 프레쉬. 가볍고 시원하지만 지속력이 너무 짧아 뿌린지 1시간이면 사라지는 수준. 향 자체는 무난하지만 비용 대비 불만족',
+        'product_type': 'edt',
+        'usage': 'summer',
+        'price_min': 60000,
+        'price_max': 120000,
+        'release_year': 2006,
+        'specs': {'concentration': 'EDT', 'volume': 100, 'top_note': '레몬, 로즈우드, 시 노트', 'heart_note': '세이지, 타라곤, 시더', 'base_note': '앰버, 머스크, 시클라멘', 'perfumer': '올리비에 크레스프'},
+        'scores': {'scent_quality': 68, 'longevity': 38, 'sillage': 35, 'value': 72},
+    },
+    {
+        'brand_slug': 'bvlgari-perfume',
+        'name': 'Man Terrae Essence',
+        'slug': 'bvlgari-man-terrae-essence',
+        'description': '불가리 맨 테라에 에센스. 우디 허벌 콘셉트이지만 기존 라인과 차별화가 부족하고 향 전개가 단조로움',
+        'product_type': 'edp',
+        'usage': 'office',
+        'price_min': 90000,
+        'price_max': 150000,
+        'release_year': 2023,
+        'specs': {'concentration': 'EDP', 'volume': 100, 'top_note': '베르가못, 주니퍼 베리', 'heart_note': '클라리 세이지, 라벤더', 'base_note': '베티버, 시더우드, 앰버', 'perfumer': '알베르토 모리야스'},
+        'scores': {'scent_quality': 62, 'longevity': 60, 'sillage': 55, 'value': 58},
     },
 ]
 
