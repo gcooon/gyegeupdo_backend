@@ -481,6 +481,22 @@ CATEGORIES_DATA = [
             {'name': '스즈키', 'slug': 'suzuki', 'domain': 'suzuki.com', 'description': '소형차/경차 전문. 짐니의 매니아층이 있지만 한국 시장에서는 철수', 'scores': {'performance': 55, 'reliability': 78, 'brand_value': 40, 'value_for_money': 80}},
             {'name': '미쓰비시', 'slug': 'mitsubishi', 'domain': 'mitsubishi-motors.com', 'description': 'EVO의 영광은 과거. 현재는 아웃랜더 중심의 제한적 라인업으로 시장 영향력 감소', 'scores': {'performance': 55, 'reliability': 65, 'brand_value': 42, 'value_for_money': 72}},
             {'name': '르노', 'slug': 'renault', 'domain': 'renault.com', 'description': '유럽 대중차의 대표였으나 한국에서는 르노코리아로 존재감 약화. SM6/XM3 중심', 'scores': {'performance': 60, 'reliability': 58, 'brand_value': 45, 'value_for_money': 68}},
+            # S티어 추가 — 슈퍼카/초럭셔리
+            {'name': '페라리', 'slug': 'ferrari', 'domain': 'ferrari.com', 'description': '프랜싱 호스의 전설. F1 DNA를 가진 최고의 스포츠카 메이커', 'scores': {'performance': 99, 'reliability': 80, 'brand_value': 99, 'value_for_money': 35}},
+            {'name': '람보르기니', 'slug': 'lamborghini', 'domain': 'lamborghini.com', 'description': '아벤타도르와 우라칸의 황소. 가장 공격적이고 화려한 슈퍼카 브랜드', 'scores': {'performance': 97, 'reliability': 75, 'brand_value': 97, 'value_for_money': 30}},
+            {'name': '맥라렌', 'slug': 'mclaren', 'domain': 'mclaren.com', 'description': 'F1 기술의 민간 이전. 720S와 Artura로 대표되는 퓨어 스포츠카 전문', 'scores': {'performance': 98, 'reliability': 72, 'brand_value': 92, 'value_for_money': 32}},
+            {'name': '벤틀리', 'slug': 'bentley', 'domain': 'bentleymotor.com', 'description': '궁극의 그랜드 투어러. 컨티넨탈 GT와 벤테이가의 초럭셔리 세계', 'scores': {'performance': 88, 'reliability': 82, 'brand_value': 95, 'value_for_money': 38}},
+            {'name': '롤스로이스', 'slug': 'rolls-royce', 'domain': 'rolls-roycemotorcars.com', 'description': '자동차 럭셔리의 절대 정점. 팬텀과 고스트, 움직이는 궁전', 'scores': {'performance': 82, 'reliability': 85, 'brand_value': 99, 'value_for_money': 25}},
+            # A티어 추가 — GT/럭셔리 SUV
+            {'name': '에스턴 마틴', 'slug': 'aston-martin', 'domain': 'astonmartin.com', 'description': '007 제임스 본드의 차. DB11과 Vantage의 영국 GT 감성', 'scores': {'performance': 90, 'reliability': 68, 'brand_value': 88, 'value_for_money': 40}},
+            {'name': '재규어', 'slug': 'jaguar', 'domain': 'jaguar.com', 'description': '영국 스포츠 세단의 전통. F-TYPE과 XF, 현재 전동화 전환 중', 'scores': {'performance': 82, 'reliability': 65, 'brand_value': 78, 'value_for_money': 60}},
+            {'name': '마세라티', 'slug': 'maserati', 'domain': 'maserati.com', 'description': '이탈리아 GT의 귀족. 기블리와 르반떼의 삼지창, 감성적 드라이빙', 'scores': {'performance': 85, 'reliability': 62, 'brand_value': 82, 'value_for_money': 50}},
+            {'name': '랜드로버', 'slug': 'land-rover', 'domain': 'landrover.com', 'description': '오프로드의 제왕. 디펜더와 레인지로버, 극한 환경의 상징', 'scores': {'performance': 78, 'reliability': 62, 'brand_value': 82, 'value_for_money': 55}},
+            {'name': 'MINI', 'slug': 'mini', 'domain': 'mini.com', 'description': 'BMW 산하 소형차의 아이콘. 쿠퍼 S의 고카트 필링, 도시형 프리미엄', 'scores': {'performance': 72, 'reliability': 70, 'brand_value': 75, 'value_for_money': 65}},
+            # B티어 추가 — 오프로드/스포츠/실용
+            {'name': '지프', 'slug': 'jeep', 'domain': 'jeep.com', 'description': '랭글러의 오프로드 전설. 미국식 SUV 문화의 원조', 'scores': {'performance': 72, 'reliability': 65, 'brand_value': 72, 'value_for_money': 68}},
+            {'name': '스바루', 'slug': 'subaru', 'domain': 'subaru.com', 'description': '수평대향 엔진과 대칭형 AWD. WRX의 랠리 DNA, 눈길의 왕자', 'scores': {'performance': 75, 'reliability': 82, 'brand_value': 60, 'value_for_money': 72}},
+            {'name': '포드', 'slug': 'ford', 'domain': 'ford.com', 'description': '머스탱과 F-150의 미국. 포드 GT로 르망을 제패한 역사', 'scores': {'performance': 78, 'reliability': 72, 'brand_value': 72, 'value_for_money': 75}},
         ],
     },
     # ============================================================
