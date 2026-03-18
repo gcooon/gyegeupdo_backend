@@ -595,6 +595,26 @@ RUNNING_SHOES_DATA = [
         'specs': {'weight': '290', 'stack_height': '32', 'drop': '12', 'upper': '에어메쉬', 'midsole': '미즈노 에너지 + 웨이브 플레이트'},
         'scores': {'cushion': 85, 'responsiveness': 72, 'stability': 90, 'durability': 88},
     },
+    # === B 티어 러닝화 (평균 60-74) ===
+    {'brand_slug': 'skechers', 'name': 'Go Run Ride 12', 'slug': 'skechers-go-run-ride-12', 'description': '스케쳐스 데일리 러닝화. Hyper Burst 폼으로 가벼운 쿠셔닝 제공', 'product_type': 'cushion', 'usage': 'daily', 'price_min': 99000, 'price_max': 129000, 'release_year': 2024, 'version_number': 12, 'specs': {'weight': '260', 'stack_height': '28', 'drop': '6', 'upper': '엔지니어드 메쉬', 'midsole': 'Hyper Burst'}, 'scores': {'cushion': 72, 'responsiveness': 65, 'stability': 70, 'durability': 75}},
+    {'brand_slug': 'skechers', 'name': 'Max Cushioning Elite 2.0', 'slug': 'skechers-max-cushioning-elite-2', 'description': '스케쳐스 최대 쿠셔닝 모델. 두꺼운 미드솔로 장시간 워킹/러닝에 적합', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 109000, 'price_max': 139000, 'release_year': 2024, 'version_number': 2, 'specs': {'weight': '310', 'stack_height': '32', 'drop': '4', 'upper': '메쉬', 'midsole': 'Max Cushioning'}, 'scores': {'cushion': 78, 'responsiveness': 58, 'stability': 68, 'durability': 72}},
+    {'brand_slug': 'reebok', 'name': 'Floatride Energy 5', 'slug': 'reebok-floatride-energy-5', 'description': '리복 대표 러닝화. Floatride Energy 폼으로 가볍고 반응성 있는 러닝 경험', 'product_type': 'cushion', 'usage': 'daily', 'price_min': 89000, 'price_max': 119000, 'release_year': 2024, 'version_number': 5, 'specs': {'weight': '245', 'stack_height': '26', 'drop': '8', 'upper': '메쉬', 'midsole': 'Floatride Energy'}, 'scores': {'cushion': 70, 'responsiveness': 72, 'stability': 68, 'durability': 70}},
+    {'brand_slug': 'reebok', 'name': 'Floatride Energy Grow', 'slug': 'reebok-floatride-energy-grow', 'description': '친환경 소재를 활용한 리복 러닝화. 유칼립투스 섬유 어퍼', 'product_type': 'cushion', 'usage': 'daily', 'price_min': 99000, 'price_max': 119000, 'release_year': 2023, 'version_number': 1, 'specs': {'weight': '255', 'stack_height': '26', 'drop': '8', 'upper': '유칼립투스 니트', 'midsole': 'Floatride Energy'}, 'scores': {'cushion': 68, 'responsiveness': 70, 'stability': 65, 'durability': 68}},
+    {'brand_slug': 'nike', 'name': 'Revolution 7', 'slug': 'nike-revolution-7', 'description': '나이키 입문용 러닝화. 가벼운 조깅과 일상 착용에 적합한 기본 모델', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 69000, 'price_max': 89000, 'release_year': 2024, 'version_number': 7, 'specs': {'weight': '250', 'stack_height': '24', 'drop': '10', 'upper': '메쉬', 'midsole': 'EVA 폼'}, 'scores': {'cushion': 65, 'responsiveness': 60, 'stability': 70, 'durability': 75}},
+    {'brand_slug': 'nike', 'name': 'Downshifter 13', 'slug': 'nike-downshifter-13', 'description': '나이키 초입문용 러닝화. 가성비 좋은 기본 쿠셔닝', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 59000, 'price_max': 79000, 'release_year': 2024, 'version_number': 13, 'specs': {'weight': '265', 'stack_height': '22', 'drop': '10', 'upper': '메쉬', 'midsole': 'EVA 폼'}, 'scores': {'cushion': 62, 'responsiveness': 55, 'stability': 72, 'durability': 78}},
+    {'brand_slug': 'adidas', 'name': 'Duramo SL 2', 'slug': 'adidas-duramo-sl-2', 'description': '아디다스 가성비 러닝화. Lightmotion 폼 적용, 입문자에 적합', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 59000, 'price_max': 79000, 'release_year': 2024, 'version_number': 2, 'specs': {'weight': '275', 'stack_height': '24', 'drop': '10', 'upper': '메쉬', 'midsole': 'Lightmotion'}, 'scores': {'cushion': 65, 'responsiveness': 58, 'stability': 72, 'durability': 78}},
+    {'brand_slug': 'adidas', 'name': 'Galaxy 7', 'slug': 'adidas-galaxy-7', 'description': '아디다스 최저가 러닝화. Cloudfoam 적용, 캐주얼 겸용', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 49000, 'price_max': 69000, 'release_year': 2024, 'version_number': 7, 'specs': {'weight': '280', 'stack_height': '22', 'drop': '10', 'upper': '메쉬', 'midsole': 'Cloudfoam'}, 'scores': {'cushion': 60, 'responsiveness': 55, 'stability': 70, 'durability': 75}},
+    # === C 티어 러닝화 (평균 45-59) ===
+    {'brand_slug': 'new-balance', 'name': 'Fresh Foam Arishi v4', 'slug': 'new-balance-fresh-foam-arishi-v4', 'description': '뉴발란스 가성비 러닝화. 기본 Fresh Foam 적용, 가벼운 조깅과 일상 착용', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 59000, 'price_max': 79000, 'release_year': 2023, 'version_number': 4, 'specs': {'weight': '270', 'stack_height': '22', 'drop': '8', 'upper': '메쉬', 'midsole': 'Fresh Foam (기본)'}, 'scores': {'cushion': 58, 'responsiveness': 48, 'stability': 55, 'durability': 60}},
+    {'brand_slug': 'mizuno', 'name': 'Maximizer 26', 'slug': 'mizuno-maximizer-26', 'description': '미즈노 입문용 러닝화. 일본 장인 기술의 기본 모델, 3만원대 가성비', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 39000, 'price_max': 55000, 'release_year': 2024, 'version_number': 26, 'specs': {'weight': '260', 'stack_height': '20', 'drop': '12', 'upper': '메쉬', 'midsole': 'EVA'}, 'scores': {'cushion': 50, 'responsiveness': 45, 'stability': 58, 'durability': 62}},
+    {'brand_slug': 'skechers', 'name': 'Dynamight 2.0', 'slug': 'skechers-dynamight-2', 'description': '스케쳐스 캐주얼 러닝화. 슬립온 스타일로 편한 착용감, 가벼운 산책용', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 49000, 'price_max': 69000, 'release_year': 2023, 'version_number': 2, 'specs': {'weight': '230', 'stack_height': '20', 'drop': '6', 'upper': '메쉬', 'midsole': 'Memory Foam'}, 'scores': {'cushion': 55, 'responsiveness': 40, 'stability': 50, 'durability': 55}},
+    {'brand_slug': 'skechers', 'name': 'Go Walk 7', 'slug': 'skechers-go-walk-7', 'description': '스케쳐스 워킹화. 걷기 전용 설계, 러닝에는 부적합하지만 편안한 착용감', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 69000, 'price_max': 89000, 'release_year': 2024, 'version_number': 7, 'specs': {'weight': '220', 'stack_height': '22', 'drop': '4', 'upper': '메쉬', 'midsole': 'Ultra Go + Goga Mat'}, 'scores': {'cushion': 62, 'responsiveness': 35, 'stability': 55, 'durability': 58}},
+    {'brand_slug': 'reebok', 'name': 'Energen Run 3', 'slug': 'reebok-energen-run-3', 'description': '리복 입문용 러닝화. 가벼운 조깅과 일상 착용 겸용', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 49000, 'price_max': 69000, 'release_year': 2024, 'version_number': 3, 'specs': {'weight': '260', 'stack_height': '22', 'drop': '10', 'upper': '메쉬', 'midsole': 'EVA'}, 'scores': {'cushion': 52, 'responsiveness': 45, 'stability': 55, 'durability': 58}},
+    # === D 티어 러닝화 (평균 <45) ===
+    {'brand_slug': 'nike', 'name': 'Tanjun', 'slug': 'nike-tanjun', 'description': '나이키 최저가 스니커즈. 사실상 캐주얼 신발, 쿠셔닝 최소', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 49000, 'price_max': 59000, 'release_year': 2023, 'version_number': 1, 'specs': {'weight': '210', 'stack_height': '18', 'drop': '10', 'upper': '메쉬', 'midsole': '기본 EVA'}, 'scores': {'cushion': 40, 'responsiveness': 35, 'stability': 45, 'durability': 55}},
+    {'brand_slug': 'adidas', 'name': 'Runfalcon 5', 'slug': 'adidas-runfalcon-5', 'description': '아디다스 최저가 러닝화. 체육 수업용이나 캐주얼 착용, 러닝 기능 최소', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 39000, 'price_max': 55000, 'release_year': 2024, 'version_number': 5, 'specs': {'weight': '270', 'stack_height': '20', 'drop': '10', 'upper': '메쉬', 'midsole': '기본 EVA'}, 'scores': {'cushion': 42, 'responsiveness': 35, 'stability': 48, 'durability': 52}},
+    {'brand_slug': 'reebok', 'name': 'Lite Plus 4', 'slug': 'reebok-lite-plus-4', 'description': '리복 최저가 러닝화. 캐주얼 겸용, 러닝 전용으로는 부족', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 35000, 'price_max': 49000, 'release_year': 2023, 'version_number': 4, 'specs': {'weight': '240', 'stack_height': '18', 'drop': '8', 'upper': '메쉬', 'midsole': '기본 EVA'}, 'scores': {'cushion': 38, 'responsiveness': 30, 'stability': 42, 'durability': 48}},
+    {'brand_slug': 'skechers', 'name': 'Bounder 2.0', 'slug': 'skechers-bounder-2', 'description': '스케쳐스 캐주얼 운동화. 러닝 성능은 미미, 일상 착용용', 'product_type': 'cushion', 'usage': 'beginner', 'price_min': 39000, 'price_max': 55000, 'release_year': 2023, 'version_number': 2, 'specs': {'weight': '250', 'stack_height': '18', 'drop': '6', 'upper': '메쉬', 'midsole': 'Memory Foam (기본)'}, 'scores': {'cushion': 40, 'responsiveness': 28, 'stability': 38, 'durability': 50}},
 ]
 
 # ============================================================================
@@ -886,6 +906,21 @@ CHICKEN_DATA = [
         'specs': {'price': '23900', 'calories': '1800', 'serving': '900', 'spicy_level': '없음', 'cooking_method': '튀김+시즈닝'},
         'scores': {'taste': 78, 'price': 92, 'crispy': 88, 'popularity': 72},
     },
+    # === B 티어 치킨 메뉴 (평균 60-74) ===
+    {'brand_slug': 'kfc', 'name': '오리지널 치킨', 'slug': 'kfc-original-chicken', 'description': 'KFC 시그니처 오리지널 레시피. 11가지 허브와 양념의 클래식 프라이드', 'product_type': 'fried', 'usage': 'solo', 'price_min': 18900, 'price_max': 22900, 'specs': {'price': '18900', 'calories': '1600', 'serving': '800', 'spicy_level': '없음', 'cooking_method': '압력 튀김'}, 'scores': {'taste': 75, 'price': 65, 'crispy': 72, 'popularity': 68}},
+    {'brand_slug': 'kfc', 'name': '징거버거 세트', 'slug': 'kfc-zinger-burger-set', 'description': 'KFC 대표 버거. 스파이시 치킨 패티와 특제 소스의 조합', 'product_type': 'fried', 'usage': 'solo', 'price_min': 8900, 'price_max': 10900, 'specs': {'price': '8900', 'calories': '750', 'serving': '350', 'spicy_level': '약간', 'cooking_method': '튀김+버거'}, 'scores': {'taste': 78, 'price': 72, 'crispy': 70, 'popularity': 72}},
+    {'brand_slug': 'bbq', 'name': '닭강정 (매콤)', 'slug': 'bbq-dakgangjeong-spicy', 'description': 'BBQ 매콤 닭강정. 바삭한 튀김에 매콤달콤한 소스 코팅', 'product_type': 'seasoned', 'usage': 'solo', 'price_min': 16000, 'price_max': 18000, 'specs': {'price': '16000', 'calories': '1400', 'serving': '700', 'spicy_level': '매움', 'cooking_method': '튀김+소스'}, 'scores': {'taste': 78, 'price': 75, 'crispy': 72, 'popularity': 68}},
+    {'brand_slug': 'goobne', 'name': '굽네 치즈볼', 'slug': 'goobne-cheese-ball', 'description': '굽네 사이드 메뉴. 치즈가 가득한 치킨볼, 메인보다 사이드로 인기', 'product_type': 'fried', 'usage': 'party', 'price_min': 6900, 'price_max': 8900, 'specs': {'price': '6900', 'calories': '650', 'serving': '300', 'spicy_level': '없음', 'cooking_method': '오븐구이'}, 'scores': {'taste': 75, 'price': 78, 'crispy': 65, 'popularity': 72}},
+    {'brand_slug': 'nene', 'name': '반반치킨 (후라이드+양념)', 'slug': 'nene-half-half', 'description': '네네 반반치킨. 후라이드와 양념 두 가지 맛을 한 번에', 'product_type': 'fried', 'usage': 'family', 'price_min': 22000, 'price_max': 24000, 'specs': {'price': '22000', 'calories': '1900', 'serving': '950', 'spicy_level': '약간', 'cooking_method': '튀김+양념'}, 'scores': {'taste': 80, 'price': 72, 'crispy': 75, 'popularity': 68}},
+    # === C 티어 치킨 메뉴 (평균 45-59) ===
+    {'brand_slug': 'hosigi', 'name': '호식이 양념치킨', 'slug': 'hosigi-seasoned-chicken', 'description': '호식이 양념치킨. 양은 많지만 맛은 평범한 가성비 양념치킨', 'product_type': 'seasoned', 'usage': 'family', 'price_min': 25000, 'price_max': 25000, 'specs': {'price': '25000', 'calories': '2900', 'serving': '1600', 'spicy_level': '약간', 'cooking_method': '튀김+양념'}, 'scores': {'taste': 62, 'price': 88, 'crispy': 55, 'popularity': 55}},
+    {'brand_slug': '60gye', 'name': '양념치킨', 'slug': '60gye-seasoned-chicken', 'description': '60계 양념치킨. 저렴한 가격의 기본 양념치킨, 맛보다 가격이 강점', 'product_type': 'seasoned', 'usage': 'solo', 'price_min': 23900, 'price_max': 25900, 'specs': {'price': '23900', 'calories': '1700', 'serving': '850', 'spicy_level': '약간', 'cooking_method': '튀김+양념'}, 'scores': {'taste': 60, 'price': 90, 'crispy': 55, 'popularity': 52}},
+    {'brand_slug': 'cheogajip', 'name': '후라이드치킨', 'slug': 'cheogajip-fried-basic', 'description': '처갓집 기본 후라이드. 양념 없는 기본 후라이드, 무난하지만 특색 없음', 'product_type': 'fried', 'usage': 'family', 'price_min': 20000, 'price_max': 22000, 'specs': {'price': '20000', 'calories': '1700', 'serving': '850', 'spicy_level': '없음', 'cooking_method': '튀김'}, 'scores': {'taste': 65, 'price': 75, 'crispy': 68, 'popularity': 48}},
+    {'brand_slug': 'kfc', 'name': '치킨텐더 5조각', 'slug': 'kfc-chicken-tender-5pc', 'description': 'KFC 치킨텐더. 순살 치킨 스트립으로 간편하지만 가격 대비 양이 적음', 'product_type': 'fried', 'usage': 'solo', 'price_min': 7900, 'price_max': 9900, 'specs': {'price': '7900', 'calories': '550', 'serving': '250', 'spicy_level': '없음', 'cooking_method': '튀김'}, 'scores': {'taste': 68, 'price': 50, 'crispy': 72, 'popularity': 55}},
+    # === D 티어 치킨 메뉴 (평균 <45) ===
+    {'brand_slug': 'hosigi', 'name': '호식이 간장치킨', 'slug': 'hosigi-soy-chicken', 'description': '호식이 간장치킨. 양은 많지만 간장 소스가 너무 달고 텁텁하다는 평가', 'product_type': 'soy', 'usage': 'family', 'price_min': 25000, 'price_max': 25000, 'specs': {'price': '25000', 'calories': '2800', 'serving': '1600', 'spicy_level': '없음', 'cooking_method': '튀김+간장소스'}, 'scores': {'taste': 45, 'price': 85, 'crispy': 35, 'popularity': 38}},
+    {'brand_slug': '60gye', 'name': '순살치킨', 'slug': '60gye-boneless-chicken', 'description': '60계 순살치킨. 저렴하지만 퍽퍽하고 기름진 순살, 식감이 아쉬움', 'product_type': 'fried', 'usage': 'solo', 'price_min': 24900, 'price_max': 26900, 'specs': {'price': '24900', 'calories': '1800', 'serving': '800', 'spicy_level': '없음', 'cooking_method': '튀김'}, 'scores': {'taste': 42, 'price': 82, 'crispy': 38, 'popularity': 35}},
+    {'brand_slug': 'cheogajip', 'name': '매운양념치킨', 'slug': 'cheogajip-hot-seasoned', 'description': '처갓집 매운 양념. 지나치게 매워서 치킨 맛을 느끼기 어렵다는 평가', 'product_type': 'seasoned', 'usage': 'beer', 'price_min': 24000, 'price_max': 26000, 'specs': {'price': '24000', 'calories': '1900', 'serving': '900', 'spicy_level': '아주 매움', 'cooking_method': '튀김+매운양념'}, 'scores': {'taste': 48, 'price': 68, 'crispy': 42, 'popularity': 35}},
 ]
 
 # ============================================================================
@@ -1252,6 +1287,16 @@ MENS_WATCH_DATA = [
         'specs': {'case_diameter': '43.2', 'case_thickness': '13', 'water_resistance': '200', 'movement': '터프솔라', 'power_reserve': '솔라', 'case_material': '스테인리스 스틸', 'crystal': '미네랄'},
         'scores': {'heritage': 80, 'craftsmanship': 82, 'resale': 40, 'prestige': 58},
     },
+    # === C 티어 시계 (평균 45-59) ===
+    {'brand_slug': 'casio-gshock', 'name': 'G-SHOCK DW-5600', 'slug': 'gshock-dw-5600', 'description': '오리지널 스퀘어 지샥. 1983년 디자인의 불멸의 아이콘, 가장 기본적인 지샥', 'product_type': 'sport', 'usage': 'sport', 'price_min': 80000, 'price_max': 120000, 'specs': {'case_diameter': '42.8', 'case_thickness': '13.4', 'water_resistance': '200', 'movement': '쿼츠', 'power_reserve': '배터리 2년', 'case_material': '수지', 'crystal': '미네랄'}, 'scores': {'heritage': 72, 'craftsmanship': 68, 'resale': 28, 'prestige': 45}},
+    {'brand_slug': 'casio-gshock', 'name': 'G-SHOCK GA-B2100', 'slug': 'gshock-ga-b2100', 'description': '카시오크 2세대. 블루투스+솔라 추가, 여전히 슬림한 지샥', 'product_type': 'sport', 'usage': 'casual', 'price_min': 180000, 'price_max': 230000, 'specs': {'case_diameter': '45.4', 'case_thickness': '11.9', 'water_resistance': '200', 'movement': '터프솔라+BT', 'power_reserve': '솔라', 'case_material': '카본코어 수지', 'crystal': '미네랄'}, 'scores': {'heritage': 72, 'craftsmanship': 75, 'resale': 32, 'prestige': 52}},
+    {'brand_slug': 'seiko', 'name': 'Seiko 5 Sports SRPD', 'slug': 'seiko-5-sports-srpd', 'description': '세이코 5 스포츠. 기계식 입문의 교과서, 4R36 무브먼트의 가성비', 'product_type': 'sport', 'usage': 'casual', 'price_min': 200000, 'price_max': 350000, 'specs': {'case_diameter': '42.5', 'case_thickness': '13.4', 'water_resistance': '100', 'movement': '4R36', 'power_reserve': '41', 'case_material': '스테인리스 스틸', 'crystal': '하드렉스'}, 'scores': {'heritage': 75, 'craftsmanship': 62, 'resale': 30, 'prestige': 48}},
+    {'brand_slug': 'tissot', 'name': 'Seastar 1000', 'slug': 'tissot-seastar-1000', 'description': '티쏘 다이버워치. 300m 방수에 가격 대비 높은 스펙의 입문 다이버', 'product_type': 'diver', 'usage': 'sport', 'price_min': 600000, 'price_max': 800000, 'specs': {'case_diameter': '43', 'case_thickness': '12.7', 'water_resistance': '300', 'movement': '파워매틱 80', 'power_reserve': '80', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 65, 'craftsmanship': 68, 'resale': 38, 'prestige': 55}},
+    {'brand_slug': 'hamilton', 'name': '재즈마스터 오픈하트', 'slug': 'hamilton-jazzmaster-open-heart', 'description': '해밀턴 오픈하트. 다이얼에서 무브먼트가 보이는 디자인, 가성비 드레스워치', 'product_type': 'dress', 'usage': 'formal', 'price_min': 900000, 'price_max': 1200000, 'specs': {'case_diameter': '40', 'case_thickness': '11.5', 'water_resistance': '50', 'movement': 'H-10', 'power_reserve': '80', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 72, 'craftsmanship': 65, 'resale': 38, 'prestige': 55}},
+    # === D 티어 시계 (평균 <45) ===
+    {'brand_slug': 'casio-gshock', 'name': 'Casio F-91W', 'slug': 'casio-f91w', 'description': '세계에서 가장 많이 팔린 시계. 2천원대 시작, 실용성의 극치지만 소장가치는 최소', 'product_type': 'sport', 'usage': 'sport', 'price_min': 20000, 'price_max': 35000, 'specs': {'case_diameter': '33.2', 'case_thickness': '8.5', 'water_resistance': '30', 'movement': '쿼츠', 'power_reserve': '배터리 7년', 'case_material': '수지', 'crystal': '아크릴'}, 'scores': {'heritage': 60, 'craftsmanship': 40, 'resale': 10, 'prestige': 20}},
+    {'brand_slug': 'casio-gshock', 'name': 'Casio MTP-1183', 'slug': 'casio-mtp-1183', 'description': '카시오 기본 아날로그. 저가 드레스워치, 정장용으로 무난하지만 그 이상도 이하도 아님', 'product_type': 'dress', 'usage': 'formal', 'price_min': 30000, 'price_max': 50000, 'specs': {'case_diameter': '38', 'case_thickness': '8', 'water_resistance': '50', 'movement': '쿼츠', 'power_reserve': '배터리 3년', 'case_material': '스테인리스 스틸', 'crystal': '미네랄'}, 'scores': {'heritage': 45, 'craftsmanship': 35, 'resale': 8, 'prestige': 18}},
+    {'brand_slug': 'seiko', 'name': 'Seiko SUR', 'slug': 'seiko-sur-quartz', 'description': '세이코 기본 쿼츠. 회사 면접용이나 캐주얼 착용, 시계 매니아에게는 관심 밖', 'product_type': 'dress', 'usage': 'formal', 'price_min': 100000, 'price_max': 180000, 'specs': {'case_diameter': '40.2', 'case_thickness': '8.2', 'water_resistance': '100', 'movement': '쿼츠 VJ42', 'power_reserve': '배터리 3년', 'case_material': '스테인리스 스틸', 'crystal': '사파이어'}, 'scores': {'heritage': 60, 'craftsmanship': 48, 'resale': 15, 'prestige': 30}},
 ]
 
 
@@ -2021,6 +2066,88 @@ CAMERA_DATA = [
         'scores': {'image_quality': 68, 'af_performance': 55, 'build_quality': 72, 'value': 82},
     },
     # ============================================================
+    # C티어 카메라 추가 (가중평균 45-59)
+    # image_quality(30), af_performance(25), build_quality(20), value(25)
+    # ============================================================
+    {
+        'brand_slug': 'canon',
+        'name': 'EOS M50 Mark II',
+        'slug': 'canon-eos-m50-ii',
+        'description': '단종된 EOS M 마운트의 마지막 인기작. 유튜버 입문기로 활약했으나 후속 지원 부재로 가치 하락',
+        'product_type': 'mirrorless',
+        'usage': 'vlog',
+        'price_min': 650000,
+        'price_max': 750000,
+        'release_year': 2020,
+        'specs': {'sensor_size': 'APS-C', 'megapixels': '24.1', 'weight': '387', 'max_fps': '10', 'video_resolution': '4K 24p (크롭)', 'viewfinder': 'EVF 236만 도트', 'stabilization': '없음'},
+        'scores': {'image_quality': 60, 'af_performance': 55, 'build_quality': 48, 'value': 55},
+    },
+    {
+        'brand_slug': 'nikon',
+        'name': 'Coolpix P950',
+        'slug': 'nikon-coolpix-p950',
+        'description': '83배 줌 브릿지 카메라. 2000mm 초망원 촬영이 가능한 올인원 카메라, 조류 관찰용으로 인기',
+        'product_type': 'compact',
+        'usage': 'travel',
+        'price_min': 900000,
+        'price_max': 900000,
+        'release_year': 2020,
+        'specs': {'sensor_size': '1/2.3인치', 'megapixels': '16', 'weight': '1005', 'max_fps': '7', 'video_resolution': '4K 30p', 'viewfinder': 'EVF 236만 도트', 'stabilization': '광학식 VR'},
+        'scores': {'image_quality': 42, 'af_performance': 48, 'build_quality': 65, 'value': 62},
+    },
+    {
+        'brand_slug': 'nikon',
+        'name': 'Coolpix P1000',
+        'slug': 'nikon-coolpix-p1000',
+        'description': '125배 줌(3000mm 상당)의 극한 초망원. 달 표면 촬영 가능, 센서 한계는 명확하지만 망원 전문용',
+        'product_type': 'compact',
+        'usage': 'travel',
+        'price_min': 1200000,
+        'price_max': 1200000,
+        'release_year': 2018,
+        'specs': {'sensor_size': '1/2.3인치', 'megapixels': '16', 'weight': '1415', 'max_fps': '7', 'video_resolution': '4K 30p', 'viewfinder': 'EVF 236만 도트', 'stabilization': '광학식 VR'},
+        'scores': {'image_quality': 38, 'af_performance': 42, 'build_quality': 68, 'value': 55},
+    },
+    {
+        'brand_slug': 'gopro',
+        'name': 'HERO11 Black Mini',
+        'slug': 'gopro-hero11-black-mini',
+        'description': '후면 스크린 없는 초소형 액션캠. 가볍지만 편의 기능 부족, 서브 카메라용',
+        'product_type': 'action',
+        'usage': 'vlog',
+        'price_min': 350000,
+        'price_max': 350000,
+        'release_year': 2022,
+        'specs': {'sensor_size': '1/1.9인치', 'megapixels': '27', 'weight': '133', 'max_fps': '120 (2.7K)', 'video_resolution': '5.3K 60p', 'viewfinder': '없음 (상태 LED만)', 'stabilization': 'HyperSmooth 5.0'},
+        'scores': {'image_quality': 55, 'af_performance': 48, 'build_quality': 70, 'value': 58},
+    },
+    {
+        'brand_slug': 'panasonic-lumix',
+        'name': 'G100D',
+        'slug': 'panasonic-lumix-g100d',
+        'description': '브이로그 특화 마이크로 포서드. OZO 오디오와 경량 바디, 센서 크기 한계가 아쉬운 브이로그 카메라',
+        'product_type': 'mirrorless',
+        'usage': 'vlog',
+        'price_min': 800000,
+        'price_max': 800000,
+        'release_year': 2023,
+        'specs': {'sensor_size': '마이크로 포서드', 'megapixels': '20.3', 'weight': '346', 'max_fps': '10', 'video_resolution': '4K 30p', 'viewfinder': 'EVF 368만 도트', 'stabilization': '전자식'},
+        'scores': {'image_quality': 58, 'af_performance': 52, 'build_quality': 55, 'value': 72},
+    },
+    {
+        'brand_slug': 'dji',
+        'name': 'Osmo Action 4',
+        'slug': 'dji-osmo-action-4',
+        'description': '전작 대비 센서 업그레이드. 1/1.3인치 센서지만 소프트웨어 최적화 부족, 5 Pro 출시로 가치 하락',
+        'product_type': 'action',
+        'usage': 'vlog',
+        'price_min': 350000,
+        'price_max': 350000,
+        'release_year': 2023,
+        'specs': {'sensor_size': '1/1.3인치', 'megapixels': '10', 'weight': '145', 'max_fps': '120 (1080p)', 'video_resolution': '4K 120p', 'viewfinder': '터치스크린 듀얼', 'stabilization': 'RockSteady 3.0'},
+        'scores': {'image_quality': 55, 'af_performance': 50, 'build_quality': 62, 'value': 58},
+    },
+    # ============================================================
     # 캐논 보급 — D티어
     # ============================================================
     {
@@ -2172,6 +2299,29 @@ CAR_BRANDS_DATA = [
 
     # ---- 르노 (D티어) ----
     {'brand_slug': 'renault', 'name': 'Arkana', 'slug': 'renault-arkana-2024', 'description': '르노의 쿠페형 SUV. 독특한 디자인의 크로스오버로 유럽에서 선전 중', 'product_type': 'suv', 'usage': 'commute', 'price_min': 3000, 'price_max': 3800, 'release_year': 2024, 'specs': {'engine': '1.3L 직4 터보 하이브리드', 'horsepower': 160, 'fuel_economy': 16.0, 'price': 3000, 'size': '중형', 'drive': 'FWD'}, 'scores': {'performance': 60, 'comfort': 72, 'reliability': 58, 'value': 70}},
+
+    # ============================================================
+    # S티어 추가 (가중평균 85+)
+    # performance(25), comfort(25), reliability(25), value(25)
+    # ============================================================
+    # ---- 포르쉐 S티어 추가 ----
+    {'brand_slug': 'porsche', 'name': '911 GT3 (992)', 'slug': 'porsche-911-gt3-992', 'description': '자연흡기 4.0L 플랫6의 극한. 서킷과 도로 모두에서 최고의 드라이빙 머신', 'product_type': 'sports', 'usage': 'performance', 'price_min': 25000, 'price_max': 30000, 'release_year': 2024, 'specs': {'engine': '4.0L 플랫6 NA', 'horsepower': 502, 'fuel_economy': 7.5, 'price': 25000, 'size': '중형', 'drive': 'RWD'}, 'scores': {'performance': 100, 'comfort': 68, 'reliability': 88, 'value': 85}},
+    # ---- 렉서스 S티어 추가 ----
+    {'brand_slug': 'lexus', 'name': 'LC 500', 'slug': 'lexus-lc-500', 'description': '렉서스 럭셔리 GT. 5.0L V8 자연흡기의 관능적 배기음과 장인정신 인테리어의 그랜드 투어러', 'product_type': 'sports', 'usage': 'luxury', 'price_min': 15000, 'price_max': 18000, 'release_year': 2024, 'specs': {'engine': '5.0L V8 NA', 'horsepower': 471, 'fuel_economy': 8.0, 'price': 15000, 'size': '중형', 'drive': 'RWD'}, 'scores': {'performance': 88, 'comfort': 92, 'reliability': 92, 'value': 72}},
+    # ---- 토요타 S티어 추가 ----
+    {'brand_slug': 'toyota', 'name': 'GR Supra', 'slug': 'toyota-gr-supra-2024', 'description': '전설의 수프라 부활. BMW B58 직6 터보와 도요타 튜닝의 결합, 순수 스포츠카의 귀환', 'product_type': 'sports', 'usage': 'performance', 'price_min': 7000, 'price_max': 8500, 'release_year': 2024, 'specs': {'engine': '3.0L 직6 트윈스크롤 터보', 'horsepower': 382, 'fuel_economy': 10.0, 'price': 7000, 'size': '중형', 'drive': 'RWD'}, 'scores': {'performance': 92, 'comfort': 72, 'reliability': 88, 'value': 90}},
+
+    # ============================================================
+    # D티어 추가 (가중평균 <45)
+    # performance(25), comfort(25), reliability(25), value(25)
+    # ============================================================
+    # ---- 미쓰비시 D티어 추가 ----
+    {'brand_slug': 'mitsubishi', 'name': 'Mirage', 'slug': 'mitsubishi-mirage-2024', 'description': '미쓰비시 최저가 경차. 최소한의 이동 수단, 모든 면에서 경쟁 모델에 뒤처지는 저가 해치백', 'product_type': 'sedan', 'usage': 'commute', 'price_min': 1500, 'price_max': 2000, 'release_year': 2024, 'specs': {'engine': '1.2L 직3', 'horsepower': 78, 'fuel_economy': 17.0, 'price': 1500, 'size': '소형', 'drive': 'FWD'}, 'scores': {'performance': 25, 'comfort': 30, 'reliability': 60, 'value': 55}},
+    {'brand_slug': 'mitsubishi', 'name': 'Eclipse Cross', 'slug': 'mitsubishi-eclipse-cross-2024', 'description': '이클립스 이름을 SUV에 붙인 논란의 모델. 밋밋한 주행감과 좁은 실내, 브랜드 침체의 상징', 'product_type': 'suv', 'usage': 'family', 'price_min': 3000, 'price_max': 3800, 'release_year': 2024, 'specs': {'engine': '1.5L 직4 터보', 'horsepower': 152, 'fuel_economy': 12.5, 'price': 3000, 'size': '중형', 'drive': 'FWD/AWD'}, 'scores': {'performance': 35, 'comfort': 45, 'reliability': 50, 'value': 42}},
+    # ---- 르노 D티어 추가 ----
+    {'brand_slug': 'renault', 'name': 'Kwid', 'slug': 'renault-kwid-2024', 'description': '르노의 초저가 경차. 인도 시장용 모델을 글로벌화한 차량, 안전·품질 모두 최저 수준', 'product_type': 'sedan', 'usage': 'commute', 'price_min': 1000, 'price_max': 1500, 'release_year': 2024, 'specs': {'engine': '1.0L 직3', 'horsepower': 68, 'fuel_economy': 18.0, 'price': 1000, 'size': '소형', 'drive': 'FWD'}, 'scores': {'performance': 20, 'comfort': 25, 'reliability': 42, 'value': 55}},
+    # ---- 스즈키 D티어 추가 ----
+    {'brand_slug': 'suzuki', 'name': 'Celerio', 'slug': 'suzuki-celerio-2024', 'description': '스즈키 최저가 해치백. 신흥국 시장용 초소형차, 선진국 기준으로는 모든 면에서 부족', 'product_type': 'sedan', 'usage': 'commute', 'price_min': 1000, 'price_max': 1500, 'release_year': 2024, 'specs': {'engine': '1.0L 직3', 'horsepower': 67, 'fuel_economy': 21.0, 'price': 1000, 'size': '소형', 'drive': 'FWD'}, 'scores': {'performance': 22, 'comfort': 28, 'reliability': 62, 'value': 58}},
 ]
 
 
@@ -2734,6 +2884,105 @@ COFFEE_DATA = [
         'specs': {'price_americano': 1000, 'size': 355, 'bean_origin': '블렌드', 'roast': '미디엄', 'store_count': 500},
         'scores': {'taste': 33, 'price': 97, 'size': 65, 'value': 80},
     },
+    # ============================================================
+    # S티어 추가 (가중평균 85+)
+    # taste(35), price(25), size(20), value(20)
+    # 전략: 고품질 맛 + 합리적 가격 = S티어 도달 가능
+    # ============================================================
+    {
+        'brand_slug': 'terarosa',
+        'name': '게이샤 핸드드립',
+        'slug': 'terarosa-geisha-hand-drip',
+        'description': '최상급 파나마 게이샤 원두를 핸드드립으로 추출. 테라로사만의 로스팅 기술로 꽃향과 감귤 노트가 압도적, 커피 매니아 필수 체험',
+        'product_type': 'drip',
+        'usage': 'treat',
+        'price_min': 9000,
+        'price_max': 15000,
+        'specs': {'price_americano': 5000, 'size': 355, 'bean_origin': '파나마 게이샤', 'roast': '라이트', 'store_count': 35},
+        'scores': {'taste': 98, 'price': 78, 'size': 72, 'value': 90},
+    },
+    {
+        'brand_slug': 'paul-bassett',
+        'name': '스페셜티 에스프레소',
+        'slug': 'paul-bassett-specialty-espresso',
+        'description': 'WBC 챔피언 폴 바셋이 직접 감수한 한정 스페셜티 에스프레소. 분기별 엄선된 원두로 추출하는 최고급 에스프레소',
+        'product_type': 'espresso',
+        'usage': 'treat',
+        'price_min': 5500,
+        'price_max': 6500,
+        'specs': {'price_americano': 4800, 'size': 355, 'bean_origin': '시즌 스페셜티', 'roast': '미디엄', 'store_count': 75},
+        'scores': {'taste': 97, 'price': 78, 'size': 75, 'value': 88},
+    },
+    # ============================================================
+    # C티어 추가 (가중평균 45-59)
+    # taste(35), price(25), size(20), value(20)
+    # 전략: 보통 맛 + 비싼 가격 = C티어
+    # ============================================================
+    {
+        'brand_slug': 'starbucks',
+        'name': '코르타도',
+        'slug': 'starbucks-cortado',
+        'description': '에스프레소와 소량의 우유. 프리미엄 가격이지만 양이 적어 가성비가 낮은 메뉴',
+        'product_type': 'espresso',
+        'usage': 'treat',
+        'price_min': 5500,
+        'price_max': 6000,
+        'specs': {'price_americano': 4500, 'size': 237, 'bean_origin': '블렌드', 'roast': '다크', 'store_count': 1900},
+        'scores': {'taste': 75, 'price': 42, 'size': 35, 'value': 40},
+    },
+    {
+        'brand_slug': 'hollys',
+        'name': '리저브 드립',
+        'slug': 'hollys-reserve-drip',
+        'description': '할리스 리저브 매장 한정 핸드드립. 프리미엄을 표방하지만 맛 대비 가격이 높아 아쉬운 메뉴',
+        'product_type': 'drip',
+        'usage': 'treat',
+        'price_min': 6500,
+        'price_max': 7500,
+        'specs': {'price_americano': 4500, 'size': 355, 'bean_origin': '싱글 오리진', 'roast': '미디엄', 'store_count': 650},
+        'scores': {'taste': 70, 'price': 40, 'size': 55, 'value': 42},
+    },
+    {
+        'brand_slug': 'coffee-bean',
+        'name': '리저브 드립',
+        'slug': 'coffee-bean-reserve-drip',
+        'description': '커피빈 매장 한정 프리미엄 드립. LA 본사 셀렉션 원두이나 추출 일관성이 부족하고 가격은 비쌈',
+        'product_type': 'drip',
+        'usage': 'treat',
+        'price_min': 7000,
+        'price_max': 8000,
+        'specs': {'price_americano': 4800, 'size': 355, 'bean_origin': '싱글 오리진', 'roast': '미디엄', 'store_count': 300},
+        'scores': {'taste': 72, 'price': 38, 'size': 55, 'value': 42},
+    },
+    # ============================================================
+    # D티어 추가 (가중평균 <45)
+    # taste(35), price(25), size(20), value(20)
+    # 전략: 매우 낮은 맛 품질 + 편의점 수준
+    # ============================================================
+    {
+        'brand_slug': 'self-coffee',
+        'name': '캔커피 (자판기)',
+        'slug': 'self-coffee-can-coffee-vending',
+        'description': '무인 매장 자판기 캔커피. 분말 커피 추출, 향과 맛 모두 최하위 수준이지만 500원에 마실 수 있는 최저가',
+        'product_type': 'espresso',
+        'usage': 'takeout',
+        'price_min': 500,
+        'price_max': 800,
+        'specs': {'price_americano': 500, 'size': 200, 'bean_origin': '인스턴트', 'roast': '다크', 'store_count': 500},
+        'scores': {'taste': 12, 'price': 80, 'size': 25, 'value': 40},
+    },
+    {
+        'brand_slug': 'mammoth',
+        'name': '아이스티 복숭아',
+        'slug': 'mammoth-iced-peach-tea',
+        'description': '매머드 복숭아 아이스티. 커피가 아닌 시럽 기반 음료, 대용량이지만 맛의 깊이가 없는 설탕물에 가까운 메뉴',
+        'product_type': 'non_coffee',
+        'usage': 'treat',
+        'price_min': 2000,
+        'price_max': 2500,
+        'specs': {'price_americano': 1500, 'size': 590, 'bean_origin': '해당없음', 'roast': '해당없음', 'store_count': 800},
+        'scores': {'taste': 20, 'price': 72, 'size': 55, 'value': 22},
+    },
 ]
 
 
@@ -3260,6 +3509,46 @@ MENS_WALLET_DATA = [
         'price_max': 80000,
         'specs': {'material_type': '소가죽', 'size': '11x9x1.5cm', 'card_slots': 6, 'coin_pocket': '없음', 'made_in': '한국/중국'},
         'scores': {'material': 48, 'design': 45, 'durability': 55, 'value': 75},
+    },
+    # ============================================================
+    # D티어 추가 (가중평균 <45)
+    # material(30), design(25), durability(25), value(20)
+    # ============================================================
+    {
+        'brand_slug': 'kumkang',
+        'name': '합성 가죽 반지갑',
+        'slug': 'kumkang-synthetic-bifold',
+        'description': '금강제화 최저가 합성 가죽 지갑. PU 가죽 사용으로 1년 이내 표면 벗겨짐 발생, 디자인도 구식',
+        'product_type': 'bifold',
+        'usage': 'daily',
+        'price_min': 30000,
+        'price_max': 50000,
+        'specs': {'material_type': 'PU 합성가죽', 'size': '11x9x2cm', 'card_slots': 4, 'coin_pocket': '있음', 'made_in': '중국'},
+        'scores': {'material': 25, 'design': 30, 'durability': 28, 'value': 55},
+    },
+    {
+        'brand_slug': 'landrover',
+        'name': '나일론 벨크로 반지갑',
+        'slug': 'landrover-nylon-velcro-bifold',
+        'description': '랜드로버 나일론 벨크로 지갑. 아웃도어용이지만 내구성 약하고 찍찍이 소리가 거슬리는 저가 지갑',
+        'product_type': 'bifold',
+        'usage': 'daily',
+        'price_min': 15000,
+        'price_max': 30000,
+        'specs': {'material_type': '나일론/폴리에스터', 'size': '12x9x2.5cm', 'card_slots': 3, 'coin_pocket': '있음', 'made_in': '중국'},
+        'scores': {'material': 18, 'design': 22, 'durability': 35, 'value': 60},
+    },
+    {
+        'brand_slug': 'daks',
+        'name': '합성 가죽 카드홀더',
+        'slug': 'daks-synthetic-card-holder',
+        'description': '닥스 브랜드 이름만 붙은 저가 합성 가죽 카드홀더. 대량 생산된 OEM 제품으로 실질적 브랜드 가치 없음',
+        'product_type': 'card_holder',
+        'usage': 'daily',
+        'price_min': 20000,
+        'price_max': 40000,
+        'specs': {'material_type': 'PU 합성가죽', 'size': '10x7x0.5cm', 'card_slots': 3, 'coin_pocket': '없음', 'made_in': '중국'},
+        'scores': {'material': 22, 'design': 28, 'durability': 25, 'value': 50},
     },
 ]
 
@@ -3974,6 +4263,49 @@ PERFUME_DATA = [
         'release_year': 2012,
         'specs': {'concentration': 'EDT', 'volume': 100, 'top_note': '베르가못, 레몬, 자몽', 'heart_note': '세이지, 시나몬', 'base_note': '시더우드, 머스크, 앰버', 'perfumer': '미공개'},
         'scores': {'scent_quality': 32, 'longevity': 30, 'sillage': 35, 'value': 85},
+    },
+    # ============================================================
+    # D티어 추가 (가중평균 <45)
+    # scent_quality(30), longevity(25), sillage(20), value(25)
+    # ============================================================
+    {
+        'brand_slug': 'playboy-perfume',
+        'name': 'Generation',
+        'slug': 'playboy-generation',
+        'description': '플레이보이 제너레이션. 합성 시트러스와 무스크의 단조로운 조합, 바디 스프레이 수준의 품질',
+        'product_type': 'edt',
+        'usage': 'daily',
+        'price_min': 10000,
+        'price_max': 20000,
+        'release_year': 2014,
+        'specs': {'concentration': 'EDT', 'volume': 100, 'top_note': '만다린, 레몬', 'heart_note': '라벤더, 제라늄', 'base_note': '통카빈, 머스크', 'perfumer': '미공개'},
+        'scores': {'scent_quality': 25, 'longevity': 22, 'sillage': 28, 'value': 78},
+    },
+    {
+        'brand_slug': 'davidoff',
+        'name': 'Run Wild',
+        'slug': 'davidoff-run-wild',
+        'description': '다비도프 런 와일드. 과하게 달콤한 합성 향료가 주를 이루는 저가 라인, 지속력도 매우 짧음',
+        'product_type': 'edt',
+        'usage': 'daily',
+        'price_min': 30000,
+        'price_max': 50000,
+        'release_year': 2019,
+        'specs': {'concentration': 'EDT', 'volume': 100, 'top_note': '그레이프프루트, 카다멈', 'heart_note': '라벤더, 세이지', 'base_note': '앰버, 베티버, 캐시미어 우드', 'perfumer': '미공개'},
+        'scores': {'scent_quality': 38, 'longevity': 35, 'sillage': 32, 'value': 55},
+    },
+    {
+        'brand_slug': 'dolce-gabbana',
+        'name': 'Light Blue Forever',
+        'slug': 'dg-light-blue-forever',
+        'description': '라이트블루의 인텐스 버전이지만 원작의 매력을 잃은 채 화학적 달콤함만 남은 실패작. 지속력도 개선되지 않음',
+        'product_type': 'edp',
+        'usage': 'summer',
+        'price_min': 70000,
+        'price_max': 120000,
+        'release_year': 2021,
+        'specs': {'concentration': 'EDP', 'volume': 100, 'top_note': '그래니 스미스 애플, 레몬', 'heart_note': '화이트 피치, 재스민', 'base_note': '머스크, 시더우드, 캐시미어', 'perfumer': '알베르토 모리야스'},
+        'scores': {'scent_quality': 42, 'longevity': 40, 'sillage': 38, 'value': 45},
     },
 ]
 
