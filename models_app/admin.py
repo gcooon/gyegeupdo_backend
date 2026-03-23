@@ -43,7 +43,7 @@ class ProductAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
         ('가격 및 링크', {
-            'fields': ('price_min', 'price_max', 'coupang_link', 'naver_link')
+            'fields': ('price_min', 'price_max', 'naver_link')
         }),
         ('버전 정보', {
             'fields': ('release_year', 'version_number', 'prev_version'),

@@ -59,7 +59,6 @@ class Product(models.Model):
     price_max = models.IntegerField(default=0, verbose_name='최고가')
 
     # 제휴 링크
-    coupang_link = models.URLField(blank=True, verbose_name='쿠팡 링크')
     naver_link = models.URLField(blank=True, verbose_name='네이버 링크')
 
     # 버전 정보

@@ -270,11 +270,6 @@ else:
     _USE_S3_STORAGE = False
 
 
-# Coupang Partners API
-COUPANG_ACCESS_KEY = os.getenv('COUPANG_ACCESS_KEY', '')
-COUPANG_SECRET_KEY = os.getenv('COUPANG_SECRET_KEY', '')
-
-
 # Logging
 LOGGING = {
     'version': 1,

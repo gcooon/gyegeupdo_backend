@@ -124,7 +124,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'slug', 'brand', 'category', 'image_url', 'description',
             'tier', 'tier_score', 'community_tier', 'product_type', 'usage',
-            'price_min', 'price_max', 'coupang_link', 'naver_link',
+            'price_min', 'price_max', 'naver_link',
             'release_year', 'version_number',
             'specs', 'scores', 'traps', 'review_count', 'prev_version',
             'alternatives', 'filter_labels', 'seo_meta',
